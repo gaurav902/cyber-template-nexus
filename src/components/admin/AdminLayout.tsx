@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
-  Home, Templates, FolderKanban, Settings, User, LogOut, Menu, X
+  Home, LayoutTemplate, FolderKanban, Settings, User, LogOut, Menu, X
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -48,7 +47,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
   const navItems = [
     { path: '/admin/dashboard', label: 'Dashboard', icon: Home },
-    { path: '/admin/templates', label: 'Templates', icon: Templates },
+    { path: '/admin/templates', label: 'Templates', icon: LayoutTemplate },
     { path: '/admin/categories', label: 'Categories', icon: FolderKanban },
     { path: '/admin/settings', label: 'Settings', icon: Settings },
   ];

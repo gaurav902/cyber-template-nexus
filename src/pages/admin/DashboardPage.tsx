@@ -1,10 +1,9 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { Plus, Templates, FileText, Users, ArrowUpRight } from 'lucide-react';
+import { Plus, LayoutTemplate, FileText, Users, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -108,7 +107,7 @@ const DashboardPage = () => {
               </p>
             </CardContent>
             <CardFooter className="pt-0 pb-2">
-              <Templates className="h-4 w-4 text-muted-foreground" />
+              <LayoutTemplate className="h-4 w-4 text-muted-foreground" />
             </CardFooter>
           </Card>
           
