@@ -1,11 +1,11 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, ArrowDown, Layers, Flame, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
-import { TemplateCard, Template } from '@/components/template-card';
+import { TemplateCard } from '@/components/template-card';
+import { Template } from '@/types/templates';
 
 // Sample data - would be fetched from API in real app
 const sampleTemplates: Template[] = [
@@ -14,78 +14,96 @@ const sampleTemplates: Template[] = [
     title: "Neon Dashboard",
     description: "A futuristic dashboard template with neon accents and dark mode.",
     thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "Admin Dashboard",
+    category_id: null,
     tags: ["React", "Tailwind CSS", "Dark Mode"],
     views: 1452,
     rating: 4.8,
-    demoUrl: "https://example.com/demo",
-    githubUrl: "https://github.com",
-    createdAt: "2023-04-12T10:00:00Z"
+    demo_url: "https://example.com/demo",
+    github_url: "https://github.com",
+    download_url: null,
+    status: "published",
+    created_at: "2023-04-12T10:00:00Z",
+    updated_at: "2023-04-12T10:00:00Z"
   },
   {
     id: "2",
     title: "Cyber Portfolio",
     description: "A cyberpunk-themed portfolio template for developers and designers.",
     thumbnail: "https://images.unsplash.com/photo-1535303311164-664fc9ec6532?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "Portfolio",
+    category_id: null,
     tags: ["React", "Three.js", "Animation"],
     views: 876,
     rating: 4.6,
-    demoUrl: "https://example.com/demo",
-    githubUrl: "https://github.com",
-    createdAt: "2023-05-28T10:00:00Z"
+    demo_url: "https://example.com/demo",
+    github_url: "https://github.com",
+    download_url: null,
+    status: "published",
+    created_at: "2023-05-28T10:00:00Z",
+    updated_at: "2023-05-28T10:00:00Z"
   },
   {
     id: "3",
     title: "E-Commerce Dark",
     description: "A modern e-commerce template with dark theme and smooth animations.",
     thumbnail: "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "E-Commerce",
+    category_id: null,
     tags: ["React", "Next.js", "Stripe"],
     views: 2103,
     rating: 4.9,
-    demoUrl: "https://example.com/demo",
-    githubUrl: "https://github.com",
-    createdAt: "2023-06-15T10:00:00Z"
+    demo_url: "https://example.com/demo",
+    github_url: "https://github.com",
+    download_url: null,
+    status: "published",
+    created_at: "2023-06-15T10:00:00Z",
+    updated_at: "2023-06-15T10:00:00Z"
   },
   {
     id: "4",
     title: "Tech Blog",
     description: "A minimalist blog template focused on readability and tech content.",
     thumbnail: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "Blog",
+    category_id: null,
     tags: ["React", "MDX", "Dark Mode"],
     views: 987,
     rating: 4.5,
-    demoUrl: "https://example.com/demo",
-    githubUrl: "https://github.com",
-    createdAt: "2023-07-03T10:00:00Z"
+    demo_url: "https://example.com/demo",
+    github_url: "https://github.com",
+    download_url: null,
+    status: "published",
+    created_at: "2023-07-03T10:00:00Z",
+    updated_at: "2023-07-03T10:00:00Z"
   },
   {
     id: "5",
     title: "AI Showcase",
     description: "A template designed for AI projects and demos with interactive elements.",
     thumbnail: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "AI/ML",
+    category_id: null,
     tags: ["React", "TensorFlow.js", "API"],
     views: 1548,
     rating: 4.7,
-    demoUrl: "https://example.com/demo",
-    githubUrl: "https://github.com",
-    createdAt: "2023-08-22T10:00:00Z"
+    demo_url: "https://example.com/demo",
+    github_url: "https://github.com",
+    download_url: null,
+    status: "published",
+    created_at: "2023-08-22T10:00:00Z",
+    updated_at: "2023-08-22T10:00:00Z"
   },
   {
     id: "6",
     title: "SaaS Landing",
     description: "A high-conversion SaaS landing page template with dark theme and CTA focus.",
     thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "Landing Page",
+    category_id: null,
     tags: ["React", "Animation", "CTA"],
     views: 1872,
     rating: 4.8,
-    demoUrl: "https://example.com/demo",
-    githubUrl: "https://github.com",
-    createdAt: "2023-09-10T10:00:00Z"
+    demo_url: "https://example.com/demo",
+    github_url: "https://github.com",
+    download_url: null,
+    status: "published",
+    created_at: "2023-09-10T10:00:00Z",
+    updated_at: "2023-09-10T10:00:00Z"
   }
 ];
 
@@ -158,7 +176,7 @@ const HomePage = () => {
                 </div>
                 <div className="absolute -bottom-6 -left-6 w-40 aspect-square cyber-panel cyber-border-glow animate-pulse-slow">
                   <img 
-                    src="https://images.unsplash.com/photo-1555066932-e78dd8fb77bb?q=80&w=3538&auto=format&fit=crop&ixlib=rb-4.0.3" 
+                    src="https://images.unsplash.com/photo-1555066932-e78dd8fb77bb?q=80&w=3438&auto=format&fit=crop&ixlib=rb-4.0.3" 
                     alt="Code snippet" 
                     className="w-full h-full object-cover rounded-lg"
                   />

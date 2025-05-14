@@ -38,9 +38,9 @@ export async function initializeAdminUser() {
     if (error) throw error;
     
     const adminExists = data.users?.some(user => {
-      // Type assertion to access user_metadata
-      const userMetadata = user.user_metadata as Record<string, any> || {};
-      return userMetadata.email === 'admin@admin.com';
+      // Type assertion for user metadata
+      const metadata = user.user_metadata as { email?: string } | null;
+      return metadata && metadata.email === 'admin@admin.com';
     });
     
     if (!adminExists) {

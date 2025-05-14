@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
@@ -72,7 +73,7 @@ const TemplatesPage = () => {
     }
     
     // Filter by category
-    if (selectedCategory && selectedCategory !== 'All Categories' && template.category !== selectedCategory) {
+    if (selectedCategory && selectedCategory !== 'All Categories' && template.category_name !== selectedCategory) {
       return false;
     }
     
