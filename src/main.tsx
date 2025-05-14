@@ -17,8 +17,8 @@ async function bootstrapAdmin() {
     }
     
     const adminExists = users?.some(user => {
-      // Type assertion for user metadata
-      const metadata = user.user_metadata as { email?: string } | null;
+      // Correctly type the user object to access metadata
+      const metadata = user.user_metadata as Record<string, any>;
       return metadata && metadata.email === 'admin@admin.com';
     });
     
