@@ -1,12 +1,13 @@
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
 import { Lock, User, Eye, EyeOff } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -14,43 +15,35 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
 
-  // For demo purposes, hardcoded admin credentials
-  const adminEmail = "admin@templatex.com";
-  const adminPassword = "admin123";
+  const from = (location.state as any)?.from?.pathname || '/admin/dashboard';
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    // In a real app, this would be an API call with JWT auth
-    setTimeout(() => {
-      if (email === adminEmail && password === adminPassword) {
-        // Simulate storing JWT token
-        localStorage.setItem('adminToken', 'demo-token-xyz');
-        localStorage.setItem('adminUser', JSON.stringify({
-          name: 'Admin User',
-          email: adminEmail,
-          role: 'admin'
-        }));
-        
-        toast({
-          title: "Login successful",
-          description: "Welcome back, Admin!",
-        });
-        
-        navigate('/admin/dashboard');
-      } else {
-        toast({
-          title: "Login failed",
-          description: "Invalid email or password",
-          variant: "destructive",
-        });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+
+      if (data.user) {
+        navigate(from, { replace: true });
       }
-      
+    } catch (error: any) {
+      toast({
+        title: "Login failed",
+        description: error.message || "Invalid email or password",
+        variant: "destructive",
+      });
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -78,7 +71,7 @@ const LoginPage = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@templatex.com"
+                    placeholder="Enter your email"
                     className="pl-10 bg-cyber-light border-cyber-border"
                     required
                   />
@@ -115,12 +108,6 @@ const LoginPage = () => {
                 {loading ? 'Authenticating...' : 'Login to Admin Panel'}
               </Button>
             </form>
-            
-            <div className="mt-6 text-center text-xs text-muted-foreground">
-              <p>Demo credentials:</p>
-              <p>Email: admin@templatex.com</p>
-              <p>Password: admin123</p>
-            </div>
           </div>
         </div>
       </div>

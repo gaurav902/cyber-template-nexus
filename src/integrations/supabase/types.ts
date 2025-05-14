@@ -9,13 +9,122 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      stats: {
+        Row: {
+          categories_count: number
+          date: string
+          id: string
+          template_views: number
+          templates_count: number
+          unique_visitors: number
+        }
+        Insert: {
+          categories_count?: number
+          date?: string
+          id?: string
+          template_views?: number
+          templates_count?: number
+          unique_visitors?: number
+        }
+        Update: {
+          categories_count?: number
+          date?: string
+          id?: string
+          template_views?: number
+          templates_count?: number
+          unique_visitors?: number
+        }
+        Relationships: []
+      }
+      templates: {
+        Row: {
+          category_id: string | null
+          created_at: string
+          demo_url: string | null
+          description: string
+          download_url: string | null
+          github_url: string | null
+          id: string
+          rating: number
+          status: string
+          tags: string[]
+          thumbnail: string
+          title: string
+          updated_at: string
+          views: number
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string
+          demo_url?: string | null
+          description: string
+          download_url?: string | null
+          github_url?: string | null
+          id?: string
+          rating?: number
+          status?: string
+          tags?: string[]
+          thumbnail: string
+          title: string
+          updated_at?: string
+          views?: number
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string
+          demo_url?: string | null
+          description?: string
+          download_url?: string | null
+          github_url?: string | null
+          id?: string
+          rating?: number
+          status?: string
+          tags?: string[]
+          thumbnail?: string
+          title?: string
+          updated_at?: string
+          views?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "templates_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_template_views: {
+        Args: { template_id: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

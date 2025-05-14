@@ -8,39 +8,35 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Template } from '@/components/template-card';
 import { Eye, Star, Github, Download, ExternalLink, Copy, Link as LinkIcon } from 'lucide-react';
-
-// Sample data - would be fetched from API in real app
-const sampleTemplates: Record<string, Template> = {
-  "1": {
-    id: "1",
-    title: "Neon Dashboard",
-    description: "A futuristic dashboard template with neon accents and dark mode. Perfect for admin interfaces, SaaS applications, and monitoring dashboards. Features include customizable widgets, interactive charts, and responsive design for all screen sizes.\n\nBuilt with React and Tailwind CSS, this template includes everything you need to get started with your next admin dashboard project. The dark theme reduces eye strain and creates a sleek, modern look.",
-    thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "Admin Dashboard",
-    tags: ["React", "Tailwind CSS", "Dark Mode", "Charts", "Admin UI"],
-    views: 1452,
-    rating: 4.8,
-    demoUrl: "https://example.com/demo",
-    githubUrl: "https://github.com",
-    createdAt: "2023-04-12T10:00:00Z"
-  }
-};
+import { useQuery } from '@tanstack/react-query';
+import { getTemplateById, incrementTemplateViews } from '@/services/templates';
+import { useToast } from '@/hooks/use-toast';
 
 const TemplateDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const [template, setTemplate] = useState<Template | null>(null);
-  const [loading, setLoading] = useState(true);
-
+  const { toast } = useToast();
+  
+  const { data: template, isLoading, error } = useQuery({
+    queryKey: ['template', id],
+    queryFn: () => getTemplateById(id!),
+    enabled: !!id
+  });
+  
   useEffect(() => {
-    // In a real app, this would fetch from API
-    setLoading(true);
-    if (id && sampleTemplates[id]) {
-      setTemplate(sampleTemplates[id]);
+    if (id) {
+      incrementTemplateViews(id).catch(console.error);
     }
-    setLoading(false);
   }, [id]);
+  
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast({
+      title: "Link copied",
+      description: "Template link copied to clipboard."
+    });
+  };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <>
         <Navbar />
@@ -54,7 +50,7 @@ const TemplateDetailPage = () => {
     );
   }
 
-  if (!template) {
+  if (error || !template) {
     return (
       <>
         <Navbar />
@@ -95,7 +91,7 @@ const TemplateDetailPage = () => {
                   </span>
                 </div>
                 
-                <Link to={`/categories/${template.category}`}>
+                <Link to={`/templates?category=${template.category}`}>
                   <Badge variant="secondary" className="mb-4 bg-neon-blue/10 hover:bg-neon-blue/20 text-neon-blue border-none">
                     {template.category}
                   </Badge>
@@ -114,7 +110,7 @@ const TemplateDetailPage = () => {
                   <div>
                     <h3 className="text-sm font-medium mb-2">Tags</h3>
                     <div className="flex flex-wrap gap-2">
-                      {template.tags.map(tag => (
+                      {template.tags && template.tags.map((tag: string) => (
                         <Badge key={tag} variant="outline" className="text-xs border-cyber-border">
                           {tag}
                         </Badge>
@@ -125,7 +121,7 @@ const TemplateDetailPage = () => {
                   <div>
                     <h3 className="text-sm font-medium mb-2">Added on</h3>
                     <p className="text-muted-foreground text-sm">
-                      {new Date(template.createdAt).toLocaleDateString('en-US', {
+                      {new Date(template.created_at).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
@@ -138,24 +134,32 @@ const TemplateDetailPage = () => {
               <div className="cyber-panel p-6 space-y-4">
                 <h3 className="font-orbitron font-medium">Actions</h3>
                 
-                <Button variant="outline" className="cyber-button w-full justify-start" asChild>
-                  <a href={template.githubUrl} target="_blank" rel="noopener noreferrer">
-                    <Github className="mr-2 h-4 w-4" />
-                    View on GitHub
-                  </a>
-                </Button>
+                {template.github_url && (
+                  <Button variant="outline" className="cyber-button w-full justify-start" asChild>
+                    <a href={template.github_url} target="_blank" rel="noopener noreferrer">
+                      <Github className="mr-2 h-4 w-4" />
+                      View on GitHub
+                    </a>
+                  </Button>
+                )}
                 
-                <Button variant="outline" className="cyber-button w-full justify-start">
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Template
-                </Button>
+                {template.download_url && (
+                  <Button variant="outline" className="cyber-button w-full justify-start" asChild>
+                    <a href={template.download_url} target="_blank" rel="noopener noreferrer">
+                      <Download className="mr-2 h-4 w-4" />
+                      Download Template
+                    </a>
+                  </Button>
+                )}
                 
-                <Button variant="outline" className="cyber-button w-full justify-start">
-                  <Copy className="mr-2 h-4 w-4" />
-                  Clone Repository
-                </Button>
+                {template.github_url && (
+                  <Button variant="outline" className="cyber-button w-full justify-start">
+                    <Copy className="mr-2 h-4 w-4" />
+                    Clone Repository
+                  </Button>
+                )}
                 
-                <Button variant="outline" className="cyber-button w-full justify-start">
+                <Button variant="outline" className="cyber-button w-full justify-start" onClick={handleCopyLink}>
                   <LinkIcon className="mr-2 h-4 w-4" />
                   Share Template
                 </Button>
@@ -167,14 +171,16 @@ const TemplateDetailPage = () => {
               <div className="cyber-panel p-6 h-full flex flex-col">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="font-orbitron font-medium">Live Preview</h2>
-                  <a 
-                    href={template.demoUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-neon-blue text-sm flex items-center hover:underline"
-                  >
-                    Open in New Tab <ExternalLink className="ml-1 h-3 w-3" />
-                  </a>
+                  {template.demo_url && (
+                    <a 
+                      href={template.demo_url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-neon-blue text-sm flex items-center hover:underline"
+                    >
+                      Open in New Tab <ExternalLink className="ml-1 h-3 w-3" />
+                    </a>
+                  )}
                 </div>
                 
                 <div className="flex-grow cyber-border-glow rounded-md overflow-hidden">
@@ -193,29 +199,6 @@ const TemplateDetailPage = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Related Templates */}
-          <div className="mt-16">
-            <h2 className="font-orbitron text-xl font-bold mb-6">Similar Templates</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Related templates would be displayed here */}
-              <div className="cyber-panel p-6 text-center flex items-center justify-center">
-                <p className="text-muted-foreground">
-                  Related templates would be displayed here
-                </p>
-              </div>
-              <div className="cyber-panel p-6 text-center flex items-center justify-center">
-                <p className="text-muted-foreground">
-                  Related templates would be displayed here
-                </p>
-              </div>
-              <div className="cyber-panel p-6 text-center flex items-center justify-center">
-                <p className="text-muted-foreground">
-                  Related templates would be displayed here
-                </p>
               </div>
             </div>
           </div>

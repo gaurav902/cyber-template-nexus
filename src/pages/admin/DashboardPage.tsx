@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
@@ -7,76 +8,31 @@ import { Plus, LayoutTemplate, FileText, Users, ArrowUpRight } from 'lucide-reac
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Template } from '@/components/template-card';
-
-// Sample data for charts
-const viewsData = [
-  { name: 'Jan', views: 4000 },
-  { name: 'Feb', views: 3000 },
-  { name: 'Mar', views: 5000 },
-  { name: 'Apr', views: 4500 },
-  { name: 'May', views: 7000 },
-  { name: 'Jun', views: 6000 },
-  { name: 'Jul', views: 8500 }
-];
-
-// Sample templates data
-const recentTemplates = [
-  {
-    id: "1",
-    title: "Neon Dashboard",
-    description: "A futuristic dashboard template with neon accents and dark mode.",
-    thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "Admin Dashboard",
-    tags: ["React", "Tailwind CSS"],
-    views: 1452,
-    rating: 4.8,
-    status: "published",
-    createdAt: "2023-04-12T10:00:00Z"
-  },
-  {
-    id: "2",
-    title: "Cyber Portfolio",
-    description: "A cyberpunk-themed portfolio template for developers and designers.",
-    thumbnail: "https://images.unsplash.com/photo-1535303311164-664fc9ec6532?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "Portfolio",
-    tags: ["React", "Three.js"],
-    views: 876,
-    rating: 4.6,
-    status: "published",
-    createdAt: "2023-05-28T10:00:00Z"
-  },
-  {
-    id: "3",
-    title: "E-Commerce Dark",
-    description: "A modern e-commerce template with dark theme and smooth animations.",
-    thumbnail: "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category: "E-Commerce",
-    tags: ["React", "Next.js"],
-    views: 2103,
-    rating: 4.9,
-    status: "draft",
-    createdAt: "2023-06-15T10:00:00Z"
-  }
-];
+import { useAuth } from '@/context/AuthContext';
+import { useQuery } from '@tanstack/react-query';
+import { getTemplates, getDashboardStats, getViewsData } from '@/services/templates';
 
 const DashboardPage = () => {
   const navigate = useNavigate();
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    // Check if user is logged in as admin
-    const adminToken = localStorage.getItem('adminToken');
-    if (!adminToken) {
-      navigate('/admin/login');
-    } else {
-      setIsAdmin(true);
-    }
-  }, [navigate]);
-
-  if (!isAdmin) {
-    return null; // Don't render anything while checking authentication
-  }
+  const { user } = useAuth();
+  
+  const { data: templates = [], isLoading: isTemplatesLoading } = useQuery({
+    queryKey: ['templates'],
+    queryFn: getTemplates,
+  });
+  
+  const { data: stats = {}, isLoading: isStatsLoading } = useQuery({
+    queryKey: ['dashboardStats'],
+    queryFn: getDashboardStats,
+  });
+  
+  const { data: viewsData = [], isLoading: isViewsLoading } = useQuery({
+    queryKey: ['viewsData'],
+    queryFn: getViewsData,
+  });
+  
+  // Get recent templates only
+  const recentTemplates = templates.slice(0, 3);
 
   return (
     <AdminLayout>
@@ -101,7 +57,7 @@ const DashboardPage = () => {
               <CardTitle className="text-sm font-medium">Total Templates</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold mb-1">42</div>
+              <div className="text-2xl font-bold mb-1">{stats.templates_count || 0}</div>
               <p className="text-xs text-muted-foreground">
                 <span className="text-neon-green">↑ 8%</span> from last month
               </p>
@@ -116,7 +72,7 @@ const DashboardPage = () => {
               <CardTitle className="text-sm font-medium">Total Views</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold mb-1">24,531</div>
+              <div className="text-2xl font-bold mb-1">{stats.template_views || 0}</div>
               <p className="text-xs text-muted-foreground">
                 <span className="text-neon-blue">↑ 12%</span> from last month
               </p>
@@ -131,7 +87,7 @@ const DashboardPage = () => {
               <CardTitle className="text-sm font-medium">Categories</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold mb-1">8</div>
+              <div className="text-2xl font-bold mb-1">{stats.categories_count || 0}</div>
               <p className="text-xs text-muted-foreground">
                 <span className="text-neon-purple">New:</span> AI/ML
               </p>
@@ -146,7 +102,9 @@ const DashboardPage = () => {
               <CardTitle className="text-sm font-medium">Draft Templates</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold mb-1">5</div>
+              <div className="text-2xl font-bold mb-1">
+                {templates.filter((t: any) => t.status === 'draft').length}
+              </div>
               <p className="text-xs text-muted-foreground">
                 <span className="text-neon-green">3</span> ready for review
               </p>
@@ -221,7 +179,7 @@ const DashboardPage = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-cyber-border">
-                  {recentTemplates.map((template) => (
+                  {recentTemplates.map((template: any) => (
                     <tr key={template.id}>
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-3">
@@ -249,7 +207,7 @@ const DashboardPage = () => {
                         </Badge>
                       </td>
                       <td className="py-3 px-4 text-sm">
-                        {new Date(template.createdAt).toLocaleDateString()}
+                        {new Date(template.created_at).toLocaleDateString()}
                       </td>
                       <td className="py-3 px-4 text-sm">{template.views}</td>
                       <td className="py-3 px-4">
@@ -264,6 +222,13 @@ const DashboardPage = () => {
                       </td>
                     </tr>
                   ))}
+                  {recentTemplates.length === 0 && (
+                    <tr>
+                      <td colSpan={6} className="py-8 text-center text-muted-foreground">
+                        No templates found. <Link to="/admin/templates/add" className="text-neon-blue hover:underline">Add your first template</Link>
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
