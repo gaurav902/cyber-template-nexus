@@ -30,35 +30,58 @@ export async function getCurrentUser() {
   return user;
 }
 
-// Initialize the admin user if it doesn't exist
-export async function initializeAdminUser() {
+// Check if admin account exists
+export async function isAdminSetupNeeded() {
   try {
-    const { data, error } = await supabase.auth.admin.listUsers();
+    const { data, error } = await supabase
+      .from('admin_setup')
+      .select('setup_complete')
+      .single();
     
-    if (error) throw error;
+    if (error && error.code !== 'PGRST116') {
+      console.error("Error checking admin setup:", error);
+      return true;
+    }
     
-    // Type assertion for the entire users array
-    const typedUsers = data.users as Array<{
-      id: string;
-      user_metadata: Record<string, any>;
-      // Add other properties as needed
-    }>;
-    
-    const adminExists = typedUsers?.some(user => {
-      return user.user_metadata && user.user_metadata.email === 'admin@admin.com';
+    // If no record exists or setup is not complete, admin setup is needed
+    return !data || !data.setup_complete;
+  } catch (error) {
+    console.error("Error checking admin setup:", error);
+    return true; // Default to needing setup if there's an error
+  }
+}
+
+// Setup admin account
+export async function setupAdminAccount(email: string, password: string) {
+  try {
+    // Create the admin user
+    const { data: userData, error: userError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { role: "admin" }
+      }
     });
     
-    if (!adminExists) {
-      const { error } = await supabase.auth.admin.createUser({
-        email: "admin@admin.com",
-        password: "admin123",
-        email_confirm: true,
-        user_metadata: { role: "admin" }
-      });
-      
-      if (error) console.error("Error creating admin user:", error);
-    }
+    if (userError) throw userError;
+    
+    // Mark setup as complete
+    const { error: setupError } = await supabase
+      .from('admin_setup')
+      .upsert({ id: 1, setup_complete: true });
+    
+    if (setupError) throw setupError;
+    
+    return userData;
   } catch (error) {
-    console.error("Error checking for admin user:", error);
+    console.error("Error setting up admin account:", error);
+    throw error;
   }
+}
+
+// Initialize the admin user if it doesn't exist (for backwards compatibility)
+export async function initializeAdminUser() {
+  // This function is kept for backward compatibility but is no longer needed
+  // as we now have the admin setup flow
+  return;
 }
