@@ -1,8 +1,7 @@
-
 import { useEffect, useState } from 'react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, FileTemplate, Layers, BarChart3 } from 'lucide-react';
+import { Users, File, Layers, BarChart3 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -91,7 +90,7 @@ const DashboardPage = () => {
             <CardContent>
               <div className="flex items-center space-x-2">
                 <div className="p-2 bg-cyber-light/30 rounded-md">
-                  <FileTemplate className="h-6 w-6 text-neon-blue" />
+                  <File className="h-6 w-6 text-neon-blue" />
                 </div>
                 <div className="text-2xl font-bold">
                   {loading ? '...' : stats.templates_count}

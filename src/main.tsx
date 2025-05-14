@@ -16,7 +16,10 @@ async function bootstrapAdmin() {
       return;
     }
     
-    const adminExists = users?.some(user => user.email === 'admin@admin.com');
+    const adminExists = users?.some(user => {
+      const userMetadata = user.user_metadata as Record<string, any>;
+      return userMetadata?.email === 'admin@admin.com';
+    });
     
     if (!adminExists) {
       // Create admin user

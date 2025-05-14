@@ -37,7 +37,10 @@ export async function initializeAdminUser() {
     
     if (error) throw error;
     
-    const adminExists = data.users?.some(user => user.email === 'admin@admin.com');
+    const adminExists = data.users?.some(user => {
+      const userMetadata = user.user_metadata as Record<string, any>;
+      return userMetadata?.email === 'admin@admin.com';
+    });
     
     if (!adminExists) {
       const { error } = await supabase.auth.admin.createUser({

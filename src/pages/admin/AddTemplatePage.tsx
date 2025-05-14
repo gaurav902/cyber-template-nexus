@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Select } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { getCategories } from '@/services/categories';
 import { createTemplate } from '@/services/templates';
 import { Loader } from 'lucide-react';
+import { Template } from '@/types/templates';
 
 const AddTemplatePage = () => {
   const [title, setTitle] = useState('');
@@ -22,7 +22,7 @@ const AddTemplatePage = () => {
   const [demoUrl, setDemoUrl] = useState('');
   const [githubUrl, setGithubUrl] = useState('');
   const [downloadUrl, setDownloadUrl] = useState('');
-  const [status, setStatus] = useState('draft');
+  const [status, setStatus] = useState<'draft' | 'published'>('draft');
   const [tags, setTags] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
@@ -67,7 +67,7 @@ const AddTemplatePage = () => {
       demo_url: demoUrl,
       github_url: githubUrl,
       download_url: downloadUrl,
-      status,
+      status: status as 'draft' | 'published',
       tags: tagsArray,
     };
     

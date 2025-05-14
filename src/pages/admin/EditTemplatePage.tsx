@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
@@ -10,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { getCategories } from '@/services/categories';
-import { getTemplateById, updateTemplate } from '@/services/templates';
+import { fetchTemplateById, updateTemplate } from '@/services/templates';
 import { Loader } from 'lucide-react';
 
 const EditTemplatePage = () => {
@@ -31,7 +30,7 @@ const EditTemplatePage = () => {
   
   const { data: template, isLoading: isTemplateLoading } = useQuery({
     queryKey: ['template', id],
-    queryFn: () => getTemplateById(id!),
+    queryFn: () => fetchTemplateById(id!),
     enabled: !!id
   });
   

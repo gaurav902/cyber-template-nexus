@@ -9,7 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import { Template } from '@/components/template-card';
 import { Eye, Star, Github, Download, ExternalLink, Copy, Link as LinkIcon } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
-import { getTemplateById, incrementTemplateViews } from '@/services/templates';
+import { fetchTemplateById, incrementTemplateViews } from '@/services/templates';
 import { useToast } from '@/hooks/use-toast';
 
 const TemplateDetailPage = () => {
@@ -18,7 +18,7 @@ const TemplateDetailPage = () => {
   
   const { data: template, isLoading, error } = useQuery({
     queryKey: ['template', id],
-    queryFn: () => getTemplateById(id!),
+    queryFn: () => fetchTemplateById(id!),
     enabled: !!id
   });
   

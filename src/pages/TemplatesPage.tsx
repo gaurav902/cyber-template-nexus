@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
@@ -7,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, Filter, X, Loader } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
-import { getTemplates } from '@/services/templates';
+import { fetchTemplates } from '@/services/templates';
 import { getCategories } from '@/services/categories';
 
 const TemplatesPage = () => {
@@ -20,7 +19,7 @@ const TemplatesPage = () => {
   
   const { data: templates = [], isLoading: isTemplatesLoading } = useQuery({
     queryKey: ['templates'],
-    queryFn: getTemplates,
+    queryFn: fetchTemplates,
   });
   
   const { data: categories = [], isLoading: isCategoriesLoading } = useQuery({
@@ -30,9 +29,9 @@ const TemplatesPage = () => {
 
   // Extract all unique tags from templates
   useEffect(() => {
-    if (templates.length > 0) {
+    if (templates && templates.length > 0) {
       const tagsSet = new Set<string>();
-      templates.forEach((template: any) => {
+      (templates as any[]).forEach((template) => {
         if (template.tags && Array.isArray(template.tags)) {
           template.tags.forEach((tag: string) => tagsSet.add(tag));
         }
@@ -56,7 +55,8 @@ const TemplatesPage = () => {
     setSortOption('latest');
   };
   
-  const filteredTemplates = templates.filter((template: any) => {
+  // Fix the filteredTemplates to properly cast templates to an array
+  const filteredTemplates = (templates as any[]).filter((template) => {
     // Filter by status - only show published templates
     if (template.status !== 'published') {
       return false;
