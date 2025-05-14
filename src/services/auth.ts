@@ -37,10 +37,15 @@ export async function initializeAdminUser() {
     
     if (error) throw error;
     
-    const adminExists = data.users?.some(user => {
-      // Correctly type the user object to access metadata
-      const metadata = user.user_metadata as Record<string, any>;
-      return metadata && metadata.email === 'admin@admin.com';
+    // Type assertion for the entire users array
+    const typedUsers = data.users as Array<{
+      id: string;
+      user_metadata: Record<string, any>;
+      // Add other properties as needed
+    }>;
+    
+    const adminExists = typedUsers?.some(user => {
+      return user.user_metadata && user.user_metadata.email === 'admin@admin.com';
     });
     
     if (!adminExists) {
