@@ -1,6 +1,5 @@
 
 import { supabase } from "@/integrations/supabase/client";
-import { Session, User } from "@supabase/supabase-js";
 
 // Sign in with email and password
 export async function signIn(email: string, password: string) {
@@ -33,16 +32,24 @@ export async function getCurrentUser() {
 
 // Initialize the admin user if it doesn't exist
 export async function initializeAdminUser() {
-  const { data, error } = await supabase.auth.admin.getUserByEmail("admin@admin.com");
-  
-  if (!data?.user) {
-    const { error } = await supabase.auth.admin.createUser({
-      email: "admin@admin.com",
-      password: "admin123",
-      email_confirm: true,
-      user_metadata: { role: "admin" }
-    });
+  try {
+    const { data, error } = await supabase.auth.admin.listUsers();
     
-    if (error) console.error("Error creating admin user:", error);
+    if (error) throw error;
+    
+    const adminExists = data.users?.some(user => user.email === 'admin@admin.com');
+    
+    if (!adminExists) {
+      const { error } = await supabase.auth.admin.createUser({
+        email: "admin@admin.com",
+        password: "admin123",
+        email_confirm: true,
+        user_metadata: { role: "admin" }
+      });
+      
+      if (error) console.error("Error creating admin user:", error);
+    }
+  } catch (error) {
+    console.error("Error checking for admin user:", error);
   }
 }
