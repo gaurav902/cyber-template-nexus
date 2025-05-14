@@ -2,21 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Eye, Star, ArrowRight } from 'lucide-react';
-
-export interface Template {
-  id: string;
-  title: string;
-  description: string;
-  thumbnail: string;
-  category: string;
-  tags: string[];
-  views: number;
-  rating: number;
-  demoUrl: string;
-  githubUrl: string;
-  createdAt: string;
-  updatedAt?: string;
-}
+import { Template } from '@/types/templates';
 
 interface TemplateCardProps {
   template: Template;
@@ -45,7 +31,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
         </div>
         <div className="p-4 flex flex-col flex-grow">
           <span className="text-xs text-muted-foreground">
-            {template.category}
+            {template.category_name || 'Uncategorized'}
           </span>
           <h3 className="font-orbitron font-medium mt-1 group-hover:text-neon-blue transition-colors">
             {template.title}
@@ -67,7 +53,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
           </div>
           <div className="mt-auto pt-4 flex items-center text-xs text-muted-foreground justify-between">
             <span>
-              {new Date(template.createdAt).toLocaleDateString()}
+              {new Date(template.created_at).toLocaleDateString()}
             </span>
             <span className="text-neon-blue flex items-center group-hover:translate-x-0.5 transition-transform">
               View <ArrowRight size={12} className="ml-1" />

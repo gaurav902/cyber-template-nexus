@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
@@ -67,11 +66,11 @@ const AddTemplatePage = () => {
       demo_url: demoUrl,
       github_url: githubUrl,
       download_url: downloadUrl,
-      status: status as 'draft' | 'published',
+      status,
       tags: tagsArray,
     };
     
-    createTemplateMutation.mutate(templateData);
+    createTemplateMutation.mutate(templateData as Omit<Template, 'id' | 'created_at' | 'updated_at' | 'views' | 'rating'>);
   };
   
   return (
@@ -201,7 +200,11 @@ const AddTemplatePage = () => {
             
             <div className="space-y-4">
               <Label>Status</Label>
-              <RadioGroup value={status} onValueChange={setStatus} className="flex space-x-4">
+              <RadioGroup 
+                value={status} 
+                onValueChange={(value: 'draft' | 'published') => setStatus(value)} 
+                className="flex space-x-4"
+              >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="draft" id="draft" />
                   <Label htmlFor="draft" className="cursor-pointer">Draft</Label>

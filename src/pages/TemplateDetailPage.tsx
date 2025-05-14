@@ -6,7 +6,7 @@ import { Footer } from '@/components/ui/footer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Template } from '@/components/template-card';
+import { Template } from '@/types/templates';
 import { Eye, Star, Github, Download, ExternalLink, Copy, Link as LinkIcon } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTemplateById, incrementTemplateViews } from '@/services/templates';
@@ -91,9 +91,9 @@ const TemplateDetailPage = () => {
                   </span>
                 </div>
                 
-                <Link to={`/templates?category=${template.category}`}>
+                <Link to={`/templates?category=${template.category_name || ''}`}>
                   <Badge variant="secondary" className="mb-4 bg-neon-blue/10 hover:bg-neon-blue/20 text-neon-blue border-none">
-                    {template.category}
+                    {template.category_name || 'Uncategorized'}
                   </Badge>
                 </Link>
                 
