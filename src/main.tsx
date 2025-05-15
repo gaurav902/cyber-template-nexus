@@ -9,33 +9,20 @@ import { supabase } from '@/integrations/supabase/client';
 async function bootstrapAdmin() {
   try {
     // Check if admin user exists
-    const { data: { users }, error: fetchError } = await supabase.auth.admin.listUsers();
+    const { data, error } = await supabase.auth.admin.signUp({
+      email: 'admin@admin.com',
+      password: 'admin123',
+      options: {
+        data: { role: 'admin' }
+      }
+    });
     
-    if (fetchError) {
-      console.error("Error checking for admin user:", fetchError);
+    if (error) {
+      console.error("Error creating admin user:", error);
       return;
     }
     
-    // Type assertion for the entire users array
-    const typedUsers = users as Array<{
-      id: string;
-      user_metadata: Record<string, any>;
-      // Add other properties as needed
-    }>;
-    
-    const adminExists = typedUsers?.some(user => {
-      return user.user_metadata && user.user_metadata.email === 'admin@admin.com';
-    });
-    
-    if (!adminExists) {
-      // Create admin user
-      await supabase.auth.admin.createUser({
-        email: 'admin@admin.com',
-        password: 'admin123',
-        email_confirm: true,
-        user_metadata: { role: 'admin' }
-      });
-    }
+    console.log("Admin user created or already exists");
   } catch (error) {
     console.error("Error bootstrapping admin:", error);
   }

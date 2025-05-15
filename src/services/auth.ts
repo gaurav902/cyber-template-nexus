@@ -68,7 +68,8 @@ export async function setupAdminAccount(email: string, password: string) {
     // Mark setup as complete
     const { error: setupError } = await supabase
       .from('admin_setup')
-      .upsert({ id: 1, setup_complete: true });
+      .update({ setup_complete: true })
+      .eq('id', 1);
     
     if (setupError) throw setupError;
     

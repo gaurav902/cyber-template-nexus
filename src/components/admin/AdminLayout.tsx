@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   Home, LayoutTemplate, FolderKanban, Settings, User, LogOut, Menu, X
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 
 interface AdminLayoutProps {
@@ -11,29 +12,15 @@ interface AdminLayoutProps {
 }
 
 export function AdminLayout({ children }: AdminLayoutProps) {
-  const [adminUser, setAdminUser] = useState<{ name: string; email: string } | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user, signOut } = useAuth();
 
-  // Check authentication
-  useEffect(() => {
-    const adminToken = localStorage.getItem('adminToken');
-    if (!adminToken) {
-      navigate('/admin/login');
-    } else {
-      const userData = localStorage.getItem('adminUser');
-      if (userData) {
-        setAdminUser(JSON.parse(userData));
-      }
-    }
-  }, [navigate]);
-
-  const handleLogout = () => {
-    localStorage.removeItem('adminToken');
-    localStorage.removeItem('adminUser');
+  const handleLogout = async () => {
+    await signOut();
     toast({
       title: "Logged out",
       description: "You have been successfully logged out.",
@@ -169,10 +156,10 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">
-                      {adminUser?.name || 'Admin'}
+                      {user?.email || 'Admin'}
                     </p>
                     <p className="text-xs text-muted-foreground truncate">
-                      {adminUser?.email || 'admin@templatex.com'}
+                      {user?.email || 'admin@admin.com'}
                     </p>
                   </div>
                   <button onClick={handleLogout}>
