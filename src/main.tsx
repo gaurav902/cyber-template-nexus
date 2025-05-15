@@ -9,7 +9,7 @@ import { supabase } from '@/integrations/supabase/client';
 async function bootstrapAdmin() {
   try {
     // Check if admin user exists
-    const { data, error } = await supabase.auth.admin.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: 'admin@admin.com',
       password: 'admin123',
       options: {
