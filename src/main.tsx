@@ -28,6 +28,6 @@ async function bootstrapAdmin() {
   }
 }
 
-// bootstrapAdmin(); // Uncomment this for development only
+bootstrapAdmin(); // Uncomment this for development only
 
 createRoot(document.getElementById("root")!).render(<App />);
