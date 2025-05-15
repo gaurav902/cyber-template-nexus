@@ -12,6 +12,16 @@ export function Navbar() {
     return location.pathname === path ? 'text-neon-blue' : 'text-white/80 hover:text-white';
   };
 
+  const navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/all-templates', label: 'All Templates' },
+    { path: '/categories', label: 'Categories' },
+    { path: '/featured', label: 'Featured' },
+    { path: '/latest', label: 'Latest' },
+    { path: '/resources', label: 'Resources' },
+    { path: '/connect', label: 'Connect' },
+  ];
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-cyber/80 backdrop-blur-lg border-b border-cyber-border">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -24,16 +34,12 @@ export function Navbar() {
           </span>
         </Link>
         
-        <div className="hidden md:flex items-center gap-8">
-          <Link to="/" className={`font-medium ${isActive('/')}`}>
-            Home
-          </Link>
-          <Link to="/templates" className={`font-medium ${isActive('/templates')}`}>
-            Templates
-          </Link>
-          <Link to="/categories" className={`font-medium ${isActive('/categories')}`}>
-            Categories
-          </Link>
+        <div className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link key={link.path} to={link.path} className={`font-medium ${isActive(link.path)}`}>
+              {link.label}
+            </Link>
+          ))}
           <div className="relative ml-4">
             <input 
               type="text" 
@@ -65,27 +71,16 @@ export function Navbar() {
       {isOpen && (
         <div className="md:hidden pt-2 pb-4 px-4 bg-cyber-dark border-b border-cyber-border">
           <div className="flex flex-col space-y-3">
-            <Link 
-              to="/" 
-              className={`py-2 px-3 rounded-md ${isActive('/') === 'text-neon-blue' ? 'bg-cyber-light' : ''}`}
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </Link>
-            <Link 
-              to="/templates" 
-              className={`py-2 px-3 rounded-md ${isActive('/templates') === 'text-neon-blue' ? 'bg-cyber-light' : ''}`}
-              onClick={() => setIsOpen(false)}
-            >
-              Templates
-            </Link>
-            <Link 
-              to="/categories" 
-              className={`py-2 px-3 rounded-md ${isActive('/categories') === 'text-neon-blue' ? 'bg-cyber-light' : ''}`}
-              onClick={() => setIsOpen(false)}
-            >
-              Categories
-            </Link>
+            {navLinks.map((link) => (
+              <Link 
+                key={link.path}
+                to={link.path} 
+                className={`py-2 px-3 rounded-md ${isActive(link.path) === 'text-neon-blue' ? 'bg-cyber-light' : ''}`}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
             <div className="relative mt-2">
               <input 
                 type="text" 

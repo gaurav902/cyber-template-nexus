@@ -1,36 +1,57 @@
 
 import { useState } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
-import { Lock, Eye, EyeOff, Mail } from 'lucide-react';
-import { signIn } from '@/services/auth';
+import { Lock, Eye, EyeOff, Mail, User } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
-const LoginPage = () => {
-  const [email, setEmail] = useState('admin@admin.com');
+const SignupPage = () => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
   const { toast } = useToast();
 
-  const from = (location.state as any)?.from?.pathname || '/admin/dashboard';
-
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (password !== confirmPassword) {
+      toast({
+        title: "Passwords do not match",
+        description: "Please make sure your passwords match",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
-      // Regular login
-      await signIn(email, password);
-      navigate(from, { replace: true });
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { role: "admin" }
+        }
+      });
+      
+      if (error) throw error;
+      
+      toast({
+        title: "Account created",
+        description: "Your admin account has been created successfully",
+      });
+      
+      navigate('/admin/login', { replace: true });
     } catch (error: any) {
       toast({
-        title: "Login failed",
+        title: "Signup failed",
         description: error.message || "An error occurred",
         variant: "destructive",
       });
@@ -46,18 +67,18 @@ const LoginPage = () => {
         <div className="w-full max-w-md mx-auto">
           <div className="cyber-panel p-8">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 rounded-2xl bg-neon-blue/20 mx-auto flex items-center justify-center cyber-border-glow">
-                <span className="font-orbitron font-bold text-3xl cyber-text-glow">X</span>
+              <div className="w-16 h-16 rounded-2xl bg-neon-purple/20 mx-auto flex items-center justify-center cyber-border-glow">
+                <User className="h-8 w-8 text-neon-purple" />
               </div>
               <h1 className="font-orbitron text-2xl font-bold mt-4 mb-2">
-                Admin Login
+                Admin Signup
               </h1>
               <p className="text-muted-foreground text-sm">
-                Access your admin dashboard and manage templates
+                Create a new admin account to manage your site
               </p>
             </div>
             
-            <form onSubmit={handleLogin} className="space-y-6">
+            <form onSubmit={handleSignup} className="space-y-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium block">Email</label>
                 <div className="relative">
@@ -66,7 +87,7 @@ const LoginPage = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@admin.com"
+                    placeholder="Enter your email"
                     className="pl-10 bg-cyber-light border-cyber-border"
                     required
                   />
@@ -81,7 +102,7 @@ const LoginPage = () => {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
+                    placeholder="Create a password"
                     className="pl-10 pr-10 bg-cyber-light border-cyber-border"
                     required
                   />
@@ -95,25 +116,36 @@ const LoginPage = () => {
                 </div>
               </div>
               
+              <div className="space-y-2">
+                <label className="text-sm font-medium block">Confirm Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm your password"
+                    className="pl-10 pr-10 bg-cyber-light border-cyber-border"
+                    required
+                  />
+                </div>
+              </div>
+              
               <Button 
                 type="submit" 
-                className="w-full cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black font-medium"
+                className="w-full cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white font-medium"
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Login to Admin Panel'}
+                {loading ? 'Creating account...' : 'Create Admin Account'}
               </Button>
               
               <div className="text-center text-sm">
-                <p className="text-muted-foreground mb-4">
-                  Don't have an account?{" "}
-                  <Link to="/admin/signup" className="text-neon-blue hover:underline">
-                    Create admin account
+                <p className="text-muted-foreground">
+                  Already have an account?{" "}
+                  <Link to="/admin/login" className="text-neon-blue hover:underline">
+                    Login
                   </Link>
                 </p>
-                
-                <p className="text-muted-foreground">Default admin credentials:</p>
-                <p>Email: admin@admin.com</p>
-                <p>Password: admin123</p>
               </div>
             </form>
           </div>
@@ -124,4 +156,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;

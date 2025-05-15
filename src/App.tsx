@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import TemplatesPage from "./pages/TemplatesPage";
 import TemplateDetailPage from "./pages/TemplateDetailPage";
 import LoginPage from "./pages/admin/LoginPage";
+import SignupPage from "./pages/admin/SignupPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import TemplatesAdminPage from "./pages/admin/TemplatesAdminPage";
 import AddTemplatePage from "./pages/admin/AddTemplatePage";
@@ -16,6 +17,13 @@ import CategoriesPage from "./pages/admin/CategoriesPage";
 import PrivateRoute from "./components/admin/PrivateRoute";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./context/AuthContext";
+import AllTemplatesPage from "./pages/AllTemplatesPage";
+import CategoriesListPage from "./pages/CategoriesListPage";
+import CategoryDetailPage from "./pages/CategoryDetailPage";
+import FeaturedPage from "./pages/FeaturedPage";
+import LatestPage from "./pages/LatestPage";
+import ResourcesPage from "./pages/ResourcesPage";
+import ConnectPage from "./pages/ConnectPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,9 +46,17 @@ const App = () => (
             <Route path="/" element={<HomePage />} />
             <Route path="/templates" element={<TemplatesPage />} />
             <Route path="/templates/:id" element={<TemplateDetailPage />} />
+            <Route path="/all-templates" element={<AllTemplatesPage />} />
+            <Route path="/categories" element={<CategoriesListPage />} />
+            <Route path="/categories/:id" element={<CategoryDetailPage />} />
+            <Route path="/featured" element={<FeaturedPage />} />
+            <Route path="/latest" element={<LatestPage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/connect" element={<ConnectPage />} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<LoginPage />} />
+            <Route path="/admin/signup" element={<SignupPage />} />
             <Route path="/admin/dashboard" element={
               <PrivateRoute>
                 <DashboardPage />
