@@ -1,71 +1,67 @@
+
 import { useEffect, useState } from 'react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, File, Layers, BarChart3 } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
+import { Users, File, Layers, BarChart3, TrendingUp, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
-interface StatsData {
-  templates_count: number;
-  categories_count: number;
-  template_views: number;
-  unique_visitors: number;
-}
+import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { fetchDashboardStats, fetchTrendingTemplates, fetchLatestTemplates } from '@/services/dashboard';
+import { Template } from '@/types/templates';
 
 const DashboardPage = () => {
-  const [stats, setStats] = useState<StatsData>({
-    templates_count: 0,
-    categories_count: 0,
-    template_views: 0,
-    unique_visitors: 0
-  });
-  const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+  const [trendingTemplates, setTrendingTemplates] = useState<Template[]>([]);
+  const [recentTemplates, setRecentTemplates] = useState<Template[]>([]);
 
-  useEffect(() => {
-    async function fetchStats() {
-      try {
-        // Get templates count
-        const { count: templatesCount, error: templatesError } = await supabase
-          .from('templates')
-          .select('*', { count: 'exact', head: true });
-
-        // Get categories count
-        const { count: categoriesCount, error: categoriesError } = await supabase
-          .from('categories')
-          .select('*', { count: 'exact', head: true });
-
-        // Get total views
-        const { data: templates, error: viewsError } = await supabase
-          .from('templates')
-          .select('views');
-
-        const totalViews = templates?.reduce((sum, template) => sum + (template.views || 0), 0) || 0;
-
-        if (templatesError || categoriesError || viewsError) {
-          throw new Error('Error fetching dashboard data');
-        }
-
-        setStats({
-          templates_count: templatesCount || 0,
-          categories_count: categoriesCount || 0,
-          template_views: totalViews,
-          unique_visitors: Math.floor(totalViews * 0.7) // Simulating unique visitors as 70% of views
-        });
-      } catch (error) {
-        console.error('Error:', error);
-        toast({
-          title: "Error",
-          description: "Failed to load dashboard data",
-          variant: "destructive",
-        });
-      } finally {
-        setLoading(false);
-      }
+  // Fetch dashboard stats
+  const { data: stats, isLoading } = useQuery({
+    queryKey: ['dashboardStats'],
+    queryFn: fetchDashboardStats,
+    onError: (error) => {
+      console.error('Error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load dashboard data",
+        variant: "destructive",
+      });
     }
+  });
 
-    fetchStats();
-  }, [toast]);
+  // Fetch trending templates
+  const { isLoading: isTrendingLoading } = useQuery({
+    queryKey: ['trendingTemplates'],
+    queryFn: fetchTrendingTemplates,
+    onSuccess: (data) => {
+      setTrendingTemplates(data);
+    },
+    onError: (error) => {
+      console.error('Error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load trending templates",
+        variant: "destructive",
+      });
+    }
+  });
+
+  // Fetch latest templates
+  const { isLoading: isRecentLoading } = useQuery({
+    queryKey: ['recentTemplates'],
+    queryFn: fetchLatestTemplates,
+    onSuccess: (data) => {
+      setRecentTemplates(data);
+    },
+    onError: (error) => {
+      console.error('Error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load recent templates",
+        variant: "destructive",
+      });
+    }
+  });
 
   return (
     <AdminLayout>
@@ -93,7 +89,7 @@ const DashboardPage = () => {
                   <File className="h-6 w-6 text-neon-blue" />
                 </div>
                 <div className="text-2xl font-bold">
-                  {loading ? '...' : stats.templates_count}
+                  {isLoading ? '...' : stats?.templates_count}
                 </div>
               </div>
             </CardContent>
@@ -114,7 +110,7 @@ const DashboardPage = () => {
                   <BarChart3 className="h-6 w-6 text-neon-green" />
                 </div>
                 <div className="text-2xl font-bold">
-                  {loading ? '...' : stats.template_views}
+                  {isLoading ? '...' : stats?.template_views}
                 </div>
               </div>
             </CardContent>
@@ -135,7 +131,7 @@ const DashboardPage = () => {
                   <Layers className="h-6 w-6 text-neon-purple" />
                 </div>
                 <div className="text-2xl font-bold">
-                  {loading ? '...' : stats.categories_count}
+                  {isLoading ? '...' : stats?.categories_count}
                 </div>
               </div>
             </CardContent>
@@ -156,12 +152,121 @@ const DashboardPage = () => {
                   <Users className="h-6 w-6 text-neon-pink" />
                 </div>
                 <div className="text-2xl font-bold">
-                  {loading ? '...' : stats.unique_visitors}
+                  {isLoading ? '...' : stats?.unique_visitors}
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
+
+        {/* Trending Templates Section */}
+        <Card className="cyber-card bg-cyber-dark border-cyber-border shadow-lg">
+          <CardHeader className="pb-2 flex flex-row items-center justify-between">
+            <div>
+              <div className="flex items-center">
+                <TrendingUp className="mr-2 h-5 w-5 text-neon-blue" />
+                <CardTitle>Trending Templates</CardTitle>
+              </div>
+              <CardDescription>
+                Most viewed templates on your platform
+              </CardDescription>
+            </div>
+            <Button asChild variant="outline" size="sm" className="cyber-button">
+              <Link to="/admin/trending">View All</Link>
+            </Button>
+          </CardHeader>
+          <CardContent>
+            {isTrendingLoading ? (
+              <div className="text-center py-4">Loading trending templates...</div>
+            ) : trendingTemplates.length === 0 ? (
+              <div className="text-center py-4">No trending templates found</div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {trendingTemplates.slice(0, 3).map((template) => (
+                  <div key={template.id} className="cyber-card bg-cyber-light/10 p-4">
+                    <div className="aspect-video mb-2 overflow-hidden rounded">
+                      <img 
+                        src={template.thumbnail} 
+                        alt={template.title} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="font-medium mb-1 truncate">{template.title}</h3>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">{template.views} views</span>
+                      <Link to={`/admin/templates/edit/${template.id}`} className="text-neon-blue text-sm">
+                        Edit
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Recently Added Templates */}
+        <Card className="cyber-card bg-cyber-dark border-cyber-border shadow-lg">
+          <CardHeader className="pb-2 flex flex-row items-center justify-between">
+            <div>
+              <div className="flex items-center">
+                <Clock className="mr-2 h-5 w-5 text-neon-purple" />
+                <CardTitle>Recently Added</CardTitle>
+              </div>
+              <CardDescription>
+                Latest templates added to your platform
+              </CardDescription>
+            </div>
+            <Button asChild variant="outline" size="sm" className="cyber-button">
+              <Link to="/admin/templates">View All</Link>
+            </Button>
+          </CardHeader>
+          <CardContent>
+            {isRecentLoading ? (
+              <div className="text-center py-4">Loading recent templates...</div>
+            ) : recentTemplates.length === 0 ? (
+              <div className="text-center py-4">No recent templates found</div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {recentTemplates.slice(0, 3).map((template) => (
+                  <div key={template.id} className="cyber-card bg-cyber-light/10 p-4">
+                    <div className="aspect-video mb-2 overflow-hidden rounded">
+                      <img 
+                        src={template.thumbnail} 
+                        alt={template.title} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="font-medium mb-1 truncate">{template.title}</h3>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {new Date(template.created_at).toLocaleDateString()}
+                      </span>
+                      <Link to={`/admin/templates/edit/${template.id}`} className="text-neon-blue text-sm">
+                        Edit
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Call to Action */}
+        <Card className="cyber-card bg-gradient-to-br from-cyber-dark to-cyber border-cyber-border p-6 text-center">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="font-orbitron text-2xl font-bold mb-4">
+              Ready to Build Something <span className="text-shimmer">Amazing</span>?
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Explore our collection of premium templates and start building your next project today.
+            </p>
+            <Button asChild size="lg" className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white font-medium">
+              <Link to="/get-started">Get Started</Link>
+            </Button>
+          </div>
+        </Card>
       </div>
     </AdminLayout>
   );
