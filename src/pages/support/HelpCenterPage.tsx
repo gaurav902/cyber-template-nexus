@@ -1,191 +1,153 @@
 
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { BookOpen, Lightbulb, Zap, Code, HelpCircle, BarChart, Settings, Server, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { HelpCircle, Search, BookOpen, Code, LifeBuoy, FileText, Zap } from 'lucide-react';
-import { useState } from 'react';
-
-interface HelpArticle {
-  id: string;
-  title: string;
-  category: string;
-  excerpt: string;
-  link: string;
-}
-
-const helpArticles: HelpArticle[] = [
-  {
-    id: '1',
-    title: 'Getting Started with Templates',
-    category: 'Basics',
-    excerpt: 'Learn how to download, install, and set up your template for the first time.',
-    link: '/docs#getting-started'
-  },
-  {
-    id: '2',
-    title: 'Customizing Template Styles',
-    category: 'Customization',
-    excerpt: 'How to modify colors, typography, and other design elements to match your brand.',
-    link: '/docs#customization'
-  },
-  {
-    id: '3',
-    title: 'Connecting to Supabase Backend',
-    category: 'Integration',
-    excerpt: 'Step-by-step guide to connect your template to Supabase for data management.',
-    link: '/docs/supabase'
-  },
-  {
-    id: '4',
-    title: 'Troubleshooting Common Issues',
-    category: 'Support',
-    excerpt: 'Solutions to the most frequently encountered problems and errors.',
-    link: '/support/faqs'
-  },
-  {
-    id: '5',
-    title: 'Optimizing Template Performance',
-    category: 'Advanced',
-    excerpt: 'Tips and techniques to ensure your website loads quickly and performs well.',
-    link: '/docs/performance'
-  },
-  {
-    id: '6',
-    title: 'Adding Custom Functionality',
-    category: 'Development',
-    excerpt: 'How to extend your template with custom components and features.',
-    link: '/docs/custom-development'
-  }
-];
-
-const popularTopics = [
-  { title: 'Installation Guide', icon: Zap, link: '/docs#installation' },
-  { title: 'Styling Components', icon: Code, link: '/docs#customization' },
-  { title: 'User Authentication', icon: LifeBuoy, link: '/docs/authentication' },
-  { title: 'Template Updates', icon: FileText, link: '/docs/updates' }
-];
 
 const HelpCenterPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredArticles, setFilteredArticles] = useState<HelpArticle[]>(helpArticles);
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
-    
-    if (query.trim() === '') {
-      setFilteredArticles(helpArticles);
-    } else {
-      const results = helpArticles.filter(
-        article => 
-          article.title.toLowerCase().includes(query) || 
-          article.category.toLowerCase().includes(query) || 
-          article.excerpt.toLowerCase().includes(query)
-      );
-      setFilteredArticles(results);
+  const helpCategories = [
+    {
+      title: 'Getting Started',
+      description: 'Learn the basics of using HTR templates',
+      icon: BookOpen,
+      links: [
+        { title: 'Installation Guide', href: '/get-started' },
+        { title: 'Template Structure', href: '/docs' },
+        { title: 'First Steps Tutorial', href: '/get-started' }
+      ]
+    },
+    {
+      title: 'Customization',
+      description: 'Make the templates your own',
+      icon: Lightbulb,
+      links: [
+        { title: 'Styling Guide', href: '/docs' },
+        { title: 'Component Customization', href: '/docs' },
+        { title: 'Adding Custom Functionality', href: '/support/help-center/custom-functionality' }
+      ]
+    },
+    {
+      title: 'Performance',
+      description: 'Optimize your application',
+      icon: Zap,
+      links: [
+        { title: 'Optimizing Template Performance', href: '/support/help-center/optimizing-performance' },
+        { title: 'Reducing Bundle Size', href: '/docs' },
+        { title: 'Performance Monitoring', href: '/docs/analytics' }
+      ]
+    },
+    {
+      title: 'Integrations',
+      description: 'Connect with external services',
+      icon: Code,
+      links: [
+        { title: 'Authentication Setup', href: '/docs/supabase' },
+        { title: 'Database Connection', href: '/docs/supabase' },
+        { title: 'API Integration', href: '/docs' }
+      ]
+    },
+    {
+      title: 'Troubleshooting',
+      description: 'Solve common issues',
+      icon: HelpCircle,
+      links: [
+        { title: 'Common Errors', href: '/support/faqs' },
+        { title: 'Build Problems', href: '/support/faqs' },
+        { title: 'API Troubleshooting', href: '/support/faqs' }
+      ]
+    },
+    {
+      title: 'Deployment',
+      description: 'Launch your application',
+      icon: Server,
+      links: [
+        { title: 'Deployment Options', href: '/docs' },
+        { title: 'Environment Setup', href: '/docs' },
+        { title: 'Production Checklist', href: '/docs' }
+      ]
+    },
+    {
+      title: 'Monitoring',
+      description: 'Track application metrics',
+      icon: BarChart,
+      links: [
+        { title: 'Analytics Setup', href: '/docs/analytics' },
+        { title: 'User Tracking', href: '/docs/analytics' },
+        { title: 'Performance Metrics', href: '/docs/analytics' }
+      ]
+    },
+    {
+      title: 'Advanced Configuration',
+      description: 'Expert-level settings',
+      icon: Settings,
+      links: [
+        { title: 'Environment Variables', href: '/docs' },
+        { title: 'Build Configuration', href: '/docs' },
+        { title: 'Security Settings', href: '/docs' }
+      ]
     }
-  };
+  ];
 
   return (
     <>
       <Navbar />
       <div className="container mx-auto px-4 pt-24 pb-16 min-h-screen">
         <div className="max-w-5xl mx-auto mb-12 text-center">
-          <div className="flex justify-center mb-6">
-            <HelpCircle className="h-12 w-12 text-neon-green" />
+          <div className="w-16 h-16 bg-neon-purple/10 text-neon-purple rounded-full flex items-center justify-center mx-auto mb-6">
+            <BookOpen className="h-8 w-8" />
           </div>
-          <h1 className="text-4xl font-orbitron font-bold mb-4 cyber-text-glow">
-            Help Center
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Find answers to your questions and learn how to get the most out of our templates
+          <h1 className="text-4xl font-orbitron font-bold mb-4 cyber-text-glow">Help Center</h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Find answers to your questions and learn how to get the most out of HTR templates
           </p>
-          <div className="relative max-w-2xl mx-auto mb-16">
-            <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search for help articles..."
-              className="pl-10 py-6 text-lg bg-cyber-light border-cyber-border focus:border-neon-blue/70"
-              value={searchQuery}
-              onChange={handleSearch}
-            />
-          </div>
         </div>
 
-        <div className="mb-16">
-          <h2 className="text-2xl font-orbitron font-medium mb-6">Popular Topics</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {popularTopics.map((topic, index) => (
-              <Link key={index} to={topic.link}>
-                <div className="cyber-card p-6 hover:cyber-border-glow transition-all duration-300 h-full flex flex-col items-center text-center">
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-cyber-light/50 mb-4">
-                    <topic.icon className="h-6 w-6 text-neon-blue" />
-                  </div>
-                  <h3 className="font-medium text-lg">{topic.title}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {helpCategories.map((category, index) => (
+            <div key={index} className="cyber-panel p-6">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 rounded-lg bg-neon-blue/10 text-neon-blue flex items-center justify-center mr-4">
+                  <category.icon className="h-5 w-5" />
                 </div>
-              </Link>
-            ))}
-          </div>
+                <div>
+                  <h3 className="font-orbitron text-xl font-medium">{category.title}</h3>
+                  <p className="text-sm text-muted-foreground">{category.description}</p>
+                </div>
+              </div>
+              <ul className="space-y-2 pl-14">
+                {category.links.map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <Link 
+                      to={link.href} 
+                      className="text-neon-blue hover:underline flex items-center"
+                    >
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <div className="mb-16">
-          <h2 className="text-2xl font-orbitron font-medium mb-6">Help Articles</h2>
-          {filteredArticles.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredArticles.map(article => (
-                <Link key={article.id} to={article.link}>
-                  <div className="cyber-card p-6 hover:cyber-border-glow transition-all duration-300 h-full">
-                    <div className="flex justify-between mb-2">
-                      <h3 className="font-medium text-lg">{article.title}</h3>
-                      <span className="text-xs bg-cyber-light/30 px-2 py-1 rounded text-neon-blue">
-                        {article.category}
-                      </span>
-                    </div>
-                    <p className="text-muted-foreground text-sm mb-3">{article.excerpt}</p>
-                    <span className="text-neon-blue hover:underline text-sm flex items-center">
-                      Read more 
-                      <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="cyber-card p-8 text-center">
-              <h3 className="text-xl font-medium mb-2">No results found</h3>
-              <p className="text-muted-foreground mb-6">We couldn't find any articles matching your search.</p>
-              <Button 
-                onClick={() => { setSearchQuery(''); setFilteredArticles(helpArticles); }} 
-                className="cyber-button"
-                variant="outline"
-              >
-                Clear search
-              </Button>
-            </div>
-          )}
-        </div>
-
-        <div className="cyber-card p-8 bg-gradient-to-br from-cyber-dark to-cyber">
+        <div className="cyber-panel p-8 mb-12 bg-gradient-to-br from-cyber-dark to-cyber">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="w-20 h-20 flex items-center justify-center rounded-full bg-neon-purple/20 text-neon-purple">
-              <BookOpen className="h-10 w-10" />
+            <div className="w-16 h-16 rounded-full bg-neon-green/20 text-neon-green flex items-center justify-center flex-shrink-0">
+              <ShieldCheck className="h-8 w-8" />
             </div>
             <div>
-              <h3 className="text-2xl font-orbitron font-medium mb-3">Can't find what you're looking for?</h3>
+              <h3 className="text-2xl font-orbitron font-medium mb-3 text-center md:text-left">Can't find what you're looking for?</h3>
               <p className="text-muted-foreground mb-6">
-                Browse our comprehensive documentation or contact our support team for personalized assistance.
+                Our support team is ready to assist you with any questions or issues you may encounter. 
+                Contact us through your preferred support channel and we'll get back to you as soon as possible.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white font-medium">
-                  <Link to="/docs">Complete Documentation</Link>
-                </Button>
-                <Button variant="outline" className="cyber-button">
-                  <Link to="/connect/contact">Contact Support</Link>
-                </Button>
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                <Link to="/support" className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black px-4 py-2 rounded">
+                  Support Options
+                </Link>
+                <Link to="/connect/contact" className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white px-4 py-2 rounded">
+                  Contact Us
+                </Link>
               </div>
             </div>
           </div>

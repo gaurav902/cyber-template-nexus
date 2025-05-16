@@ -6,6 +6,16 @@ import { Link } from 'react-router-dom';
 import { HelpCircle, MessageCircle, Phone, Mail, FileText, Users } from 'lucide-react';
 
 const SupportPage = () => {
+  // WhatsApp and phone number
+  const whatsappNumber = "9119295094";
+  const phoneNumber = "9119295094";
+  
+  // Format WhatsApp URL
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hello%20HTR%20Support,%20I%20need%20assistance%20with%20my%20template.`;
+  
+  // Format phone URL
+  const phoneUrl = `tel:${phoneNumber}`;
+  
   return (
     <>
       <Navbar />
@@ -42,10 +52,10 @@ const SupportPage = () => {
               <h3 className="text-xl font-orbitron font-medium">Live Chat Support</h3>
             </div>
             <p className="text-muted-foreground mb-6">
-              Get immediate help from our support team through our live chat feature. Available during business hours.
+              Get immediate help from our support team through our WhatsApp chat feature. Available during business hours.
             </p>
             <Button variant="outline" className="w-full cyber-button">
-              <Link to="/connect/chat" className="w-full">Start Chat</Link>
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full">Chat on WhatsApp</a>
             </Button>
           </div>
 
@@ -60,7 +70,7 @@ const SupportPage = () => {
               Speak directly with our support specialists for complex issues that require immediate attention.
             </p>
             <Button variant="outline" className="w-full cyber-button">
-              <Link to="/connect/phone-support" className="w-full">Call Support</Link>
+              <a href={phoneUrl} className="w-full">Call {phoneNumber}</a>
             </Button>
           </div>
 
@@ -107,10 +117,10 @@ const SupportPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black font-medium">
-                  <Link to="/connect/discord">Join Discord</Link>
+                  <a href="https://discord.gg/htr-templates" target="_blank" rel="noopener noreferrer">Join Discord</a>
                 </Button>
                 <Button variant="outline" className="cyber-button">
-                  <Link to="/connect/github">GitHub Discussions</Link>
+                  <a href="https://github.com/htr-templates/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a>
                 </Button>
               </div>
             </div>

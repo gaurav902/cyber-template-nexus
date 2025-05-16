@@ -10,7 +10,7 @@ const ResourcesPage = () => {
       title: 'Documentation',
       description: 'Comprehensive guides and reference materials for all our templates',
       icon: FileText,
-      link: '/documentation',
+      link: '/docs',
       color: 'bg-neon-blue/20 text-neon-blue'
     },
     {
@@ -24,14 +24,14 @@ const ResourcesPage = () => {
       title: 'Help Center',
       description: 'Find answers to common questions about our templates and services',
       icon: BookOpen,
-      link: '/help-center',
+      link: '/support/help-center',
       color: 'bg-emerald-500/20 text-emerald-400'
     },
     {
       title: 'FAQs',
       description: 'Frequently asked questions to help you get started quickly',
       icon: MessageCircleQuestion,
-      link: '/faqs',
+      link: '/support/faqs',
       color: 'bg-amber-500/20 text-amber-400'
     }
   ];
@@ -77,11 +77,11 @@ const ResourcesPage = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Link to="/contact" className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black px-4 py-3 rounded flex justify-center items-center">
+            <Link to="/connect/contact" className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black px-4 py-3 rounded flex justify-center items-center">
               Contact Our Support Team
             </Link>
-            <Link to="/discord" className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white px-4 py-3 rounded flex justify-center items-center">
-              Join Our Discord Community
+            <Link to="/support" className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white px-4 py-3 rounded flex justify-center items-center">
+              Visit Support Center
             </Link>
           </div>
         </div>

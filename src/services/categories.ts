@@ -6,6 +6,7 @@ export interface Category {
   name: string;
   description: string | null;
   created_at: string;
+  image_url?: string; // Added image_url field
 }
 
 export async function getCategories() {
@@ -29,10 +30,10 @@ export async function getCategoryById(id: string) {
   return data;
 }
 
-export async function createCategory(name: string, description?: string) {
+export async function createCategory(name: string, description?: string, image_url?: string) {
   const { data, error } = await supabase
     .from('categories')
-    .insert([{ name, description }])
+    .insert([{ name, description, image_url }])
     .select();
     
   if (error) throw error;

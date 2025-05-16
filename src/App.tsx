@@ -35,6 +35,10 @@ import SupabaseDocsPage from "./pages/docs/supabase/SupabaseDocsPage";
 import PaymentsDocsPage from "./pages/docs/payments/PaymentsDocsPage";
 import AnalyticsDocsPage from "./pages/docs/analytics/AnalyticsDocsPage";
 import CMSDocsPage from "./pages/docs/cms/CMSDocsPage";
+import OptimizingPerformancePage from "./pages/support/OptimizingPerformancePage";
+import CustomFunctionalityPage from "./pages/support/CustomFunctionalityPage";
+import DiscordPage from "./pages/connect/DiscordPage";
+import GitHubPage from "./pages/connect/GitHubPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -75,7 +79,11 @@ const App = () => (
             <Route path="/support" element={<SupportPage />} />
             <Route path="/support/help-center" element={<HelpCenterPage />} />
             <Route path="/support/faqs" element={<FAQPage />} />
+            <Route path="/support/help-center/optimizing-performance" element={<OptimizingPerformancePage />} />
+            <Route path="/support/help-center/custom-functionality" element={<CustomFunctionalityPage />} />
             <Route path="/connect/contact" element={<ContactPage />} />
+            <Route path="/connect/discord" element={<DiscordPage />} />
+            <Route path="/connect/github" element={<GitHubPage />} />
             
             {/* Admin Routes - Obscured URLs */}
             <Route path="/dashboard-access-9382xkjv" element={<LoginPage />} />
