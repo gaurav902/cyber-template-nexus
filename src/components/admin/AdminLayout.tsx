@@ -21,11 +21,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
   const handleLogout = async () => {
     await signOut();
+    sessionStorage.removeItem('adminAccess');
     toast({
       title: "Logged out",
       description: "You have been successfully logged out.",
     });
-    navigate('/admin/login');
+    navigate('/');
   };
 
   const isActive = (path: string) => {
@@ -33,10 +34,10 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   };
 
   const navItems = [
-    { path: '/admin/dashboard', label: 'Dashboard', icon: Home },
-    { path: '/admin/templates', label: 'Templates', icon: LayoutTemplate },
-    { path: '/admin/categories', label: 'Categories', icon: FolderKanban },
-    { path: '/admin/settings', label: 'Settings', icon: Settings },
+    { path: '/secure-panel/dashboard', label: 'Dashboard', icon: Home },
+    { path: '/secure-panel/content', label: 'Templates', icon: LayoutTemplate },
+    { path: '/secure-panel/taxonomy', label: 'Categories', icon: FolderKanban },
+    { path: '/secure-panel/config', label: 'Settings', icon: Settings },
   ];
 
   return (
@@ -52,10 +53,10 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           </button>
           <Link to="/" className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-md bg-neon-blue/20 flex items-center justify-center cyber-border-glow">
-              <span className="font-orbitron font-bold text-sm">X</span>
+              <span className="font-orbitron font-bold text-sm">H</span>
             </div>
             <span className="font-orbitron font-bold text-lg tracking-wider cyber-text-glow">
-              TemplateX
+              hack the root::
             </span>
           </Link>
         </div>
@@ -103,11 +104,11 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             <div className="p-4 flex items-center gap-4">
               <Link to="/" className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-md bg-neon-blue/20 flex items-center justify-center cyber-border-glow">
-                  <span className="font-orbitron font-bold">X</span>
+                  <span className="font-orbitron font-bold">H</span>
                 </div>
                 {sidebarOpen && (
                   <span className="font-orbitron font-bold text-xl tracking-wider cyber-text-glow">
-                    TemplateX
+                    HTR
                   </span>
                 )}
               </Link>

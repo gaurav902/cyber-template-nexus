@@ -8,7 +8,6 @@ import HomePage from "./pages/HomePage";
 import TemplatesPage from "./pages/TemplatesPage";
 import TemplateDetailPage from "./pages/TemplateDetailPage";
 import LoginPage from "./pages/admin/LoginPage";
-import SignupPage from "./pages/admin/SignupPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import TemplatesAdminPage from "./pages/admin/TemplatesAdminPage";
 import TrendingPage from "./pages/admin/TrendingPage";
@@ -78,40 +77,39 @@ const App = () => (
             <Route path="/support/faqs" element={<FAQPage />} />
             <Route path="/connect/contact" element={<ContactPage />} />
             
-            {/* Admin Routes */}
-            <Route path="/admin/login" element={<LoginPage />} />
-            <Route path="/admin/signup" element={<SignupPage />} />
-            <Route path="/admin/dashboard" element={
+            {/* Admin Routes - Obscured URLs */}
+            <Route path="/dashboard-access-9382xkjv" element={<LoginPage />} />
+            <Route path="/secure-panel/dashboard" element={
               <PrivateRoute>
                 <DashboardPage />
               </PrivateRoute>
             } />
-            <Route path="/admin/templates" element={
+            <Route path="/secure-panel/content" element={
               <PrivateRoute>
                 <TemplatesAdminPage />
               </PrivateRoute>
             } />
-            <Route path="/admin/trending" element={
+            <Route path="/secure-panel/analytics" element={
               <PrivateRoute>
                 <TrendingPage />
               </PrivateRoute>
             } />
-            <Route path="/admin/templates/add" element={
+            <Route path="/secure-panel/content/new" element={
               <PrivateRoute>
                 <AddTemplatePage />
               </PrivateRoute>
             } />
-            <Route path="/admin/templates/edit/:id" element={
+            <Route path="/secure-panel/content/edit/:id" element={
               <PrivateRoute>
                 <EditTemplatePage />
               </PrivateRoute>
             } />
-            <Route path="/admin/categories" element={
+            <Route path="/secure-panel/taxonomy" element={
               <PrivateRoute>
                 <CategoriesPage />
               </PrivateRoute>
             } />
-            <Route path="/admin/settings" element={
+            <Route path="/secure-panel/config" element={
               <PrivateRoute>
                 <SettingsPage />
               </PrivateRoute>

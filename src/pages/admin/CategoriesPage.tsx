@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Search, Plus, Edit, Trash2, Loader } from 'lucide-react';
+import { Search, Plus, Edit, Trash2, Loader, Image } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getCategories, createCategory, updateCategory, deleteCategory, Category } from '@/services/categories';
@@ -16,6 +16,7 @@ const CategoriesPage = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [categoryName, setCategoryName] = useState('');
   const [categoryDescription, setCategoryDescription] = useState('');
+  const [categoryImage, setCategoryImage] = useState('');
   const [currentCategoryId, setCurrentCategoryId] = useState<string | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -26,7 +27,9 @@ const CategoriesPage = () => {
   });
   
   const createMutation = useMutation({
-    mutationFn: ({ name, description }: { name: string, description: string }) => {
+    mutationFn: ({ name, description, imageUrl }: { name: string, description: string, imageUrl: string }) => {
+      // In a real implementation, we'd pass the image URL to the backend
+      // For now, we'll just simulate it
       return createCategory(name, description);
     },
     onSuccess: () => {
@@ -35,8 +38,7 @@ const CategoriesPage = () => {
         title: "Category created",
         description: "The category has been successfully created.",
       });
-      setCategoryName('');
-      setCategoryDescription('');
+      resetForm();
       setIsAddDialogOpen(false);
     },
     onError: (error) => {
@@ -49,7 +51,8 @@ const CategoriesPage = () => {
   });
   
   const updateMutation = useMutation({
-    mutationFn: ({ id, name, description }: { id: string, name: string, description: string }) => {
+    mutationFn: ({ id, name, description, imageUrl }: { id: string, name: string, description: string, imageUrl: string }) => {
+      // In a real implementation, we'd pass the image URL to the backend
       return updateCategory(id, { name, description });
     },
     onSuccess: () => {
@@ -58,9 +61,7 @@ const CategoriesPage = () => {
         title: "Category updated",
         description: "The category has been successfully updated.",
       });
-      setCategoryName('');
-      setCategoryDescription('');
-      setCurrentCategoryId(null);
+      resetForm();
       setIsEditDialogOpen(false);
     },
     onError: (error) => {
@@ -90,10 +91,21 @@ const CategoriesPage = () => {
     },
   });
   
+  const resetForm = () => {
+    setCategoryName('');
+    setCategoryDescription('');
+    setCategoryImage('');
+    setCurrentCategoryId(null);
+  };
+  
   const handleAddCategory = (e: React.FormEvent) => {
     e.preventDefault();
     if (categoryName.trim()) {
-      createMutation.mutate({ name: categoryName, description: categoryDescription });
+      createMutation.mutate({ 
+        name: categoryName, 
+        description: categoryDescription,
+        imageUrl: categoryImage
+      });
     }
   };
   
@@ -103,7 +115,8 @@ const CategoriesPage = () => {
       updateMutation.mutate({
         id: currentCategoryId,
         name: categoryName,
-        description: categoryDescription
+        description: categoryDescription,
+        imageUrl: categoryImage
       });
     }
   };
@@ -112,6 +125,8 @@ const CategoriesPage = () => {
     setCurrentCategoryId(category.id);
     setCategoryName(category.name);
     setCategoryDescription(category.description || '');
+    // In a real app, we'd fetch the image URL
+    setCategoryImage('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3');
     setIsEditDialogOpen(true);
   };
   
@@ -126,6 +141,14 @@ const CategoriesPage = () => {
     return searchRegex.test(category.name) || 
       (category.description && searchRegex.test(category.description));
   });
+  
+  const placeholderImages = [
+    "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
+    "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+    "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+  ];
   
   return (
     <AdminLayout>
@@ -142,7 +165,7 @@ const CategoriesPage = () => {
                 Add New Category
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[500px]">
               <DialogHeader>
                 <DialogTitle>Add New Category</DialogTitle>
               </DialogHeader>
@@ -167,6 +190,39 @@ const CategoriesPage = () => {
                     placeholder="Category description (optional)"
                     className="bg-cyber-light border-cyber-border min-h-[100px]"
                   />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="image" className="text-sm font-medium">
+                    <div className="flex items-center">
+                      <Image className="h-4 w-4 mr-2" />
+                      Category Image URL
+                    </div>
+                  </label>
+                  <Input 
+                    id="image"
+                    value={categoryImage}
+                    onChange={(e) => setCategoryImage(e.target.value)}
+                    placeholder="https://example.com/image.jpg"
+                    className="bg-cyber-light border-cyber-border"
+                  />
+                  <div className="mt-2">
+                    <p className="text-xs text-muted-foreground mb-2">Select a placeholder image:</p>
+                    <div className="grid grid-cols-5 gap-2">
+                      {placeholderImages.map((img, index) => (
+                        <div 
+                          key={index}
+                          onClick={() => setCategoryImage(img)}
+                          className={`w-full aspect-square rounded-md overflow-hidden cursor-pointer border-2 ${categoryImage === img ? 'border-neon-blue' : 'border-transparent'}`}
+                        >
+                          <img 
+                            src={`${img}?w=100`} 
+                            alt={`Placeholder ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 <div className="flex justify-end gap-2">
                   <Button type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
@@ -201,7 +257,7 @@ const CategoriesPage = () => {
         </div>
         
         <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-          <DialogContent className="sm:max-w-[425px]">
+          <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
               <DialogTitle>Edit Category</DialogTitle>
             </DialogHeader>
@@ -226,6 +282,54 @@ const CategoriesPage = () => {
                   placeholder="Category description (optional)"
                   className="bg-cyber-light border-cyber-border min-h-[100px]"
                 />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="edit-image" className="text-sm font-medium">
+                  <div className="flex items-center">
+                    <Image className="h-4 w-4 mr-2" />
+                    Category Image URL
+                  </div>
+                </label>
+                <Input 
+                  id="edit-image"
+                  value={categoryImage}
+                  onChange={(e) => setCategoryImage(e.target.value)}
+                  placeholder="https://example.com/image.jpg"
+                  className="bg-cyber-light border-cyber-border"
+                />
+                <div className="mt-2">
+                  <p className="text-xs text-muted-foreground mb-2">Select a placeholder image:</p>
+                  <div className="grid grid-cols-5 gap-2">
+                    {placeholderImages.map((img, index) => (
+                      <div 
+                        key={index}
+                        onClick={() => setCategoryImage(img)}
+                        className={`w-full aspect-square rounded-md overflow-hidden cursor-pointer border-2 ${categoryImage === img ? 'border-neon-blue' : 'border-transparent'}`}
+                      >
+                        <img 
+                          src={`${img}?w=100`} 
+                          alt={`Placeholder ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {categoryImage && (
+                  <div className="mt-4 p-2 border border-cyber-border rounded-md">
+                    <p className="text-xs text-muted-foreground mb-2">Current image preview:</p>
+                    <div className="aspect-video rounded-md overflow-hidden">
+                      <img 
+                        src={categoryImage}
+                        alt="Category preview" 
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7';
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="flex justify-end gap-2">
                 <Button type="button" variant="outline" onClick={() => setIsEditDialogOpen(false)}>
@@ -256,6 +360,7 @@ const CategoriesPage = () => {
               <table className="w-full">
                 <thead className="bg-cyber-light/50">
                   <tr>
+                    <th className="text-left py-3 px-4 text-xs font-medium">Image</th>
                     <th className="text-left py-3 px-4 text-xs font-medium">Name</th>
                     <th className="text-left py-3 px-4 text-xs font-medium">Description</th>
                     <th className="text-left py-3 px-4 text-xs font-medium">Created</th>
@@ -265,6 +370,11 @@ const CategoriesPage = () => {
                 <tbody className="divide-y divide-cyber-border">
                   {filteredCategories.map((category: Category) => (
                     <tr key={category.id}>
+                      <td className="py-3 px-4 w-16">
+                        <div className="w-12 h-12 rounded-md overflow-hidden bg-cyber-light/50 flex items-center justify-center">
+                          <Image className="h-6 w-6 text-muted-foreground" />
+                        </div>
+                      </td>
                       <td className="py-3 px-4">
                         <div className="font-medium">{category.name}</div>
                       </td>

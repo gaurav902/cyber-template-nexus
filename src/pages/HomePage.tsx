@@ -10,10 +10,12 @@ import { Template } from '@/types/templates';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTrendingTemplates, fetchFeaturedTemplates, fetchLatestTemplates } from '@/services/dashboard';
 import { getCategories } from '@/services/categories';
+import { Category } from '@/services/categories';
 
 const HomePage = () => {
   const navigate = useNavigate();
   
+  // Type casting to ensure compatibility with Template type
   const { data: trendingTemplates = [], isLoading: isLoadingTrending } = useQuery({
     queryKey: ['trendingTemplates'],
     queryFn: fetchTrendingTemplates,
@@ -30,7 +32,7 @@ const HomePage = () => {
   });
   
   // Format categories with additional UI data
-  const categories = categoriesData.map((category) => ({
+  const categories = categoriesData.map((category: Category) => ({
     id: category.id,
     name: category.name,
     description: category.description || '',
@@ -52,8 +54,8 @@ const HomePage = () => {
                   The Future of Web Templates
                 </span>
                 <h1 className="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                  <span className="text-shimmer">Next Generation</span>
-                  <br /> Website Templates
+                  <span className="text-shimmer">hack the root::</span>
+                  <br /> short (HTR)
                 </h1>
                 <p className="text-lg text-muted-foreground mb-8 max-w-lg">
                   Discover and explore our vast collection of futuristic, 
@@ -142,9 +144,26 @@ const HomePage = () => {
               {isLoadingTrending ? (
                 <div className="col-span-3 text-center py-12">Loading trending templates...</div>
               ) : trendingTemplates.length > 0 ? (
-                trendingTemplates.slice(0, 3).map((template: Template) => (
-                  <TemplateCard key={template.id} template={template} />
-                ))
+                trendingTemplates.slice(0, 3).map((templateData: any) => {
+                  // Convert to Template type to ensure compatibility
+                  const template: Template = {
+                    id: templateData.id,
+                    title: templateData.title,
+                    description: templateData.description,
+                    thumbnail: templateData.thumbnail,
+                    category_id: templateData.category_id || null,
+                    tags: templateData.tags || [],
+                    status: templateData.status as "published" | "draft",
+                    views: templateData.views,
+                    rating: templateData.rating,
+                    created_at: templateData.created_at,
+                    updated_at: templateData.updated_at,
+                    github_url: templateData.github_url || null,
+                    demo_url: templateData.demo_url || null,
+                    download_url: templateData.download_url || null
+                  };
+                  return <TemplateCard key={template.id} template={template} />;
+                })
               ) : (
                 <div className="col-span-3 text-center py-12">No trending templates found</div>
               )}
@@ -227,9 +246,26 @@ const HomePage = () => {
               {isLoadingRecent ? (
                 <div className="col-span-3 text-center py-12">Loading recent templates...</div>
               ) : recentTemplates.length > 0 ? (
-                recentTemplates.slice(0, 3).map((template: Template) => (
-                  <TemplateCard key={template.id} template={template} />
-                ))
+                recentTemplates.slice(0, 3).map((templateData: any) => {
+                  // Convert to Template type to ensure compatibility
+                  const template: Template = {
+                    id: templateData.id,
+                    title: templateData.title,
+                    description: templateData.description,
+                    thumbnail: templateData.thumbnail,
+                    category_id: templateData.category_id || null,
+                    tags: templateData.tags || [],
+                    status: templateData.status as "published" | "draft",
+                    views: templateData.views,
+                    rating: templateData.rating,
+                    created_at: templateData.created_at,
+                    updated_at: templateData.updated_at,
+                    github_url: templateData.github_url || null,
+                    demo_url: templateData.demo_url || null,
+                    download_url: templateData.download_url || null
+                  };
+                  return <TemplateCard key={template.id} template={template} />;
+                })
               ) : (
                 <div className="col-span-3 text-center py-12">No recently added templates found</div>
               )}

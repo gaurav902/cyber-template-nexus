@@ -42,7 +42,7 @@ const SettingsPage = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      site_name: "TemplateX",
+      site_name: "hack the root:: short (HTR)",
       site_description: "Next Generation Website Templates",
       logo_url: null,
       favicon_url: null,
@@ -59,7 +59,7 @@ const SettingsPage = () => {
       // For now, we'll use default settings
       const settings = {
         id: "1",
-        site_name: "TemplateX",
+        site_name: "hack the root:: short (HTR)",
         site_description: "Next Generation Website Templates",
         logo_url: null,
         favicon_url: null,
@@ -72,6 +72,7 @@ const SettingsPage = () => {
     meta: {
       onSuccess: (data: Settings) => {
         setSettings(data);
+        form.reset(data);
       }
     }
   });
