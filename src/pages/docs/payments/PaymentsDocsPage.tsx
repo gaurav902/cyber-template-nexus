@@ -1,3 +1,4 @@
+
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
 import { CreditCard, DollarSign, ShoppingCart, Receipt, Shield, Settings, Repeat } from 'lucide-react';
@@ -144,7 +145,7 @@ function CheckoutForm({ paymentAmount }: { paymentAmount: number }) {
   return (
     <form onSubmit={handleSubmit}>
       <CardElement />
-      <button type="submit" disabled={!stripe}>Pay ${paymentAmount}</button>
+      <button type="submit" disabled={!stripe}>Pay \${paymentAmount}</button>
     </form>
   );
 }`}
@@ -182,7 +183,7 @@ function CheckoutForm({ paymentAmount }: { paymentAmount: number }) {
                     <code>
 {`import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
-function PayPalCheckout({ amount }) {
+function PayPalCheckout({ amount }: { amount: number }) {
   return (
     <PayPalScriptProvider 
       options={{ 
@@ -195,7 +196,7 @@ function PayPalCheckout({ amount }) {
             purchase_units: [
               {
                 amount: {
-                  value: amount,
+                  value: amount.toString(),
                 },
               },
             ],
