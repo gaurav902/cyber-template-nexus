@@ -119,7 +119,7 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 // Payment form component
-function CheckoutForm({ amount }) {
+function CheckoutForm({ paymentAmount }) {
   const stripe = useStripe();
   const elements = useElements();
   
@@ -145,7 +145,7 @@ function CheckoutForm({ amount }) {
   return (
     <form onSubmit={handleSubmit}>
       <CardElement />
-      <button type="submit" disabled={!stripe}>Pay ${amount}</button>
+      <button type="submit" disabled={!stripe}>Pay ${paymentAmount}</button>
     </form>
   );
 }`}
