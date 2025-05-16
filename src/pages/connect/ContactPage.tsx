@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Mail, MessageCircle, Phone, MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from "@/integrations/supabase/client";
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -31,41 +30,16 @@ const ContactPage = () => {
     setFormData(prev => ({ ...prev, department: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-      toast({
-        title: "Missing information",
-        description: "Please fill in all required fields.",
-        variant: "destructive"
-      });
-      return;
-    }
-    
     setIsSubmitting(true);
     
-    try {
-      const { error } = await supabase
-        .from('contact_messages')
-        .insert([
-          { 
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-            department: formData.department || null
-          }
-        ]);
-      
-      if (error) throw error;
-      
+    // Simulate API call
+    setTimeout(() => {
       toast({
         title: "Message sent",
         description: "We've received your message and will respond shortly.",
       });
-      
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -73,16 +47,8 @@ const ContactPage = () => {
         message: '',
         department: ''
       });
-    } catch (error) {
-      console.error("Error submitting message:", error);
-      toast({
-        title: "Error",
-        description: "There was a problem sending your message. Please try again later.",
-        variant: "destructive"
-      });
-    } finally {
       setIsSubmitting(false);
-    }
+    }, 1500);
   };
 
   return (
