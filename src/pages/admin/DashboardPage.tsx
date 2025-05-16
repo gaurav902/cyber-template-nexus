@@ -19,8 +19,8 @@ const DashboardPage = () => {
   const { data: stats, isLoading } = useQuery({
     queryKey: ['dashboardStats'],
     queryFn: fetchDashboardStats,
-    onSettled: (_data, error) => {
-      if (error) {
+    meta: {
+      onError: (error: Error) => {
         console.error('Error:', error);
         toast({
           title: "Error",
@@ -35,16 +35,18 @@ const DashboardPage = () => {
   const { isLoading: isTrendingLoading } = useQuery({
     queryKey: ['trendingTemplates'],
     queryFn: fetchTrendingTemplates,
-    onSuccess: (data) => {
-      setTrendingTemplates(data);
-    },
-    onError: (error) => {
-      console.error('Error:', error);
-      toast({
-        title: "Error",
-        description: "Failed to load trending templates",
-        variant: "destructive",
-      });
+    meta: {
+      onSuccess: (data: Template[]) => {
+        setTrendingTemplates(data);
+      },
+      onError: (error: Error) => {
+        console.error('Error:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load trending templates",
+          variant: "destructive",
+        });
+      }
     }
   });
 
@@ -52,16 +54,18 @@ const DashboardPage = () => {
   const { isLoading: isRecentLoading } = useQuery({
     queryKey: ['recentTemplates'],
     queryFn: fetchLatestTemplates,
-    onSuccess: (data) => {
-      setRecentTemplates(data);
-    },
-    onError: (error) => {
-      console.error('Error:', error);
-      toast({
-        title: "Error",
-        description: "Failed to load recent templates",
-        variant: "destructive",
-      });
+    meta: {
+      onSuccess: (data: Template[]) => {
+        setRecentTemplates(data);
+      },
+      onError: (error: Error) => {
+        console.error('Error:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load recent templates",
+          variant: "destructive",
+        });
+      }
     }
   });
 
