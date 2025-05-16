@@ -1,4 +1,3 @@
-
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
 import { CreditCard, DollarSign, ShoppingCart, Receipt, Shield, Settings, Repeat } from 'lucide-react';
@@ -119,7 +118,7 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 // Payment form component
-function CheckoutForm({ paymentAmount }) {
+function CheckoutForm({ paymentAmount }: { paymentAmount: number }) {
   const stripe = useStripe();
   const elements = useElements();
   
