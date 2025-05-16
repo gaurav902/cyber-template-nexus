@@ -32,6 +32,10 @@ import SupportPage from "./pages/support/SupportPage";
 import HelpCenterPage from "./pages/support/HelpCenterPage";
 import FAQPage from "./pages/support/FAQPage";
 import ContactPage from "./pages/connect/ContactPage";
+import SupabaseDocsPage from "./pages/docs/supabase/SupabaseDocsPage";
+import PaymentsDocsPage from "./pages/docs/payments/PaymentsDocsPage";
+import AnalyticsDocsPage from "./pages/docs/analytics/AnalyticsDocsPage";
+import CMSDocsPage from "./pages/docs/cms/CMSDocsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,6 +69,10 @@ const App = () => (
             
             {/* Documentation and Support Routes */}
             <Route path="/docs" element={<DocumentationPage />} />
+            <Route path="/docs/supabase" element={<SupabaseDocsPage />} />
+            <Route path="/docs/payments" element={<PaymentsDocsPage />} />
+            <Route path="/docs/analytics" element={<AnalyticsDocsPage />} />
+            <Route path="/docs/cms" element={<CMSDocsPage />} />
             <Route path="/support" element={<SupportPage />} />
             <Route path="/support/help-center" element={<HelpCenterPage />} />
             <Route path="/support/faqs" element={<FAQPage />} />

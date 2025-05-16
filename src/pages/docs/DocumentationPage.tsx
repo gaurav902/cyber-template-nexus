@@ -1,12 +1,17 @@
-
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, FileText, Code, HelpCircle } from 'lucide-react';
 
 const DocumentationPage = () => {
+  const navigate = useNavigate();
+  
+  const handleIntegrationClick = (path: string) => {
+    navigate(path);
+  };
+  
   return (
     <>
       <Navbar />
@@ -143,25 +148,33 @@ const DocumentationPage = () => {
                 Our templates support various integrations to extend functionality:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                <div className="cyber-card bg-cyber-dark p-4">
+                <div className="cyber-card bg-cyber-dark p-4 cursor-pointer hover:border-neon-blue transition-colors" onClick={() => handleIntegrationClick('/docs/supabase')}>
                   <h4 className="font-medium mb-2">Supabase</h4>
                   <p className="text-sm text-muted-foreground mb-3">Database, authentication, and storage</p>
-                  <Link to="/docs/supabase" className="text-neon-blue text-sm hover:underline">Learn more →</Link>
+                  <Button variant="link" className="text-neon-blue text-sm p-0 h-auto" onClick={() => handleIntegrationClick('/docs/supabase')}>
+                    Learn more →
+                  </Button>
                 </div>
-                <div className="cyber-card bg-cyber-dark p-4">
+                <div className="cyber-card bg-cyber-dark p-4 cursor-pointer hover:border-neon-purple transition-colors" onClick={() => handleIntegrationClick('/docs/payments')}>
                   <h4 className="font-medium mb-2">Payment Gateways</h4>
                   <p className="text-sm text-muted-foreground mb-3">Stripe and PayPal integration</p>
-                  <Link to="/docs/payments" className="text-neon-blue text-sm hover:underline">Learn more →</Link>
+                  <Button variant="link" className="text-neon-blue text-sm p-0 h-auto" onClick={() => handleIntegrationClick('/docs/payments')}>
+                    Learn more →
+                  </Button>
                 </div>
-                <div className="cyber-card bg-cyber-dark p-4">
+                <div className="cyber-card bg-cyber-dark p-4 cursor-pointer hover:border-neon-green transition-colors" onClick={() => handleIntegrationClick('/docs/analytics')}>
                   <h4 className="font-medium mb-2">Analytics</h4>
                   <p className="text-sm text-muted-foreground mb-3">Google Analytics and custom tracking</p>
-                  <Link to="/docs/analytics" className="text-neon-blue text-sm hover:underline">Learn more →</Link>
+                  <Button variant="link" className="text-neon-blue text-sm p-0 h-auto" onClick={() => handleIntegrationClick('/docs/analytics')}>
+                    Learn more →
+                  </Button>
                 </div>
-                <div className="cyber-card bg-cyber-dark p-4">
+                <div className="cyber-card bg-cyber-dark p-4 cursor-pointer hover:border-neon-pink transition-colors" onClick={() => handleIntegrationClick('/docs/cms')}>
                   <h4 className="font-medium mb-2">CMS</h4>
                   <p className="text-sm text-muted-foreground mb-3">Content management systems</p>
-                  <Link to="/docs/cms" className="text-neon-blue text-sm hover:underline">Learn more →</Link>
+                  <Button variant="link" className="text-neon-blue text-sm p-0 h-auto" onClick={() => handleIntegrationClick('/docs/cms')}>
+                    Learn more →
+                  </Button>
                 </div>
               </div>
             </section>

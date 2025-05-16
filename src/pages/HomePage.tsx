@@ -1,128 +1,42 @@
+
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, ArrowDown, Layers, Flame, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
 import { TemplateCard } from '@/components/template-card';
 import { Template } from '@/types/templates';
-
-// Sample data - would be fetched from API in real app
-const sampleTemplates: Template[] = [
-  {
-    id: "1",
-    title: "Neon Dashboard",
-    description: "A futuristic dashboard template with neon accents and dark mode.",
-    thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category_id: null,
-    tags: ["React", "Tailwind CSS", "Dark Mode"],
-    views: 1452,
-    rating: 4.8,
-    demo_url: "https://example.com/demo",
-    github_url: "https://github.com",
-    download_url: null,
-    status: "published",
-    created_at: "2023-04-12T10:00:00Z",
-    updated_at: "2023-04-12T10:00:00Z"
-  },
-  {
-    id: "2",
-    title: "Cyber Portfolio",
-    description: "A cyberpunk-themed portfolio template for developers and designers.",
-    thumbnail: "https://images.unsplash.com/photo-1535303311164-664fc9ec6532?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category_id: null,
-    tags: ["React", "Three.js", "Animation"],
-    views: 876,
-    rating: 4.6,
-    demo_url: "https://example.com/demo",
-    github_url: "https://github.com",
-    download_url: null,
-    status: "published",
-    created_at: "2023-05-28T10:00:00Z",
-    updated_at: "2023-05-28T10:00:00Z"
-  },
-  {
-    id: "3",
-    title: "E-Commerce Dark",
-    description: "A modern e-commerce template with dark theme and smooth animations.",
-    thumbnail: "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category_id: null,
-    tags: ["React", "Next.js", "Stripe"],
-    views: 2103,
-    rating: 4.9,
-    demo_url: "https://example.com/demo",
-    github_url: "https://github.com",
-    download_url: null,
-    status: "published",
-    created_at: "2023-06-15T10:00:00Z",
-    updated_at: "2023-06-15T10:00:00Z"
-  },
-  {
-    id: "4",
-    title: "Tech Blog",
-    description: "A minimalist blog template focused on readability and tech content.",
-    thumbnail: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category_id: null,
-    tags: ["React", "MDX", "Dark Mode"],
-    views: 987,
-    rating: 4.5,
-    demo_url: "https://example.com/demo",
-    github_url: "https://github.com",
-    download_url: null,
-    status: "published",
-    created_at: "2023-07-03T10:00:00Z",
-    updated_at: "2023-07-03T10:00:00Z"
-  },
-  {
-    id: "5",
-    title: "AI Showcase",
-    description: "A template designed for AI projects and demos with interactive elements.",
-    thumbnail: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category_id: null,
-    tags: ["React", "TensorFlow.js", "API"],
-    views: 1548,
-    rating: 4.7,
-    demo_url: "https://example.com/demo",
-    github_url: "https://github.com",
-    download_url: null,
-    status: "published",
-    created_at: "2023-08-22T10:00:00Z",
-    updated_at: "2023-08-22T10:00:00Z"
-  },
-  {
-    id: "6",
-    title: "SaaS Landing",
-    description: "A high-conversion SaaS landing page template with dark theme and CTA focus.",
-    thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3",
-    category_id: null,
-    tags: ["React", "Animation", "CTA"],
-    views: 1872,
-    rating: 4.8,
-    demo_url: "https://example.com/demo",
-    github_url: "https://github.com",
-    download_url: null,
-    status: "published",
-    created_at: "2023-09-10T10:00:00Z",
-    updated_at: "2023-09-10T10:00:00Z"
-  }
-];
-
-const categories = [
-  { id: "1", name: "Admin Dashboard", count: 24, icon: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3" },
-  { id: "2", name: "Portfolio", count: 18, icon: "https://images.unsplash.com/photo-1535303311164-664fc9ec6532?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3" },
-  { id: "3", name: "E-Commerce", count: 15, icon: "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3" },
-  { id: "4", name: "Blog", count: 12, icon: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3" }
-];
+import { useQuery } from '@tanstack/react-query';
+import { fetchTrendingTemplates, fetchFeaturedTemplates, fetchLatestTemplates } from '@/services/dashboard';
+import { getCategories } from '@/services/categories';
 
 const HomePage = () => {
-  const [trendingTemplates, setTrendingTemplates] = useState<Template[]>([]);
-  const [recentTemplates, setRecentTemplates] = useState<Template[]>([]);
-
-  useEffect(() => {
-    // In a real app, this would fetch from API
-    setTrendingTemplates(sampleTemplates.slice(0, 3)); // First 3 templates as trending
-    setRecentTemplates(sampleTemplates.slice(3)); // Last 3 as recently added
-  }, []);
+  const navigate = useNavigate();
+  
+  const { data: trendingTemplates = [], isLoading: isLoadingTrending } = useQuery({
+    queryKey: ['trendingTemplates'],
+    queryFn: fetchTrendingTemplates,
+  });
+  
+  const { data: recentTemplates = [], isLoading: isLoadingRecent } = useQuery({
+    queryKey: ['latestTemplates'],
+    queryFn: fetchLatestTemplates,
+  });
+  
+  const { data: categoriesData = [], isLoading: isLoadingCategories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: getCategories,
+  });
+  
+  // Format categories with additional UI data
+  const categories = categoriesData.map((category) => ({
+    id: category.id,
+    name: category.name,
+    description: category.description || '',
+    count: 0, // We'll need to fetch this from templates count by category
+    icon: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3" // Default image
+  }));
 
   return (
     <>
@@ -146,10 +60,19 @@ const HomePage = () => {
                   high-performance website templates designed for the modern web.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black font-medium">
+                  <Button 
+                    size="lg" 
+                    className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black font-medium"
+                    onClick={() => navigate('/templates')}
+                  >
                     Browse Templates
                   </Button>
-                  <Button size="lg" variant="outline" className="cyber-button">
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="cyber-button"
+                    onClick={() => navigate('/get-started')}
+                  >
                     Learn More <ChevronRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
@@ -216,9 +139,15 @@ const HomePage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trendingTemplates.map((template) => (
-                <TemplateCard key={template.id} template={template} />
-              ))}
+              {isLoadingTrending ? (
+                <div className="col-span-3 text-center py-12">Loading trending templates...</div>
+              ) : trendingTemplates.length > 0 ? (
+                trendingTemplates.slice(0, 3).map((template: Template) => (
+                  <TemplateCard key={template.id} template={template} />
+                ))
+              ) : (
+                <div className="col-span-3 text-center py-12">No trending templates found</div>
+              )}
             </div>
           </div>
         </section>
@@ -243,28 +172,34 @@ const HomePage = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {categories.map((category) => (
-                <Link key={category.id} to={`/categories/${category.id}`} className="group">
-                  <div className="cyber-card overflow-hidden h-full">
-                    <div className="aspect-[16/9] relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-cyber to-transparent z-10"></div>
-                      <img 
-                        src={category.icon} 
-                        alt={category.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+              {isLoadingCategories ? (
+                <div className="col-span-4 text-center py-12">Loading categories...</div>
+              ) : categories.length > 0 ? (
+                categories.slice(0, 4).map((category) => (
+                  <Link key={category.id} to={`/categories/${category.id}`} className="group">
+                    <div className="cyber-card overflow-hidden h-full">
+                      <div className="aspect-[16/9] relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-t from-cyber to-transparent z-10"></div>
+                        <img 
+                          src={category.icon} 
+                          alt={category.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="font-orbitron font-medium group-hover:text-neon-green transition-colors">
+                          {category.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {category.count} templates
+                        </p>
+                      </div>
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-orbitron font-medium group-hover:text-neon-green transition-colors">
-                        {category.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {category.count} templates
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ))
+              ) : (
+                <div className="col-span-4 text-center py-12">No categories found</div>
+              )}
             </div>
           </div>
         </section>
@@ -289,9 +224,15 @@ const HomePage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {recentTemplates.map((template) => (
-                <TemplateCard key={template.id} template={template} />
-              ))}
+              {isLoadingRecent ? (
+                <div className="col-span-3 text-center py-12">Loading recent templates...</div>
+              ) : recentTemplates.length > 0 ? (
+                recentTemplates.slice(0, 3).map((template: Template) => (
+                  <TemplateCard key={template.id} template={template} />
+                ))
+              ) : (
+                <div className="col-span-3 text-center py-12">No recently added templates found</div>
+              )}
             </div>
           </div>
         </section>
@@ -307,7 +248,11 @@ const HomePage = () => {
               <p className="text-lg text-muted-foreground mb-8">
                 Explore our collection of premium templates and start building your next project today.
               </p>
-              <Button size="lg" className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white font-medium">
+              <Button 
+                size="lg" 
+                className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white font-medium"
+                onClick={() => navigate('/get-started')}
+              >
                 Get Started
               </Button>
             </div>
