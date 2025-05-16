@@ -1,135 +1,64 @@
+import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+  Outlet,
+} from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { DashboardAccessPage } from './pages/DashboardAccessPage';
+import { DashboardPage } from './pages/admin/DashboardPage';
+import { TemplatesPage as TemplatesAdminPage } from './pages/admin/TemplatesPage';
+import { CategoriesPage } from './pages/admin/CategoriesPage';
+import { SettingsPage } from './pages/admin/SettingsPage';
+import { AddTemplatePage } from './pages/admin/AddTemplatePage';
+import { EditTemplatePage } from './pages/admin/EditTemplatePage';
+import { HomePage } from './pages/HomePage';
+import { PricingPage } from './pages/PricingPage';
+import { ContactPage } from './pages/connect/ContactPage';
+import ConnectPage from './pages/ConnectPage';
+import { TemplateDetailsPage } from './pages/TemplateDetailsPage';
+import { CategoryTemplatesPage } from './pages/CategoryTemplatesPage';
+import PrivateRoute from './components/admin/PrivateRoute';
+import { Toaster } from '@/components/ui/toaster';
+import MessagesPage from './pages/admin/MessagesPage';
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import TemplatesPage from "./pages/TemplatesPage";
-import TemplateDetailPage from "./pages/TemplateDetailPage";
-import LoginPage from "./pages/admin/LoginPage";
-import DashboardPage from "./pages/admin/DashboardPage";
-import TemplatesAdminPage from "./pages/admin/TemplatesAdminPage";
-import TrendingPage from "./pages/admin/TrendingPage";
-import AddTemplatePage from "./pages/admin/AddTemplatePage";
-import EditTemplatePage from "./pages/admin/EditTemplatePage";
-import CategoriesPage from "./pages/admin/CategoriesPage";
-import SettingsPage from "./pages/admin/SettingsPage";
-import PrivateRoute from "./components/admin/PrivateRoute";
-import NotFound from "./pages/NotFound";
-import { AuthProvider } from "./context/AuthContext";
-import AllTemplatesPage from "./pages/AllTemplatesPage";
-import CategoriesListPage from "./pages/CategoriesListPage";
-import CategoryDetailPage from "./pages/CategoryDetailPage";
-import FeaturedPage from "./pages/FeaturedPage";
-import LatestPage from "./pages/LatestPage";
-import ResourcesPage from "./pages/ResourcesPage";
-import ConnectPage from "./pages/ConnectPage";
-import GetStartedPage from "./pages/get-started/GetStartedPage";
-import DocumentationPage from "./pages/docs/DocumentationPage";
-import SupportPage from "./pages/support/SupportPage";
-import HelpCenterPage from "./pages/support/HelpCenterPage";
-import FAQPage from "./pages/support/FAQPage";
-import ContactPage from "./pages/connect/ContactPage";
-import SupabaseDocsPage from "./pages/docs/supabase/SupabaseDocsPage";
-import PaymentsDocsPage from "./pages/docs/payments/PaymentsDocsPage";
-import AnalyticsDocsPage from "./pages/docs/analytics/AnalyticsDocsPage";
-import CMSDocsPage from "./pages/docs/cms/CMSDocsPage";
-import OptimizingPerformancePage from "./pages/support/OptimizingPerformancePage";
-import CustomFunctionalityPage from "./pages/support/CustomFunctionalityPage";
-import DiscordPage from "./pages/connect/DiscordPage";
-import GitHubPage from "./pages/connect/GitHubPage";
+function App() {
+  const [isAdmin, setIsAdmin] = useState(false);
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 1,
-    },
-  },
-});
+  useEffect(() => {
+    const adminAccess = sessionStorage.getItem('adminAccess');
+    setIsAdmin(!!adminAccess);
+  }, []);
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
+  return (
     <AuthProvider>
-      <TooltipProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/connect" element={<ConnectPage />} />
+          <Route path="/template/:id" element={<TemplateDetailsPage />} />
+          <Route path="/category/:categoryId" element={<CategoryTemplatesPage />} />
+          <Route path="/dashboard-access-9382xkjv" element={<DashboardAccessPage />} />
+
+          {/* Admin routes */}
+          <Route path="/secure-panel" element={<PrivateRoute><Outlet /></PrivateRoute>}>
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="content" element={<TemplatesAdminPage />} />
+            <Route path="content/add" element={<AddTemplatePage />} />
+            <Route path="content/edit/:id" element={<EditTemplatePage />} />
+            <Route path="taxonomy" element={<CategoriesPage />} />
+            <Route path="config" element={<SettingsPage />} />
+            <Route path="messages" element={<MessagesPage />} />
+          </Route>
+        </Routes>
         <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/templates" element={<TemplatesPage />} />
-            <Route path="/templates/:id" element={<TemplateDetailPage />} />
-            <Route path="/all-templates" element={<AllTemplatesPage />} />
-            <Route path="/categories" element={<CategoriesListPage />} />
-            <Route path="/categories/:id" element={<CategoryDetailPage />} />
-            <Route path="/featured" element={<FeaturedPage />} />
-            <Route path="/latest" element={<LatestPage />} />
-            <Route path="/resources" element={<ResourcesPage />} />
-            <Route path="/connect" element={<ConnectPage />} />
-            <Route path="/get-started" element={<GetStartedPage />} />
-            
-            {/* Documentation and Support Routes */}
-            <Route path="/docs" element={<DocumentationPage />} />
-            <Route path="/docs/supabase" element={<SupabaseDocsPage />} />
-            <Route path="/docs/payments" element={<PaymentsDocsPage />} />
-            <Route path="/docs/analytics" element={<AnalyticsDocsPage />} />
-            <Route path="/docs/cms" element={<CMSDocsPage />} />
-            <Route path="/support" element={<SupportPage />} />
-            <Route path="/support/help-center" element={<HelpCenterPage />} />
-            <Route path="/support/faqs" element={<FAQPage />} />
-            <Route path="/support/help-center/optimizing-performance" element={<OptimizingPerformancePage />} />
-            <Route path="/support/help-center/custom-functionality" element={<CustomFunctionalityPage />} />
-            <Route path="/connect/contact" element={<ContactPage />} />
-            <Route path="/connect/discord" element={<DiscordPage />} />
-            <Route path="/connect/github" element={<GitHubPage />} />
-            
-            {/* Admin Routes - Obscured URLs */}
-            <Route path="/dashboard-access-9382xkjv" element={<LoginPage />} />
-            <Route path="/secure-panel/dashboard" element={
-              <PrivateRoute>
-                <DashboardPage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/content" element={
-              <PrivateRoute>
-                <TemplatesAdminPage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/analytics" element={
-              <PrivateRoute>
-                <TrendingPage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/content/new" element={
-              <PrivateRoute>
-                <AddTemplatePage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/content/edit/:id" element={
-              <PrivateRoute>
-                <EditTemplatePage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/taxonomy" element={
-              <PrivateRoute>
-                <CategoriesPage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/config" element={
-              <PrivateRoute>
-                <SettingsPage />
-              </PrivateRoute>
-            } />
-            
-            {/* Not Found */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      </Router>
     </AuthProvider>
-  </QueryClientProvider>
-);
+  );
+}
 
 export default App;
