@@ -40,8 +40,10 @@ const SettingsPage = () => {
       // For now, we'll use the default values
       return settings;
     },
-    onSuccess: (data) => {
-      setSettings(data);
+    meta: {
+      onSuccess: (data: Settings) => {
+        setSettings(data);
+      }
     }
   });
 

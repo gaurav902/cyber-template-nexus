@@ -1,8 +1,7 @@
-
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { Rocket, Code, Layout, Users, Database } from 'lucide-react';
 
 const GetStartedPage = () => {
@@ -206,7 +205,7 @@ const GetStartedPage = () => {
                   Comprehensive guides and API references for all templates.
                 </p>
                 <Button variant="outline" className="cyber-button w-full">
-                  <Link to="/docs" className="w-full">View Docs</Link>
+                  <Link to="/docs">View Docs</Link>
                 </Button>
               </div>
               <div className="cyber-card p-6 text-center">
@@ -218,7 +217,7 @@ const GetStartedPage = () => {
                   View example projects built with our templates.
                 </p>
                 <Button variant="outline" className="cyber-button w-full">
-                  <Link to="/docs/examples" className="w-full">View Examples</Link>
+                  <Link to="/docs/examples">View Examples</Link>
                 </Button>
               </div>
               <div className="cyber-card p-6 text-center">
@@ -230,7 +229,7 @@ const GetStartedPage = () => {
                   Get help from our team or community forums.
                 </p>
                 <Button variant="outline" className="cyber-button w-full">
-                  <Link to="/support" className="w-full">Get Support</Link>
+                  <Link to="/support">Get Support</Link>
                 </Button>
               </div>
             </div>
@@ -244,16 +243,17 @@ const GetStartedPage = () => {
 
 export default GetStartedPage;
 
+// Simple Link component wrapper for buttons
 interface LinkProps {
   children: React.ReactNode;
   to: string;
+  className?: string;
 }
 
-// Simple Link component wrapper for buttons
-function Link({ children, to }: LinkProps) {
+function Link({ children, to, className = "" }: LinkProps) {
   return (
-    <a href={to} className="w-full flex items-center justify-center">
+    <RouterLink to={to} className={`w-full flex items-center justify-center ${className}`}>
       {children}
-    </a>
+    </RouterLink>
   );
 }
