@@ -178,7 +178,7 @@ const DashboardPage = () => {
               </CardDescription>
             </div>
             <Button asChild variant="outline" size="sm" className="cyber-button">
-              <Link to="/admin/trending">View All</Link>
+              <Link to="/secure-panel/analytics">View All</Link>
             </Button>
           </CardHeader>
           <CardContent>
@@ -200,7 +200,7 @@ const DashboardPage = () => {
                     <h3 className="font-medium mb-1 truncate">{template.title}</h3>
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-muted-foreground">{template.views} views</span>
-                      <Link to={`/admin/templates/edit/${template.id}`} className="text-neon-blue text-sm">
+                      <Link to={`/secure-panel/content/edit/${template.id}`} className="text-neon-blue text-sm">
                         Edit
                       </Link>
                     </div>
@@ -224,7 +224,7 @@ const DashboardPage = () => {
               </CardDescription>
             </div>
             <Button asChild variant="outline" size="sm" className="cyber-button">
-              <Link to="/admin/templates">View All</Link>
+              <Link to="/secure-panel/content">View All</Link>
             </Button>
           </CardHeader>
           <CardContent>
@@ -248,7 +248,7 @@ const DashboardPage = () => {
                       <span className="text-sm text-muted-foreground">
                         {new Date(template.created_at).toLocaleDateString()}
                       </span>
-                      <Link to={`/admin/templates/edit/${template.id}`} className="text-neon-blue text-sm">
+                      <Link to={`/secure-panel/content/edit/${template.id}`} className="text-neon-blue text-sm">
                         Edit
                       </Link>
                     </div>

@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
@@ -60,7 +61,7 @@ const EditTemplatePage = () => {
         title: "Template updated",
         description: "Your template has been updated successfully.",
       });
-      navigate('/admin/templates');
+      navigate('/secure-panel/content');
     },
     onError: (error) => {
       toast({
@@ -247,7 +248,7 @@ const EditTemplatePage = () => {
             <Button
               type="button"
               variant="outline"
-              onClick={() => navigate('/admin/templates')}
+              onClick={() => navigate('/secure-panel/content')}
             >
               Cancel
             </Button>

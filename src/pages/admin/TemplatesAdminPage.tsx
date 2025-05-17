@@ -88,7 +88,7 @@ const TemplatesAdminPage = () => {
               Manage your website templates.
             </p>
           </div>
-          <Link to="/admin/templates/add">
+          <Link to="/secure-panel/content/new">
             <Button className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black font-medium">
               <Plus className="mr-2 h-4 w-4" /> Add New
             </Button>
@@ -147,7 +147,7 @@ const TemplatesAdminPage = () => {
                           <Eye className="h-4 w-4" />
                         </Button>
                       </Link>
-                      <Link to={`/admin/templates/edit/${template.id}`}>
+                      <Link to={`/secure-panel/content/edit/${template.id}`}>
                         <Button size="icon" variant="ghost" className="h-8 w-8 text-muted-foreground">
                           <Edit className="h-4 w-4" />
                         </Button>
