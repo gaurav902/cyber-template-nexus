@@ -49,7 +49,7 @@ const LoginPage = () => {
         <div className="cyber-panel p-8">
           <div className="text-center mb-8">
             <div className="w-16 h-16 rounded-2xl bg-neon-blue/20 mx-auto flex items-center justify-center cyber-border-glow">
-              <span className="font-orbitron font-bold text-3xl cyber-text-glow">H</span>
+              <span className="font-orbitron font-bold text-2xl cyber-text-glow">HTR</span>
             </div>
             <h1 className="font-orbitron text-2xl font-bold mt-4 mb-2">
               Control Panel
@@ -68,7 +68,7 @@ const LoginPage = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@admin.com"
+                  placeholder="control@control.com"
                   className="pl-10 bg-cyber-light border-cyber-border"
                   required
                 />
@@ -110,9 +110,7 @@ const LoginPage = () => {
                 Return to <Link to="/" className="text-neon-blue hover:underline">Home page</Link>
               </p>
               
-              <p className="text-muted-foreground">Default admin credentials:</p>
-              <p>Email: admin@admin.com</p>
-              <p>Password: admin123</p>
+
             </div>
           </form>
         </div>
