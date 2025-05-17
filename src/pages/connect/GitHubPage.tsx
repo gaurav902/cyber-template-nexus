@@ -24,7 +24,7 @@ const GitHubPage = () => {
           </p>
           <div className="flex justify-center">
             <Button size="lg" className="cyber-button bg-white text-black hover:bg-white/90 font-medium">
-              <a href="https://github.com/htr-templates/discussions" target="_blank" rel="noopener noreferrer" className="flex items-center">
+              <a href="https://github.com/HTR-hacktheroot/discussion/discussions/" target="_blank" rel="noopener noreferrer" className="flex items-center">
                 <Github className="mr-2 h-5 w-5" />
                 Join GitHub Discussions
               </a>
@@ -129,7 +129,7 @@ const GitHubPage = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button className="cyber-button bg-white text-black hover:bg-white/90 font-medium">
-              <a href="https://github.com/htr-templates/discussions" target="_blank" rel="noopener noreferrer" className="flex items-center">
+              <a href="https://github.com/HTR-hacktheroot/discussion/discussions/" target="_blank" rel="noopener noreferrer" className="flex items-center">
                 <Github className="mr-2 h-5 w-5" />
                 Join GitHub Discussions
               </a>

@@ -24,7 +24,7 @@ const DiscordPage = () => {
           </p>
           <div className="flex justify-center">
             <Button size="lg" className="cyber-button bg-[#5865F2] hover:bg-[#5865F2]/90 text-white font-medium">
-              <a href="https://discord.gg/htr-templates" target="_blank" rel="noopener noreferrer" className="flex items-center">
+              <a href="https://discord.gg/QbdC7FXed2" target="_blank" rel="noopener noreferrer" className="flex items-center">
                 Join Discord Server
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>

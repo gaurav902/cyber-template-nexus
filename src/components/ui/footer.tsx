@@ -44,7 +44,7 @@ export function Footer() {
             <h3 className="font-orbitron text-white mb-4 text-lg">Connect</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-neon-blue flex items-center gap-2">
+                <a href="https://github.com/HTR-hacktheroot" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-neon-blue flex items-center gap-2">
                   <Github size={14} />
                   GitHub
                 </a>
