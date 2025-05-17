@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
@@ -16,7 +15,7 @@ const TemplatesPage = () => {
   
   const { data: templates = [], isLoading, refetch } = useQuery({
     queryKey: ['templates'],
-    queryFn: fetchTemplates,
+    queryFn: () => fetchTemplates(),
   });
   
   const handleDeleteTemplate = async (id: string) => {

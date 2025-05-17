@@ -24,6 +24,27 @@ export async function fetchTemplates(options = { onlyPublished: false }) {
   })) as Template[];
 }
 
+// Fetch templates by category ID
+export async function fetchTemplatesByCategory(categoryId: string) {
+  const { data, error } = await supabase
+    .from('templates')
+    .select(`
+      *,
+      categories(name)
+    `)
+    .eq('category_id', categoryId)
+    .eq('status', 'published')
+    .order('created_at', { ascending: false });
+  
+  if (error) throw error;
+  
+  // Transform the data to match our Template interface
+  return (data || []).map(item => ({
+    ...item,
+    category_name: item.categories?.name || null
+  })) as Template[];
+}
+
 // Fetch a single template by ID
 export async function fetchTemplateById(id: string) {
   const { data, error } = await supabase
