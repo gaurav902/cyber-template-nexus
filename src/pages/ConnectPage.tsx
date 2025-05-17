@@ -6,6 +6,7 @@ import { Github, Twitter, MessageCircle, Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { submitContactMessage } from '@/services/contact';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const ConnectPage = () => {
   const { toast } = useToast();
@@ -101,10 +102,12 @@ const ConnectPage = () => {
           {socialLinks.map((link, index) => (
             <a 
               key={index}
-              href={link.url}
+              href={link.url.startsWith('http') ? link.url : undefined}
+              to={!link.url.startsWith('http') ? link.url : undefined}
               target={link.url.startsWith('http') ? "_blank" : undefined}
               rel={link.url.startsWith('http') ? "noopener noreferrer" : undefined}
               className="cyber-panel p-6 hover:border-neon-blue/70 transition-all duration-300"
+              {...(!link.url.startsWith('http') ? { as: Link } : {})}
             >
               <div className="flex items-center mb-4">
                 <div className={`w-12 h-12 rounded-lg ${link.color} flex items-center justify-center mr-4`}>

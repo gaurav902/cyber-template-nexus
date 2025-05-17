@@ -14,73 +14,65 @@ import {
 } from '@/services/contact';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 const MessagesPage = () => {
-  const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [selectedMessage, setSelectedMessage] = useState<ContactMessage | null>(null);
-  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    loadMessages();
-  }, []);
+  const { data: messages = [], isLoading } = useQuery({
+    queryKey: ['contact-messages'],
+    queryFn: getContactMessages
+  });
 
-  const loadMessages = async () => {
-    try {
-      setLoading(true);
-      const data = await getContactMessages();
-      setMessages(data);
-    } catch (error) {
+  const markAsReadMutation = useMutation({
+    mutationFn: (id: string) => markMessageAsRead(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['contact-messages'] });
+      toast({
+        title: "Message marked as read",
+        description: "The message has been marked as read."
+      });
+    }
+  });
+
+  const deleteMessageMutation = useMutation({
+    mutationFn: (id: string) => deleteMessage(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['contact-messages'] });
+      toast({
+        title: "Message Deleted",
+        description: "The message has been deleted successfully."
+      });
+      if (isViewDialogOpen) {
+        setIsViewDialogOpen(false);
+      }
+    },
+    onError: (error) => {
       toast({
         title: "Error",
-        description: "Failed to load messages",
+        description: "Failed to delete message",
         variant: "destructive",
       });
-    } finally {
-      setLoading(false);
     }
-  };
+  });
 
   const handleViewMessage = async (message: ContactMessage) => {
     setSelectedMessage(message);
     setIsViewDialogOpen(true);
     
     // Mark as read if it wasn't read before
-    if (!message.read) {
-      try {
-        await markMessageAsRead(message.id!);
-        setMessages(messages.map(m => 
-          m.id === message.id ? { ...m, read: true } : m
-        ));
-      } catch (error) {
-        console.error("Error marking message as read:", error);
-      }
+    if (!message.read && message.id) {
+      markAsReadMutation.mutate(message.id);
     }
   };
 
   const handleDeleteMessage = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this message?")) {
-      try {
-        await deleteMessage(id);
-        setMessages(messages.filter(message => message.id !== id));
-        toast({
-          title: "Message Deleted",
-          description: "The message has been deleted successfully.",
-        });
-        
-        if (selectedMessage?.id === id) {
-          setIsViewDialogOpen(false);
-          setSelectedMessage(null);
-        }
-      } catch (error) {
-        toast({
-          title: "Error",
-          description: "Failed to delete message",
-          variant: "destructive",
-        });
-      }
+      deleteMessageMutation.mutate(id);
     }
   };
 
@@ -129,7 +121,7 @@ const MessagesPage = () => {
         </div>
 
         <div className="cyber-panel">
-          {loading ? (
+          {isLoading ? (
             <div className="flex items-center justify-center p-8">
               <div className="text-center">
                 <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-neon-blue border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
@@ -182,7 +174,7 @@ const MessagesPage = () => {
                           size="icon" 
                           variant="ghost" 
                           className="h-8 w-8 text-muted-foreground hover:text-red-500"
-                          onClick={() => handleDeleteMessage(message.id!)}
+                          onClick={() => message.id && handleDeleteMessage(message.id)}
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>

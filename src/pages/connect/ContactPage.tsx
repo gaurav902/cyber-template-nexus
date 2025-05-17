@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Mail, MessageCircle, Phone, MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { submitContactMessage } from '@/services/contact';
+import { Link } from 'react-router-dom';
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -140,7 +141,7 @@ const ContactPage = () => {
                 </a>
                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-cyber-light/30 rounded-md hover:bg-cyber-light/50 transition-colors">
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 9.99 9.99 0 01-3.159 1.207A4.92 4.92 0 0016.905 2 4.928 4.928 0 0012 6.929c0 .387.043.763.13 1.124A13.98 13.98 0 011.671 3.154a4.892 4.892 0 001.525 6.574 4.924 4.924 0 01-2.229-.616v.061a4.928 4.928 0 003.95 4.827 4.963 4.963 0 01-2.222.084 4.93 4.93 0 004.604 3.417 9.873 9.873 0 01-6.116 2.105A10.16 10.16 0 010 19.5a14.01 14.01 0 007.58 2.213c9.053 0 14.002-7.496 14.002-13.99 0-.213-.005-.425-.014-.636a9.936 9.936 0 002.46-2.548l-.047-.02z"/>
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 9.99 9.99 0 01-3.159 1.207A4.92 4.92 0 0016.905 2 4.928 4.928 0 0012 6.929c0 .387.043.763.13 1.124A13.98 13.98 0 011.671 3.154a4.892 4.892 0 001.525 6.574 4.924 4.924 0 01-2.229-.616v.061a4.928 4.928 0 003.95 4.827 4.963 4.963 0 01-2.222.084 4.93 4.93 0 004.604 3.417 9.873 9.873 0 01-6.116 2.105A10.16 10.16 0 000 19.5a14.01 14.01 0 007.58 2.213c9.053 0 14.002-7.496 14.002-13.99 0-.213-.005-.425-.014-.636a9.936 9.936 0 002.46-2.548l-.047-.02z"/>
                   </svg>
                 </a>
                 <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-cyber-light/30 rounded-md hover:bg-cyber-light/50 transition-colors">
@@ -250,9 +251,11 @@ const ContactPage = () => {
           <p className="text-muted-foreground mb-6">
             Before contacting us, you might find answers to common questions in our FAQ section.
           </p>
-          <Button variant="outline" className="cyber-button">
-            <Link to="/support/faqs">View Frequently Asked Questions</Link>
-          </Button>
+          <Link to="/support/faqs">
+            <Button variant="outline" className="cyber-button">
+              View Frequently Asked Questions
+            </Button>
+          </Link>
         </div>
       </div>
       <Footer />
@@ -261,17 +264,3 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
-
-interface LinkProps {
-  children: React.ReactNode;
-  to: string;
-}
-
-// Simple Link component wrapper for buttons
-function Link({ children, to }: LinkProps) {
-  return (
-    <a href={to} className="w-full flex items-center justify-center">
-      {children}
-    </a>
-  );
-}

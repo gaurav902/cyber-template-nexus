@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -23,7 +24,6 @@ import { AuthProvider } from "./context/AuthContext";
 import AllTemplatesPage from "./pages/AllTemplatesPage";
 import CategoriesListPage from "./pages/CategoriesListPage";
 import CategoryDetailPage from "./pages/CategoryDetailPage";
-import PublicFeaturedPage from "./pages/FeaturedPage";
 import LatestPage from "./pages/LatestPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import ConnectPage from "./pages/ConnectPage";
@@ -67,7 +67,6 @@ const App = () => (
               <Route path="/all-templates" element={<AllTemplatesPage />} />
               <Route path="/categories" element={<CategoriesListPage />} />
               <Route path="/categories/:id" element={<CategoryDetailPage />} />
-              <Route path="/featured" element={<PublicFeaturedPage />} />
               <Route path="/latest" element={<LatestPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/connect" element={<ConnectPage />} />
@@ -103,11 +102,6 @@ const App = () => (
               <Route path="/secure-panel/analytics" element={
                 <PrivateRoute>
                   <TrendingPage />
-                </PrivateRoute>
-              } />
-              <Route path="/secure-panel/featured" element={
-                <PrivateRoute>
-                  <FeaturedAdminPage />
                 </PrivateRoute>
               } />
               <Route path="/secure-panel/messages" element={
