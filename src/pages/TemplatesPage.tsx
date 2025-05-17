@@ -21,7 +21,7 @@ const TemplatesPage = () => {
   
   const { data: templates = [], isLoading: isTemplatesLoading } = useQuery({
     queryKey: ['templates'],
-    queryFn: () => fetchTemplates({ onlyPublished: false }),
+    queryFn: () => fetchTemplates({ onlyPublished: true }),
   });
   
   const { data: categories = [], isLoading: isCategoriesLoading } = useQuery({

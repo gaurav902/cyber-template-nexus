@@ -25,6 +25,10 @@ import CategoryTemplatesPage from './pages/CategoryTemplatesPage';
 import PrivateRoute from './components/admin/PrivateRoute';
 import { Toaster } from '@/components/ui/toaster';
 import MessagesPage from './pages/admin/MessagesPage';
+import LatestPage from './pages/LatestPage';
+import ResourcesPage from './pages/ResourcesPage';
+import NotFound from './pages/NotFound';
+import TemplatesPage from './pages/TemplatesPage';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -56,6 +60,15 @@ function App() {
             <Route path="/template/:id" element={<TemplateDetailsPage />} />
             <Route path="/category/:categoryId" element={<CategoryTemplatesPage />} />
             <Route path="/dashboard-access-9382xkjv" element={<DashboardAccessPage />} />
+            
+            {/* Add missing routes */}
+            <Route path="/latest" element={<LatestPage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/templates" element={<TemplatesPage />} />
+            <Route path="/docs" element={<ResourcesPage />} />
+            <Route path="/support" element={<ResourcesPage />} />
+            <Route path="/support/help-center" element={<ResourcesPage />} />
+            <Route path="/support/faqs" element={<ResourcesPage />} />
 
             {/* Admin routes */}
             <Route path="/secure-panel" element={<PrivateRoute><Outlet /></PrivateRoute>}>
@@ -67,6 +80,9 @@ function App() {
               <Route path="config" element={<SettingsPage />} />
               <Route path="messages" element={<MessagesPage />} />
             </Route>
+
+            {/* 404 route */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Toaster />
         </Router>
