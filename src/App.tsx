@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,17 +12,19 @@ import LoginPage from "./pages/admin/LoginPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import TemplatesAdminPage from "./pages/admin/TemplatesAdminPage";
 import TrendingPage from "./pages/admin/TrendingPage";
+import FeaturedPage from "./pages/admin/FeaturedPage";
 import AddTemplatePage from "./pages/admin/AddTemplatePage";
 import EditTemplatePage from "./pages/admin/EditTemplatePage";
 import CategoriesPage from "./pages/admin/CategoriesPage";
 import SettingsPage from "./pages/admin/SettingsPage";
+import MessagesPage from "./pages/admin/MessagesPage";
 import PrivateRoute from "./components/admin/PrivateRoute";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./context/AuthContext";
 import AllTemplatesPage from "./pages/AllTemplatesPage";
 import CategoriesListPage from "./pages/CategoriesListPage";
 import CategoryDetailPage from "./pages/CategoryDetailPage";
-import FeaturedPage from "./pages/FeaturedPage";
+import FeaturedPage as PublicFeaturedPage from "./pages/FeaturedPage";
 import LatestPage from "./pages/LatestPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import ConnectPage from "./pages/ConnectPage";
@@ -39,7 +42,6 @@ import OptimizingPerformancePage from "./pages/support/OptimizingPerformancePage
 import CustomFunctionalityPage from "./pages/support/CustomFunctionalityPage";
 import DiscordPage from "./pages/connect/DiscordPage";
 import GitHubPage from "./pages/connect/GitHubPage";
-import React from "react"; // Add React import explicitly
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -66,7 +68,7 @@ const App = () => (
               <Route path="/all-templates" element={<AllTemplatesPage />} />
               <Route path="/categories" element={<CategoriesListPage />} />
               <Route path="/categories/:id" element={<CategoryDetailPage />} />
-              <Route path="/featured" element={<FeaturedPage />} />
+              <Route path="/featured" element={<PublicFeaturedPage />} />
               <Route path="/latest" element={<LatestPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/connect" element={<ConnectPage />} />
@@ -102,6 +104,16 @@ const App = () => (
               <Route path="/secure-panel/analytics" element={
                 <PrivateRoute>
                   <TrendingPage />
+                </PrivateRoute>
+              } />
+              <Route path="/secure-panel/featured" element={
+                <PrivateRoute>
+                  <FeaturedPage />
+                </PrivateRoute>
+              } />
+              <Route path="/secure-panel/messages" element={
+                <PrivateRoute>
+                  <MessagesPage />
                 </PrivateRoute>
               } />
               <Route path="/secure-panel/content/new" element={

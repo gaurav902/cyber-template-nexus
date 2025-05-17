@@ -5,9 +5,8 @@ import { Footer } from '@/components/ui/footer';
 import { useQuery } from '@tanstack/react-query';
 import { getCategories } from '@/services/categories';
 import { Link } from 'react-router-dom';
-import { Loader, FolderIcon } from 'lucide-react';
+import { Loader, FolderIcon, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
 
 const CategoriesListPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -61,16 +60,30 @@ const CategoriesListPage = () => {
                 to={`/categories/${category.id}`}
                 className="cyber-panel p-6 hover:border-neon-blue/70 transition duration-300"
               >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-cyber-light rounded-lg flex items-center justify-center mr-4">
-                    <FolderIcon className="h-6 w-6 text-neon-blue" />
-                  </div>
+                <div className="aspect-video rounded-lg overflow-hidden mb-4">
+                  {category.image_url ? (
+                    <img 
+                      src={category.image_url} 
+                      alt={category.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&auto=format';
+                      }}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-cyber-light flex items-center justify-center">
+                      <FolderIcon className="h-16 w-16 text-neon-blue/30" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex items-center mb-3">
+                  <FolderIcon className="h-5 w-5 text-neon-blue mr-2" />
                   <h3 className="font-orbitron text-lg font-medium">{category.name}</h3>
                 </div>
                 {category.description && (
-                  <p className="text-muted-foreground">{category.description}</p>
+                  <p className="text-muted-foreground mb-3">{category.description}</p>
                 )}
-                <div className="mt-4 text-sm text-neon-blue/80 font-medium">
+                <div className="text-sm text-neon-blue/80 font-medium">
                   Browse templates →
                 </div>
               </Link>

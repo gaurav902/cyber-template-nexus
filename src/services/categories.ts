@@ -6,7 +6,7 @@ export interface Category {
   name: string;
   description: string | null;
   created_at: string;
-  image_url?: string; // Added image_url field
+  image_url: string | null;
 }
 
 export async function getCategories() {

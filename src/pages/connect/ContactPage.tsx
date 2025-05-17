@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Mail, MessageCircle, Phone, MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { submitContactMessage } from '@/services/contact';
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -30,12 +31,12 @@ const ContactPage = () => {
     setFormData(prev => ({ ...prev, department: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      await submitContactMessage(formData);
       toast({
         title: "Message sent",
         description: "We've received your message and will respond shortly.",
@@ -47,8 +48,15 @@ const ContactPage = () => {
         message: '',
         department: ''
       });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (

@@ -28,9 +28,7 @@ const CategoriesPage = () => {
   
   const createMutation = useMutation({
     mutationFn: ({ name, description, imageUrl }: { name: string, description: string, imageUrl: string }) => {
-      // In a real implementation, we'd pass the image URL to the backend
-      // For now, we'll just simulate it
-      return createCategory(name, description);
+      return createCategory(name, description, imageUrl);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
@@ -44,7 +42,7 @@ const CategoriesPage = () => {
     onError: (error) => {
       toast({
         title: "Error",
-        description: `Failed to create category: ${error.message}`,
+        description: `Failed to create category: ${error instanceof Error ? error.message : 'Unknown error'}`,
         variant: "destructive",
       });
     },
@@ -52,8 +50,7 @@ const CategoriesPage = () => {
   
   const updateMutation = useMutation({
     mutationFn: ({ id, name, description, imageUrl }: { id: string, name: string, description: string, imageUrl: string }) => {
-      // In a real implementation, we'd pass the image URL to the backend
-      return updateCategory(id, { name, description });
+      return updateCategory(id, { name, description, image_url: imageUrl });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
@@ -67,7 +64,7 @@ const CategoriesPage = () => {
     onError: (error) => {
       toast({
         title: "Error",
-        description: `Failed to update category: ${error.message}`,
+        description: `Failed to update category: ${error instanceof Error ? error.message : 'Unknown error'}`,
         variant: "destructive",
       });
     },
@@ -85,7 +82,7 @@ const CategoriesPage = () => {
     onError: (error) => {
       toast({
         title: "Error",
-        description: `Failed to delete category: ${error.message}`,
+        description: `Failed to delete category: ${error instanceof Error ? error.message : 'Unknown error'}`,
         variant: "destructive",
       });
     },
@@ -125,8 +122,7 @@ const CategoriesPage = () => {
     setCurrentCategoryId(category.id);
     setCategoryName(category.name);
     setCategoryDescription(category.description || '');
-    // In a real app, we'd fetch the image URL
-    setCategoryImage('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3');
+    setCategoryImage(category.image_url || '');
     setIsEditDialogOpen(true);
   };
   
@@ -371,8 +367,20 @@ const CategoriesPage = () => {
                   {filteredCategories.map((category: Category) => (
                     <tr key={category.id}>
                       <td className="py-3 px-4 w-16">
-                        <div className="w-12 h-12 rounded-md overflow-hidden bg-cyber-light/50 flex items-center justify-center">
-                          <Image className="h-6 w-6 text-muted-foreground" />
+                        <div className="w-16 h-16 rounded-md overflow-hidden bg-cyber-light/50 flex items-center justify-center">
+                          {category.image_url ? (
+                            <img 
+                              src={category.image_url} 
+                              alt={category.name}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src = 'https://via.placeholder.com/150';
+                                (e.target as HTMLImageElement).style.opacity = '0.5';
+                              }}
+                            />
+                          ) : (
+                            <Image className="h-6 w-6 text-muted-foreground" />
+                          )}
                         </div>
                       </td>
                       <td className="py-3 px-4">

@@ -4,14 +4,14 @@ import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { TableCell, TableRow, TableHeader, TableHead, TableBody, Table } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Loader, Edit, Eye, ChevronUp, ChevronDown, Search } from 'lucide-react';
+import { Star, Loader, Edit, Eye, Search, StarOff } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { fetchTemplates, updateTemplate } from '@/services/templates';
 import { Template } from '@/types/templates';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 
-const TrendingPage = () => {
+const FeaturedPage = () => {
   const [templates, setTemplates] = useState<Template[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,8 +25,8 @@ const TrendingPage = () => {
     try {
       setLoading(true);
       const data = await fetchTemplates();
-      // Sort by views (highest first)
-      const sortedTemplates = [...data].sort((a, b) => (b.views || 0) - (a.views || 0));
+      // Let's assume featured items are those with higher ratings
+      const sortedTemplates = [...data].sort((a, b) => (b.rating || 0) - (a.rating || 0));
       setTemplates(sortedTemplates);
     } catch (error) {
       toast({
@@ -36,6 +36,33 @@ const TrendingPage = () => {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const toggleFeatured = async (template: Template) => {
+    try {
+      // Here we're using the rating to represent if a template is featured
+      // A better approach would be to add a "featured" boolean field in the database
+      const newRating = template.rating ? 0 : 5; // Toggle between 5 (featured) and 0 (not featured)
+      
+      await updateTemplate(template.id, { 
+        rating: newRating 
+      } as Template);
+      
+      setTemplates(templates.map(t => 
+        t.id === template.id ? { ...t, rating: newRating } : t
+      ));
+      
+      toast({
+        title: newRating === 5 ? "Template Featured" : "Template Unfeatured",
+        description: `"${template.title}" is now ${newRating === 5 ? 'featured' : 'no longer featured'}.`,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to update template status",
+        variant: "destructive",
+      });
     }
   };
 
@@ -53,9 +80,9 @@ const TrendingPage = () => {
     <AdminLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Trending Templates</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Featured Templates</h1>
           <p className="text-muted-foreground">
-            View and manage your most popular templates based on view count.
+            Manage which templates are featured on your website.
           </p>
         </div>
 
@@ -78,12 +105,7 @@ const TrendingPage = () => {
                 <TableHead>Title</TableHead>
                 <TableHead>Category</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>
-                  <div className="flex items-center">
-                    Views
-                    <ChevronDown className="ml-1 h-4 w-4" />
-                  </div>
-                </TableHead>
+                <TableHead>Featured</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -115,7 +137,18 @@ const TrendingPage = () => {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <div className="font-mono text-md">{template.views || 0}</div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => toggleFeatured(template)}
+                        className={`h-8 ${template.rating > 0 ? 'text-yellow-400' : 'text-muted-foreground'}`}
+                      >
+                        {template.rating > 0 ? (
+                          <Star className="h-5 w-5 fill-yellow-400" />
+                        ) : (
+                          <StarOff className="h-5 w-5" />
+                        )}
+                      </Button>
                     </TableCell>
                     <TableCell className="text-right space-x-2">
                       <Link to={`/templates/${template.id}`} target="_blank">
@@ -137,11 +170,11 @@ const TrendingPage = () => {
         </div>
 
         <div className="text-center text-muted-foreground text-sm p-4">
-          Trending templates are ordered by total view count. The most viewed templates appear at the top.
+          Click the star icon to toggle whether a template is featured on your website.
         </div>
       </div>
     </AdminLayout>
   );
 };
 
-export default TrendingPage;
+export default FeaturedPage;
