@@ -19,15 +19,15 @@ const faqCategories: FAQCategory[] = [
     name: "General",
     faqs: [
       {
-        question: "What is TemplateX?",
-        answer: "TemplateX is a platform that offers high-quality, cyberpunk-themed website templates and UI components for modern web applications. Our templates are built with React, Tailwind CSS, and other modern technologies to provide a cutting-edge user experience."
+        question: "What is Hack The Root?",
+        answer: "HTR is a platform that offers high-quality, cyberpunk-themed website templates and UI components for modern web applications. Our templates are built with React, Tailwind CSS, and other modern technologies to provide a cutting-edge user experience."
       },
       {
-        question: "How do I get started with TemplateX?",
+        question: "How do I get started with Hack The Root?",
         answer: "To get started, browse our template collection and select one that fits your project needs. After purchasing, you can download the template files from your account dashboard and follow the installation instructions provided in the documentation."
       },
       {
-        question: "Do I need to credit TemplateX when using a template?",
+        question: "Do I need to credit Hack The Root when using a template?",
         answer: "No, you don't need to provide credit when using our templates. All templates come with a standard license that allows you to use them without attribution. However, we appreciate mentions and shares if you're happy with our products!"
       },
       {

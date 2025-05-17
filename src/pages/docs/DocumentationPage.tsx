@@ -56,7 +56,7 @@ const DocumentationPage = () => {
             <section id="getting-started" className="cyber-card p-6">
               <h2 className="text-2xl font-orbitron font-medium mb-4">Getting Started</h2>
               <p className="text-muted-foreground mb-4">
-                Welcome to TemplateX, your source for high-quality, futuristic web templates. This guide will help you get started with using our templates in your projects.
+                Welcome to HTR, your source for high-quality, futuristic web templates. This guide will help you get started with using our templates in your projects.
               </p>
               <p className="mb-4">
                 All our templates are designed with modern web standards in mind and come with comprehensive documentation to help you customize them to your needs.

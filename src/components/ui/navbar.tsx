@@ -76,7 +76,6 @@ export function Navbar() {
     { path: '/', label: 'Home' },
     { path: '/all-templates', label: 'All Templates' },
     { path: '/categories', label: 'Categories' },
-    { path: '/featured', label: 'Featured' },
     { path: '/latest', label: 'Latest' },
     { path: '/resources', label: 'Resources' },
     { path: '/connect', label: 'Connect' },
@@ -87,13 +86,13 @@ export function Navbar() {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
           <div 
-            className="w-8 h-8 rounded-md bg-neon-blue/20 flex items-center justify-center cyber-border-glow" 
+            className="w-12 h-9 rounded-md bg-neon-blue/20 flex items-center justify-center cyber-border-glow" 
             onClick={handleCornerClick}
           >
-            <span className="font-orbitron font-bold text-white">H</span>
+            <span className="font-orbitron font-bold text-white">HTR</span>
           </div>
           <span className="font-orbitron font-bold text-xl tracking-wider cyber-text-glow">
-            hack the root::
+            hack the root
           </span>
         </Link>
         

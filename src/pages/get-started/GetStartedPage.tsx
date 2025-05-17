@@ -14,7 +14,7 @@ const GetStartedPage = () => {
             <Rocket className="h-12 w-12 text-neon-purple" />
           </div>
           <h1 className="text-4xl font-orbitron font-bold mb-4 cyber-text-glow">
-            Get Started with TemplateX
+            Get Started with HACK THE ROOT
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Everything you need to build your next amazing project

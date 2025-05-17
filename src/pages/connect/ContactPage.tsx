@@ -88,8 +88,8 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-medium mb-1">Email</h3>
-                    <p className="text-muted-foreground">support@templatex.com</p>
-                    <p className="text-muted-foreground">info@templatex.com</p>
+                    <p className="text-muted-foreground">contact@tellmeindia.com</p>
+                    <p className="text-muted-foreground">info@tellmeindia.com</p>
                   </div>
                 </div>
                 
@@ -99,8 +99,8 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-medium mb-1">Phone</h3>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                    <p className="text-muted-foreground">Mon-Fri, 9am-5pm EST</p>
+                    <p className="text-muted-foreground">+91 (911) 929-5094</p>
+                    <p className="text-muted-foreground">Mon-Fri, 9am-5pm IST</p>
                   </div>
                 </div>
                 
@@ -121,8 +121,8 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-medium mb-1">Address</h3>
-                    <p className="text-muted-foreground">123 Cyber Street</p>
-                    <p className="text-muted-foreground">Tech City, TX 98765</p>
+                    <p className="text-muted-foreground">C-409, Block C, Vaishali Nagar</p>
+                    <p className="text-muted-foreground">Jaipur, Rajasthan 302021</p>
                   </div>
                 </div>
               </div>
