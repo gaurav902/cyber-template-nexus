@@ -39,6 +39,7 @@ import OptimizingPerformancePage from "./pages/support/OptimizingPerformancePage
 import CustomFunctionalityPage from "./pages/support/CustomFunctionalityPage";
 import DiscordPage from "./pages/connect/DiscordPage";
 import GitHubPage from "./pages/connect/GitHubPage";
+import React from "react"; // Add React import explicitly
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -50,86 +51,88 @@ const queryClient = new QueryClient({
 });
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/templates" element={<TemplatesPage />} />
-            <Route path="/templates/:id" element={<TemplateDetailPage />} />
-            <Route path="/all-templates" element={<AllTemplatesPage />} />
-            <Route path="/categories" element={<CategoriesListPage />} />
-            <Route path="/categories/:id" element={<CategoryDetailPage />} />
-            <Route path="/featured" element={<FeaturedPage />} />
-            <Route path="/latest" element={<LatestPage />} />
-            <Route path="/resources" element={<ResourcesPage />} />
-            <Route path="/connect" element={<ConnectPage />} />
-            <Route path="/get-started" element={<GetStartedPage />} />
-            
-            {/* Documentation and Support Routes */}
-            <Route path="/docs" element={<DocumentationPage />} />
-            <Route path="/docs/supabase" element={<SupabaseDocsPage />} />
-            <Route path="/docs/payments" element={<PaymentsDocsPage />} />
-            <Route path="/docs/analytics" element={<AnalyticsDocsPage />} />
-            <Route path="/docs/cms" element={<CMSDocsPage />} />
-            <Route path="/support" element={<SupportPage />} />
-            <Route path="/support/help-center" element={<HelpCenterPage />} />
-            <Route path="/support/faqs" element={<FAQPage />} />
-            <Route path="/support/help-center/optimizing-performance" element={<OptimizingPerformancePage />} />
-            <Route path="/support/help-center/custom-functionality" element={<CustomFunctionalityPage />} />
-            <Route path="/connect/contact" element={<ContactPage />} />
-            <Route path="/connect/discord" element={<DiscordPage />} />
-            <Route path="/connect/github" element={<GitHubPage />} />
-            
-            {/* Admin Routes - Obscured URLs */}
-            <Route path="/dashboard-access-9382xkjv" element={<LoginPage />} />
-            <Route path="/secure-panel/dashboard" element={
-              <PrivateRoute>
-                <DashboardPage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/content" element={
-              <PrivateRoute>
-                <TemplatesAdminPage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/analytics" element={
-              <PrivateRoute>
-                <TrendingPage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/content/new" element={
-              <PrivateRoute>
-                <AddTemplatePage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/content/edit/:id" element={
-              <PrivateRoute>
-                <EditTemplatePage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/taxonomy" element={
-              <PrivateRoute>
-                <CategoriesPage />
-              </PrivateRoute>
-            } />
-            <Route path="/secure-panel/config" element={
-              <PrivateRoute>
-                <SettingsPage />
-              </PrivateRoute>
-            } />
-            
-            {/* Not Found */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
-  </QueryClientProvider>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<HomePage />} />
+              <Route path="/templates" element={<TemplatesPage />} />
+              <Route path="/templates/:id" element={<TemplateDetailPage />} />
+              <Route path="/all-templates" element={<AllTemplatesPage />} />
+              <Route path="/categories" element={<CategoriesListPage />} />
+              <Route path="/categories/:id" element={<CategoryDetailPage />} />
+              <Route path="/featured" element={<FeaturedPage />} />
+              <Route path="/latest" element={<LatestPage />} />
+              <Route path="/resources" element={<ResourcesPage />} />
+              <Route path="/connect" element={<ConnectPage />} />
+              <Route path="/get-started" element={<GetStartedPage />} />
+              
+              {/* Documentation and Support Routes */}
+              <Route path="/docs" element={<DocumentationPage />} />
+              <Route path="/docs/supabase" element={<SupabaseDocsPage />} />
+              <Route path="/docs/payments" element={<PaymentsDocsPage />} />
+              <Route path="/docs/analytics" element={<AnalyticsDocsPage />} />
+              <Route path="/docs/cms" element={<CMSDocsPage />} />
+              <Route path="/support" element={<SupportPage />} />
+              <Route path="/support/help-center" element={<HelpCenterPage />} />
+              <Route path="/support/faqs" element={<FAQPage />} />
+              <Route path="/support/help-center/optimizing-performance" element={<OptimizingPerformancePage />} />
+              <Route path="/support/help-center/custom-functionality" element={<CustomFunctionalityPage />} />
+              <Route path="/connect/contact" element={<ContactPage />} />
+              <Route path="/connect/discord" element={<DiscordPage />} />
+              <Route path="/connect/github" element={<GitHubPage />} />
+              
+              {/* Admin Routes - Obscured URLs */}
+              <Route path="/dashboard-access-9382xkjv" element={<LoginPage />} />
+              <Route path="/secure-panel/dashboard" element={
+                <PrivateRoute>
+                  <DashboardPage />
+                </PrivateRoute>
+              } />
+              <Route path="/secure-panel/content" element={
+                <PrivateRoute>
+                  <TemplatesAdminPage />
+                </PrivateRoute>
+              } />
+              <Route path="/secure-panel/analytics" element={
+                <PrivateRoute>
+                  <TrendingPage />
+                </PrivateRoute>
+              } />
+              <Route path="/secure-panel/content/new" element={
+                <PrivateRoute>
+                  <AddTemplatePage />
+                </PrivateRoute>
+              } />
+              <Route path="/secure-panel/content/edit/:id" element={
+                <PrivateRoute>
+                  <EditTemplatePage />
+                </PrivateRoute>
+              } />
+              <Route path="/secure-panel/taxonomy" element={
+                <PrivateRoute>
+                  <CategoriesPage />
+                </PrivateRoute>
+              } />
+              <Route path="/secure-panel/config" element={
+                <PrivateRoute>
+                  <SettingsPage />
+                </PrivateRoute>
+              } />
+              
+              {/* Not Found */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  </React.StrictMode>
 );
 
 export default App;
