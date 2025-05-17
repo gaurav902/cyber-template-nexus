@@ -1,7 +1,8 @@
+
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
-  Home, LayoutTemplate, FolderKanban, Settings, User, LogOut, Menu, X, MessageCircle
+  Home, LayoutTemplate, FolderKanban, Settings, User, LogOut, Menu, X
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/hooks/use-toast';
@@ -36,7 +37,6 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     { path: '/secure-panel/dashboard', label: 'Dashboard', icon: Home },
     { path: '/secure-panel/content', label: 'Templates', icon: LayoutTemplate },
     { path: '/secure-panel/taxonomy', label: 'Categories', icon: FolderKanban },
-    { path: '/secure-panel/messages', label: 'Messages', icon: MessageCircle },
     { path: '/secure-panel/config', label: 'Settings', icon: Settings },
   ];
 

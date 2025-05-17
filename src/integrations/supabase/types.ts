@@ -48,39 +48,6 @@ export type Database = {
         }
         Relationships: []
       }
-      contact_messages: {
-        Row: {
-          created_at: string
-          department: string | null
-          email: string
-          id: string
-          message: string
-          name: string
-          read: boolean
-          subject: string
-        }
-        Insert: {
-          created_at?: string
-          department?: string | null
-          email: string
-          id?: string
-          message: string
-          name: string
-          read?: boolean
-          subject: string
-        }
-        Update: {
-          created_at?: string
-          department?: string | null
-          email?: string
-          id?: string
-          message?: string
-          name?: string
-          read?: boolean
-          subject?: string
-        }
-        Relationships: []
-      }
       stats: {
         Row: {
           categories_count: number
