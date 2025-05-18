@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, ArrowDown, Layers, Flame, Clock, Code, Zap, Shield, Users, BookOpen, Monitor, 
@@ -695,77 +696,79 @@ const HomePage = () => {
               animate={trendingInView ? "visible" : "hidden"}
               variants={staggerContainer}
             >
-              <TabsContent value="all" className="mt-0">
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {isLoadingTrending ? (
-                      <div className="col-span-3 text-center py-12">Loading trending templates...</div>
-                    ) : trendingTemplates.length > 0 ? (
-                      trendingTemplates.map((templateData: any, index: number) => (
-                        <CarouselItem key={`all-${templateData.id}`} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4">
-                          <motion.div variants={scaleIn}>
-                            <TemplateCard template={formatTemplate(templateData)} />
-                          </motion.div>
-                        </CarouselItem>
-                      ))
-                    ) : (
-                      <div className="col-span-3 text-center py-12">No trending templates found</div>
-                    )}
-                  </CarouselContent>
-                  <div className="flex justify-end gap-2 mt-4">
-                    <CarouselPrevious className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
-                    <CarouselNext className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
-                  </div>
-                </Carousel>
-              </TabsContent>
-              
-              <TabsContent value="dashboard" className="mt-0">
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {isLoadingTrending ? (
-                      <div className="col-span-3 text-center py-12">Loading trending dashboards...</div>
-                    ) : (
-                      trendingTemplates
-                        .filter((t: any) => t.tags?.includes('dashboard') || t.title.toLowerCase().includes('dashboard'))
-                        .map((templateData: any, index: number) => (
-                          <CarouselItem key={`dashboard-${templateData.id}`} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4">
+              <Tabs defaultValue={activeTab} value={activeTab} className="w-full">
+                <TabsContent value="all" className="mt-0">
+                  <Carousel className="w-full">
+                    <CarouselContent>
+                      {isLoadingTrending ? (
+                        <div className="col-span-3 text-center py-12">Loading trending templates...</div>
+                      ) : trendingTemplates.length > 0 ? (
+                        trendingTemplates.map((templateData: any, index: number) => (
+                          <CarouselItem key={`all-${templateData.id}`} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4">
                             <motion.div variants={scaleIn}>
                               <TemplateCard template={formatTemplate(templateData)} />
                             </motion.div>
                           </CarouselItem>
                         ))
-                    )}
-                  </CarouselContent>
-                  <div className="flex justify-end gap-2 mt-4">
-                    <CarouselPrevious className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
-                    <CarouselNext className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
-                  </div>
-                </Carousel>
-              </TabsContent>
-              
-              <TabsContent value="app" className="mt-0">
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {isLoadingTrending ? (
-                      <div className="col-span-3 text-center py-12">Loading trending apps...</div>
-                    ) : (
-                      trendingTemplates
-                        .filter((t: any) => t.tags?.includes('app') || t.title.toLowerCase().includes('app'))
-                        .map((templateData: any, index: number) => (
-                          <CarouselItem key={`app-${templateData.id}`} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4">
-                            <motion.div variants={scaleIn}>
-                              <TemplateCard template={formatTemplate(templateData)} />
-                            </motion.div>
-                          </CarouselItem>
-                        ))
-                    )}
-                  </CarouselContent>
-                  <div className="flex justify-end gap-2 mt-4">
-                    <CarouselPrevious className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
-                    <CarouselNext className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
-                  </div>
-                </Carousel>
-              </TabsContent>
+                      ) : (
+                        <div className="col-span-3 text-center py-12">No trending templates found</div>
+                      )}
+                    </CarouselContent>
+                    <div className="flex justify-end gap-2 mt-4">
+                      <CarouselPrevious className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
+                      <CarouselNext className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
+                    </div>
+                  </Carousel>
+                </TabsContent>
+                
+                <TabsContent value="dashboard" className="mt-0">
+                  <Carousel className="w-full">
+                    <CarouselContent>
+                      {isLoadingTrending ? (
+                        <div className="col-span-3 text-center py-12">Loading trending dashboards...</div>
+                      ) : (
+                        trendingTemplates
+                          .filter((t: any) => t.tags?.includes('dashboard') || t.title.toLowerCase().includes('dashboard'))
+                          .map((templateData: any, index: number) => (
+                            <CarouselItem key={`dashboard-${templateData.id}`} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4">
+                              <motion.div variants={scaleIn}>
+                                <TemplateCard template={formatTemplate(templateData)} />
+                              </motion.div>
+                            </CarouselItem>
+                          ))
+                      )}
+                    </CarouselContent>
+                    <div className="flex justify-end gap-2 mt-4">
+                      <CarouselPrevious className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
+                      <CarouselNext className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
+                    </div>
+                  </Carousel>
+                </TabsContent>
+                
+                <TabsContent value="app" className="mt-0">
+                  <Carousel className="w-full">
+                    <CarouselContent>
+                      {isLoadingTrending ? (
+                        <div className="col-span-3 text-center py-12">Loading trending apps...</div>
+                      ) : (
+                        trendingTemplates
+                          .filter((t: any) => t.tags?.includes('app') || t.title.toLowerCase().includes('app'))
+                          .map((templateData: any, index: number) => (
+                            <CarouselItem key={`app-${templateData.id}`} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4">
+                              <motion.div variants={scaleIn}>
+                                <TemplateCard template={formatTemplate(templateData)} />
+                              </motion.div>
+                            </CarouselItem>
+                          ))
+                      )}
+                    </CarouselContent>
+                    <div className="flex justify-end gap-2 mt-4">
+                      <CarouselPrevious className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
+                      <CarouselNext className="relative inset-0 transform-none translate-x-0 translate-y-0 right-0 top-0" />
+                    </div>
+                  </Carousel>
+                </TabsContent>
+              </Tabs>
             </motion.div>
             
             <motion.div 
