@@ -35,8 +35,8 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link to="/docs" className="text-muted-foreground hover:text-neon-blue">Documentation</Link></li>
               <li><Link to="/support" className="text-muted-foreground hover:text-neon-blue">Support</Link></li>
-              <li><a href="#" className="text-muted-foreground hover:text-neon-blue">Help Center</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-neon-blue">FAQs</a></li>
+              <li><Link to="/support/help-center" className="text-muted-foreground hover:text-neon-blue">Help Center</Link></li>
+              <li><Link to="/support/faqs" className="text-muted-foreground hover:text-neon-blue">FAQs</Link></li>
             </ul>
           </div>
           
@@ -49,7 +49,7 @@ export function Footer() {
                   GitHub
                 </a>
               </li>
-              <li><a href="#" className="text-muted-foreground hover:text-neon-blue">Twitter</a></li>
+              <li><a href="https://twitter.com" className="text-muted-foreground hover:text-neon-blue" target="_blank" rel="noopener noreferrer">Twitter</a></li>
               <li><Link to="/connect/discord" className="text-muted-foreground hover:text-neon-blue">Discord</Link></li>
               <li><Link to="/connect/contact" className="text-muted-foreground hover:text-neon-blue">Contact Us</Link></li>
             </ul>
@@ -61,9 +61,9 @@ export function Footer() {
             © {new Date().getFullYear()} HACK THE ROOT. All rights reserved.
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <Link to="#/privacy" className="text-muted-foreground hover:text-white text-sm">Privacy</Link>
-            <Link to="#/terms" className="text-muted-foreground hover:text-white text-sm">Terms</Link>
-            <Link to="#/cookies" className="text-muted-foreground hover:text-white text-sm">Cookies</Link>
+            <Link to="/privacy" className="text-muted-foreground hover:text-white text-sm">Privacy</Link>
+            <Link to="/terms" className="text-muted-foreground hover:text-white text-sm">Terms</Link>
+            <Link to="/cookies" className="text-muted-foreground hover:text-white text-sm">Cookies</Link>
           </div>
         </div>
       </div>
