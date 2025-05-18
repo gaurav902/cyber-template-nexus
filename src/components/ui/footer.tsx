@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Github } from 'lucide-react';
+import { Github, FileText, Shield, Cookie } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -60,10 +60,19 @@ export function Footer() {
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} HACK THE ROOT. All rights reserved.
           </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link to="/privacy" className="text-muted-foreground hover:text-white text-sm">Privacy</Link>
-            <Link to="/terms" className="text-muted-foreground hover:text-white text-sm">Terms</Link>
-            <Link to="/cookies" className="text-muted-foreground hover:text-white text-sm">Cookies</Link>
+          <div className="flex gap-6 mt-4 md:mt-0 items-center">
+            <Link to="/privacy" className="text-muted-foreground hover:text-neon-blue transition-colors flex items-center gap-1.5 text-sm group">
+              <FileText size={14} className="group-hover:text-neon-blue transition-colors" />
+              Privacy
+            </Link>
+            <Link to="/terms" className="text-muted-foreground hover:text-neon-blue transition-colors flex items-center gap-1.5 text-sm group">
+              <Shield size={14} className="group-hover:text-neon-blue transition-colors" />
+              Terms
+            </Link>
+            <Link to="/cookies" className="text-muted-foreground hover:text-neon-blue transition-colors flex items-center gap-1.5 text-sm group">
+              <Cookie size={14} className="group-hover:text-neon-blue transition-colors" />
+              Cookies
+            </Link>
           </div>
         </div>
       </div>
