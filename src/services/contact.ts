@@ -13,12 +13,19 @@ export interface ContactMessage {
 }
 
 export async function submitContactMessage(message: ContactMessage) {
+  console.log("Submitting contact message:", message);
+  
   const { data, error } = await supabase
     .from('contact_messages')
     .insert([message])
     .select();
     
-  if (error) throw error;
+  if (error) {
+    console.error("Error submitting contact message:", error);
+    throw error;
+  }
+  
+  console.log("Contact message submitted successfully:", data);
   return data[0];
 }
 

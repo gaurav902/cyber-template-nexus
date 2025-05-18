@@ -75,6 +75,7 @@ const ConnectPage = () => {
         message: ''
       });
     } catch (error) {
+      console.error("Error submitting form:", error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again later.",

@@ -37,6 +37,7 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
+      console.log("Submitting contact form:", formData);
       await submitContactMessage(formData);
       toast({
         title: "Message sent",
@@ -50,6 +51,7 @@ const ContactPage = () => {
         department: ''
       });
     } catch (error) {
+      console.error("Error submitting form:", error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again later.",
