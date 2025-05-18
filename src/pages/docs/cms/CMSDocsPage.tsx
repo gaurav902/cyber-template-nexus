@@ -83,7 +83,7 @@ const CMSDocsPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                   <div className="p-4 bg-cyber-light/20 rounded-md">
                     <img 
-                      src="https://a.storyblok.com/f/88751/x/48199608c2/storyblok-logo-light.svg" 
+                      src="https://images.seeklogo.com/logo-png/43/1/storyblok-logo-png_seeklogo-435514.png" 
                       alt="Storyblok" 
                       className="h-8 mb-3" 
                     />
@@ -109,7 +109,7 @@ const CMSDocsPage = () => {
                   </div>
                   <div className="p-4 bg-cyber-light/20 rounded-md">
                     <img 
-                      src="https://seeklogo.com/images/S/sanity-logo-19B1198B8B-seeklogo.com.png" 
+                      src="https://thoughtoverdesign.com/wp-content/uploads/2021/05/sanity_logowhite2.png" 
                       alt="Sanity" 
                       className="h-8 mb-3" 
                     />

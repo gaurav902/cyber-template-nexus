@@ -40,7 +40,7 @@ const AddTemplatePage = () => {
         title: "Template created",
         description: "Your new template has been created successfully.",
       });
-      navigate('/admin/templates');
+      navigate('/secure-panel/content');
     },
     onError: (error) => {
       toast({
@@ -221,7 +221,7 @@ const AddTemplatePage = () => {
             <Button
               type="button"
               variant="outline"
-              onClick={() => navigate('/admin/templates')}
+              onClick={() => navigate('/secure-panel/content')}
             >
               Cancel
             </Button>

@@ -1,8 +1,7 @@
-
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
-  Home, LayoutTemplate, FolderKanban, Settings, User, LogOut, Menu, X
+  Home, LayoutTemplate, FolderKanban, Settings, User, LogOut, Menu, X, Mail 
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/hooks/use-toast';
@@ -37,6 +36,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     { path: '/secure-panel/dashboard', label: 'Dashboard', icon: Home },
     { path: '/secure-panel/content', label: 'Templates', icon: LayoutTemplate },
     { path: '/secure-panel/taxonomy', label: 'Categories', icon: FolderKanban },
+    { path: '/secure-panel/messages', label: 'Messages', icon: Mail },
     { path: '/secure-panel/config', label: 'Settings', icon: Settings },
   ];
 
@@ -56,7 +56,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               <span className="font-orbitron font-bold text-sm">H</span>
             </div>
             <span className="font-orbitron font-bold text-lg tracking-wider cyber-text-glow">
-              hack the root::
+              hack the root
             </span>
           </Link>
         </div>
@@ -103,12 +103,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           <div className="h-full flex flex-col">
             <div className="p-4 flex items-center gap-4">
               <Link to="/" className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-md bg-neon-blue/20 flex items-center justify-center cyber-border-glow">
-                  <span className="font-orbitron font-bold">H</span>
+                <div className="w-11 h-9 rounded-md bg-neon-blue/20 flex items-center justify-center cyber-border-glow">
+                  <span className="font-orbitron font-bold">HTR</span>
                 </div>
                 {sidebarOpen && (
                   <span className="font-orbitron font-bold text-xl tracking-wider cyber-text-glow">
-                    HTR
+                    hacktheroot
                   </span>
                 )}
               </Link>

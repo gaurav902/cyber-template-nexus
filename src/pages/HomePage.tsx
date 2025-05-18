@@ -1230,7 +1230,7 @@ const HomePage = () => {
                 { name: "TypeScript", logo: "https://www.typescriptlang.org/favicon-32x32.png", color: "blue" },
                 { name: "Supabase", logo: "https://supabase.com/favicon/favicon-32x32.png", color: "green" },
                 { name: "Tailwind CSS", logo: "https://tailwindcss.com/favicons/favicon-32x32.png", color: "blue" },
-                { name: "Framer Motion", logo: "https://www.framer.com/images/favicon.png", color: "purple" }
+                { name: "Framer Motion", logo: "https://cdn.iconscout.com/icon/free/png-256/free-framer-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-company-vol-3-pack-logos-icons-3030143.png", color: "purple" }
               ].map((tech, index) => (
                 <motion.div 
                   key={index} 
