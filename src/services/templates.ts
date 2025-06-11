@@ -1,8 +1,8 @@
 
 import { supabase } from "@/integrations/supabase/client";
-import { Template } from "@/types/templates";
+import { Creation } from "@/types/templates";
 
-// Fetch all templates
+// Fetch all creations
 export async function fetchTemplates(options = { onlyPublished: false }) {
   let query = supabase.from('templates').select(`
     *,
@@ -17,14 +17,14 @@ export async function fetchTemplates(options = { onlyPublished: false }) {
   
   if (error) throw error;
   
-  // Transform the data to match our Template interface
+  // Transform the data to match our Creation interface
   return (data || []).map(item => ({
     ...item,
     category_name: item.categories?.name || null
-  })) as Template[];
+  })) as Creation[];
 }
 
-// Fetch a single template by ID
+// Fetch a single creation by ID
 export async function fetchTemplateById(id: string) {
   const { data, error } = await supabase
     .from('templates')
@@ -37,39 +37,39 @@ export async function fetchTemplateById(id: string) {
   
   if (error) throw error;
   
-  // Transform to match Template interface
+  // Transform to match Creation interface
   return {
     ...data,
     category_name: data.categories?.name || null
-  } as Template;
+  } as Creation;
 }
 
-// Create a new template
-export async function createTemplate(template: Omit<Template, 'id' | 'created_at' | 'updated_at' | 'views' | 'rating'>) {
+// Create a new creation
+export async function createTemplate(creation: Omit<Creation, 'id' | 'created_at' | 'updated_at' | 'views' | 'rating'>) {
   const { data, error } = await supabase
     .from('templates')
-    .insert(template)
+    .insert(creation)
     .select()
     .single();
   
   if (error) throw error;
-  return data as Template;
+  return data as Creation;
 }
 
-// Update a template
-export async function updateTemplate(id: string, template: Partial<Template>) {
+// Update a creation
+export async function updateTemplate(id: string, creation: Partial<Creation>) {
   const { data, error } = await supabase
     .from('templates')
-    .update(template)
+    .update(creation)
     .eq('id', id)
     .select()
     .single();
   
   if (error) throw error;
-  return data as Template;
+  return data as Creation;
 }
 
-// Delete a template
+// Delete a creation
 export async function deleteTemplate(id: string) {
   const { error } = await supabase
     .from('templates')
@@ -80,7 +80,7 @@ export async function deleteTemplate(id: string) {
   return true;
 }
 
-// Increment view count for a template
+// Increment view count for a creation
 export async function incrementTemplateViews(id: string) {
   const { error } = await supabase
     .rpc('increment_template_views', { template_id: id });

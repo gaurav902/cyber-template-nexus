@@ -1,5 +1,5 @@
 
-export interface Template {
+export interface Creation {
   id: string;
   title: string;
   description: string;

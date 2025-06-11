@@ -65,15 +65,20 @@ const App = () => (
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<HomePage />} />
-              <Route path="/templates" element={<TemplatesPage />} />
-              <Route path="/templates/:id" element={<TemplateDetailPage />} />
-              <Route path="/all-templates" element={<AllTemplatesPage />} />
+              <Route path="/designs" element={<TemplatesPage />} />
+              <Route path="/designs/:id" element={<TemplateDetailPage />} />
+              <Route path="/all-designs" element={<AllTemplatesPage />} />
               <Route path="/categories" element={<CategoriesListPage />} />
               <Route path="/categories/:id" element={<CategoryDetailPage />} />
               <Route path="/latest" element={<LatestPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/connect" element={<ConnectPage />} />
               <Route path="/get-started" element={<GetStartedPage />} />
+              
+              {/* Legacy routes for backwards compatibility */}
+              <Route path="/templates" element={<TemplatesPage />} />
+              <Route path="/templates/:id" element={<TemplateDetailPage />} />
+              <Route path="/all-templates" element={<AllTemplatesPage />} />
               
               {/* Legal Pages */}
               <Route path="/privacy" element={<PrivacyPage />} />
