@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -249,5 +250,3 @@ const TemplateDetailPage = () => {
 };
 
 export default TemplateDetailPage;
-
-</initial_code>
