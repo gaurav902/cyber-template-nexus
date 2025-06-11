@@ -7,7 +7,7 @@ import { Footer } from '@/components/ui/footer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Template } from '@/types/templates';
+import { Creation } from '@/types/templates';
 import {
   Eye,
   Star,
@@ -249,3 +249,5 @@ const TemplateDetailPage = () => {
 };
 
 export default TemplateDetailPage;
+
+</initial_code>

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
@@ -9,7 +8,7 @@ import { Search, Filter, X, Loader } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTemplates } from '@/services/templates';
 import { getCategories } from '@/services/categories';
-import { Template } from '@/types/templates';
+import { Creation } from '@/types/templates';
 
 const TemplatesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,7 +32,7 @@ const TemplatesPage = () => {
   useEffect(() => {
     if (templates && templates.length > 0) {
       const tagsSet = new Set<string>();
-      (templates as Template[]).forEach((template) => {
+      (templates as Creation[]).forEach((template) => {
         if (template.tags && Array.isArray(template.tags)) {
           template.tags.forEach((tag: string) => tagsSet.add(tag));
         }
@@ -58,7 +57,7 @@ const TemplatesPage = () => {
   };
   
   // Fix the filteredTemplates to properly cast templates to an array
-  const filteredTemplates = (templates as Template[]).filter((template) => {
+  const filteredTemplates = (templates as Creation[]).filter((template) => {
     // Filter by status - only show published templates
     if (template.status !== 'published') {
       return false;
@@ -86,7 +85,7 @@ const TemplatesPage = () => {
     }
     
     return true;
-  }).sort((a: Template, b: Template) => {
+  }).sort((a: Creation, b: Creation) => {
     // Sort
     if (sortOption === 'latest') {
       return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
