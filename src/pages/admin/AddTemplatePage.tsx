@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
@@ -11,7 +12,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { getCategories } from '@/services/categories';
 import { createTemplate } from '@/services/templates';
 import { Loader } from 'lucide-react';
-import { Template } from '@/types/templates';
+import { Creation } from '@/types/templates';
 
 const AddTemplatePage = () => {
   const [title, setTitle] = useState('');
@@ -70,7 +71,7 @@ const AddTemplatePage = () => {
       tags: tagsArray,
     };
     
-    createTemplateMutation.mutate(templateData as Omit<Template, 'id' | 'created_at' | 'updated_at' | 'views' | 'rating'>);
+    createTemplateMutation.mutate(templateData as Omit<Creation, 'id' | 'created_at' | 'updated_at' | 'views' | 'rating'>);
   };
   
   return (

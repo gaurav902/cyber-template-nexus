@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Button } from '@/components/ui/button';
@@ -7,12 +6,12 @@ import { Badge } from '@/components/ui/badge';
 import { Loader, Edit, Eye, ChevronUp, ChevronDown, Search } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { fetchTemplates, updateTemplate } from '@/services/templates';
-import { Template } from '@/types/templates';
+import { Creation } from '@/types/templates';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 
 const TrendingPage = () => {
-  const [templates, setTemplates] = useState<Template[]>([]);
+  const [templates, setTemplates] = useState<Creation[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const { toast } = useToast();

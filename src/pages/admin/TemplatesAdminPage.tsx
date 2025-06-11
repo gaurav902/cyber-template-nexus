@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
@@ -8,10 +7,10 @@ import { Badge } from '@/components/ui/badge';
 import { Trash2, Edit, Eye, Plus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { fetchTemplates, deleteTemplate, updateTemplate } from '@/services/templates';
-import { Template } from '@/types/templates';
+import { Creation } from '@/types/templates';
 
 const TemplatesAdminPage = () => {
-  const [templates, setTemplates] = useState<Template[]>([]);
+  const [templates, setTemplates] = useState<Creation[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
@@ -35,12 +34,12 @@ const TemplatesAdminPage = () => {
     }
   };
 
-  const handlePublishToggle = async (template: Template) => {
+  const handlePublishToggle = async (template: Creation) => {
     try {
       const newStatus = template.status === 'published' ? 'draft' : 'published';
       await updateTemplate(template.id, { 
         status: newStatus 
-      } as Template);
+      } as Creation);
       
       setTemplates(templates.map(t => 
         t.id === template.id ? { ...t, status: newStatus } : t
@@ -59,7 +58,7 @@ const TemplatesAdminPage = () => {
     }
   };
 
-  const handleDelete = async (template: Template) => {
+  const handleDelete = async (template: Creation) => {
     if (confirm(`Are you sure you want to delete "${template.title}"?`)) {
       try {
         await deleteTemplate(template.id);

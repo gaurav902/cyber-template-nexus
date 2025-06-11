@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Button } from '@/components/ui/button';
@@ -7,12 +6,12 @@ import { Badge } from '@/components/ui/badge';
 import { Star, Loader, Edit, Eye, Search, StarOff } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { fetchTemplates, updateTemplate } from '@/services/templates';
-import { Template } from '@/types/templates';
+import { Creation } from '@/types/templates';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 
 const FeaturedPage = () => {
-  const [templates, setTemplates] = useState<Template[]>([]);
+  const [templates, setTemplates] = useState<Creation[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const { toast } = useToast();
@@ -39,7 +38,7 @@ const FeaturedPage = () => {
     }
   };
 
-  const toggleFeatured = async (template: Template) => {
+  const toggleFeatured = async (template: Creation) => {
     try {
       // Here we're using the rating to represent if a template is featured
       // A better approach would be to add a "featured" boolean field in the database
@@ -47,7 +46,7 @@ const FeaturedPage = () => {
       
       await updateTemplate(template.id, { 
         rating: newRating 
-      } as Template);
+      } as Creation);
       
       setTemplates(templates.map(t => 
         t.id === template.id ? { ...t, rating: newRating } : t
