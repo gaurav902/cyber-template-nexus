@@ -41,6 +41,9 @@ import OptimizingPerformancePage from "./pages/support/OptimizingPerformancePage
 import CustomFunctionalityPage from "./pages/support/CustomFunctionalityPage";
 import DiscordPage from "./pages/connect/DiscordPage";
 import GitHubPage from "./pages/connect/GitHubPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
+import CookiesPage from "./pages/CookiesPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -71,6 +74,11 @@ const App = () => (
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/connect" element={<ConnectPage />} />
               <Route path="/get-started" element={<GetStartedPage />} />
+              
+              {/* Legal Pages */}
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/cookies" element={<CookiesPage />} />
               
               {/* Documentation and Support Routes */}
               <Route path="/docs" element={<DocumentationPage />} />
