@@ -64,9 +64,9 @@ const CategoryDetailPage = () => {
               </div>
             ) : (
               <div className="cyber-panel p-8 text-center">
-                <p className="text-lg mb-4">No templates found in this category</p>
+                <p className="text-lg mb-4">No Designs found in this category</p>
                 <Link to="/templates" className="text-neon-blue hover:underline">
-                  Browse all templates
+                  Browse all Designs
                 </Link>
               </div>
             )}

@@ -20,7 +20,7 @@ const DiscordPage = () => {
             Join Our Discord Community
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-            Connect with fellow developers, get help with template customization, and stay updated on the latest releases
+            Connect with fellow developers, get help with Designs customization, and stay updated on the latest releases
           </p>
           <div className="flex justify-center">
             <Button size="lg" className="cyber-button bg-[#5865F2] hover:bg-[#5865F2]/90 text-white font-medium">
@@ -41,7 +41,7 @@ const DiscordPage = () => {
               <h3 className="text-xl font-orbitron font-medium">Active Community</h3>
             </div>
             <p className="text-muted-foreground">
-              Connect with hundreds of developers using HTR templates. Share your projects, get feedback, and collaborate on ideas.
+              Connect with hundreds of developers using HTR Designs. Share your projects, get feedback, and collaborate on ideas.
             </p>
           </div>
 
@@ -65,7 +65,7 @@ const DiscordPage = () => {
               <h3 className="text-xl font-orbitron font-medium">Exclusive Content</h3>
             </div>
             <p className="text-muted-foreground">
-              Get early access to new templates, exclusive tips, and special offers only available to our Discord members.
+              Get early access to new Designs, exclusive tips, and special offers only available to our Discord members.
             </p>
           </div>
         </div>

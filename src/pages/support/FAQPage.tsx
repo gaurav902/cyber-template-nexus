@@ -20,19 +20,19 @@ const faqCategories: FAQCategory[] = [
     faqs: [
       {
         question: "What is Hack The Root?",
-        answer: "HTR is a platform that offers high-quality, cyberpunk-themed website templates and UI components for modern web applications. Our templates are built with React, Tailwind CSS, and other modern technologies to provide a cutting-edge user experience."
+        answer: "HTR is a platform that offers high-quality, cyberpunk-themed website Designs and UI components for modern web applications. Our Designs are built with React, Tailwind CSS, and other modern technologies to provide a cutting-edge user experience."
       },
       {
         question: "How do I get started with Hack The Root?",
-        answer: "To get started, browse our template collection and select one that fits your project needs. After purchasing, you can download the template files from your account dashboard and follow the installation instructions provided in the documentation."
+        answer: "To get started, browse our Design collection and select one that fits your project needs. After purchasing, you can download the Design files from your account dashboard and follow the installation instructions provided in the documentation."
       },
       {
-        question: "Do I need to credit Hack The Root when using a template?",
-        answer: "No, you don't need to provide credit when using our templates. All templates come with a standard license that allows you to use them without attribution. However, we appreciate mentions and shares if you're happy with our products!"
+        question: "Do I need to credit Hack The Root when using a Design?",
+        answer: "No, you don't need to provide credit when using our Designs. All Designs come with a standard license that allows you to use them without attribution. However, we appreciate mentions and shares if you're happy with our products!"
       },
       {
-        question: "Can I use these templates for client projects?",
-        answer: "Yes, our standard license allows you to use the templates for both personal and client projects. You can use a single purchase for one end product (yours or a client's). For multiple clients or multiple projects, you would need to purchase additional licenses."
+        question: "Can I use these Designs for client projects?",
+        answer: "Yes, our standard license allows you to use the Designs for both personal and client projects. You can use a single purchase for one end product (yours or a client's). For multiple clients or multiple projects, you would need to purchase additional licenses."
       }
     ]
   },
@@ -40,20 +40,20 @@ const faqCategories: FAQCategory[] = [
     name: "Technical",
     faqs: [
       {
-        question: "What technologies are used in your templates?",
-        answer: "Our templates are built with React, TypeScript, Tailwind CSS, and other modern web technologies. We also use libraries like Shadcn UI, React Query, and Supabase for enhanced functionality and features."
+        question: "What technologies are used in your Designs?",
+        answer: "Our Designs are built with React, TypeScript, Tailwind CSS, and other modern web technologies. We also use libraries like Shadcn UI, React Query, and Supabase for enhanced functionality and features."
       },
       {
-        question: "Do I need coding knowledge to use these templates?",
-        answer: "Basic knowledge of React and JavaScript/TypeScript is recommended to customize the templates effectively. However, we provide comprehensive documentation to help you get started even if you're relatively new to these technologies."
+        question: "Do I need coding knowledge to use these Designs?",
+        answer: "Basic knowledge of React and JavaScript/TypeScript is recommended to customize the Designs effectively. However, we provide comprehensive documentation to help you get started even if you're relatively new to these technologies."
       },
       {
-        question: "Are the templates responsive?",
-        answer: "Yes, all our templates are fully responsive and work well on all screen sizes, from mobile devices to large desktop monitors. We use Tailwind CSS for responsive design, ensuring a great user experience across all devices."
+        question: "Are the Designs responsive?",
+        answer: "Yes, all our Designs are fully responsive and work well on all screen sizes, from mobile devices to large desktop monitors. We use Tailwind CSS for responsive design, ensuring a great user experience across all devices."
       },
       {
-        question: "Can I integrate these templates with a backend?",
-        answer: "Absolutely! Our templates are designed to be backend-agnostic. They can be integrated with any REST or GraphQL API. Some templates also come with Supabase integration examples for authentication, database, and storage functionality."
+        question: "Can I integrate these Designs with a backend?",
+        answer: "Absolutely! Our Designs are designed to be backend-agnostic. They can be integrated with any REST or GraphQL API. Some Designs also come with Supabase integration examples for authentication, database, and storage functionality."
       }
     ]
   },
@@ -62,11 +62,11 @@ const faqCategories: FAQCategory[] = [
     faqs: [
       {
         question: "What does the license include?",
-        answer: "Our standard license grants you non-exclusive rights to use the template for one end product (yours or a client's). It includes all template files, documentation, and access to updates for the purchased template."
+        answer: "Our standard license grants you non-exclusive rights to use the Designs for one end product (yours or a client's). It includes all Design files, documentation, and access to updates for the purchased Design."
       },
       {
         question: "Do you offer refunds?",
-        answer: "Yes, we offer a 14-day money-back guarantee if you're not satisfied with the template. Please contact our support team with your purchase details to process the refund."
+        answer: "Yes, we offer a 14-day money-back guarantee if you're not satisfied with the Designs. Please contact our support team with your purchase details to process the refund."
       },
       {
         question: "Can I upgrade my license later?",
@@ -74,7 +74,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do you offer discounts for bulk purchases?",
-        answer: "Yes, we offer discounts for purchasing multiple templates or for agencies requiring multiple licenses. Please contact our sales team for more information on bulk pricing."
+        answer: "Yes, we offer discounts for purchasing multiple Designs or for agencies requiring multiple licenses. Please contact our sales team for more information on bulk pricing."
       }
     ]
   },
@@ -83,7 +83,7 @@ const faqCategories: FAQCategory[] = [
     faqs: [
       {
         question: "How long do I receive updates for?",
-        answer: "You receive lifetime updates for the purchased template. This includes bug fixes, security updates, and feature enhancements within the same major version."
+        answer: "You receive lifetime updates for the purchased Design. This includes bug fixes, security updates, and feature enhancements within the same major version."
       },
       {
         question: "How can I get support if I have issues?",
@@ -96,17 +96,17 @@ const faqCategories: FAQCategory[] = [
               <li>Discord community</li>
               <li>GitHub discussions (for code-related issues)</li>
             </ul>
-            Premium templates also include priority email support.
+            Premium Designs also include priority email support.
           </>
         )
       },
       {
         question: "Do you offer customization services?",
-        answer: "Yes, we offer custom development services to modify templates according to your specific needs. Contact our development team with your requirements for a quote."
+        answer: "Yes, we offer custom development services to modify Designs according to your specific needs. Contact our development team with your requirements for a quote."
       },
       {
-        question: "How often are templates updated?",
-        answer: "We regularly update our templates to ensure they remain compatible with the latest versions of React, Tailwind, and other dependencies. Major updates typically occur every 3-6 months, with smaller updates and bug fixes released as needed."
+        question: "How often are Designs updated?",
+        answer: "We regularly update our Designs to ensure they remain compatible with the latest versions of React, Tailwind, and other dependencies. Major updates typically occur every 3-6 months, with smaller updates and bug fixes released as needed."
       }
     ]
   }
@@ -125,7 +125,7 @@ const FAQPage = () => {
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Find answers to common questions about our templates and services
+            Find answers to common questions about our Designs and services
           </p>
         </div>
 

@@ -28,10 +28,10 @@ const CategoriesListPage = () => {
       <div className="container mx-auto px-4 pt-24 pb-16 min-h-screen">
         <div className="max-w-5xl mx-auto mb-12 text-center">
           <h1 className="text-4xl font-orbitron font-bold mb-4 cyber-text-glow">
-            Template Categories
+            Designs Categories
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Browse templates by category to find the perfect match for your project
+            Browse Designs by category to find the perfect match for your project
           </p>
         </div>
 
@@ -84,7 +84,7 @@ const CategoriesListPage = () => {
                   <p className="text-muted-foreground mb-3">{category.description}</p>
                 )}
                 <div className="text-sm text-neon-blue/80 font-medium">
-                  Browse templates →
+                  Browse Designs →
                 </div>
               </Link>
             ))}

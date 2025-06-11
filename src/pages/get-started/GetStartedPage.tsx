@@ -21,7 +21,7 @@ const GetStartedPage = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <Button className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black font-medium">
-              <Link to="/templates">Browse Templates</Link>
+              <Link to="/templates">Browse Designs</Link>
             </Button>
             <Button className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white font-medium">
               <Link to="/docs">Documentation</Link>
@@ -37,9 +37,9 @@ const GetStartedPage = () => {
                 <div className="w-12 h-12 mx-auto mb-4 bg-neon-blue/20 rounded-full flex items-center justify-center">
                   <span className="text-lg font-bold">1</span>
                 </div>
-                <h3 className="font-medium mb-2">Choose a Template</h3>
+                <h3 className="font-medium mb-2">Choose a Designs</h3>
                 <p className="text-sm text-muted-foreground">
-                  Browse our collection and find a template that suits your project needs.
+                  Browse our collection and find a Designs that suits your project needs.
                 </p>
               </div>
               <div className="cyber-card p-6 text-center">
@@ -48,7 +48,7 @@ const GetStartedPage = () => {
                 </div>
                 <h3 className="font-medium mb-2">Download & Install</h3>
                 <p className="text-sm text-muted-foreground">
-                  Purchase, download, and set up your template with our step-by-step guide.
+                  Purchase, download, and set up your Designs with our step-by-step guide.
                 </p>
               </div>
               <div className="cyber-card p-6 text-center">
@@ -57,7 +57,7 @@ const GetStartedPage = () => {
                 </div>
                 <h3 className="font-medium mb-2">Customize</h3>
                 <p className="text-sm text-muted-foreground">
-                  Modify the template to fit your brand and add your content and features.
+                  Modify the Designs to fit your brand and add your content and features.
                 </p>
               </div>
               <div className="cyber-card p-6 text-center">
@@ -78,7 +78,7 @@ const GetStartedPage = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-orbitron font-medium mb-6 text-center">Template Features</h2>
+            <h2 className="text-2xl font-orbitron font-medium mb-6 text-center">Designs Features</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="cyber-card p-6 flex gap-4">
                 <div className="p-2 bg-cyber-light/30 rounded-md h-min">
@@ -186,10 +186,10 @@ const GetStartedPage = () => {
           <section className="cyber-card p-8 bg-gradient-to-br from-cyber-dark to-cyber text-center">
             <h2 className="text-2xl font-orbitron font-medium mb-4">Ready to Build Something Amazing?</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Explore our collection of premium templates and start building your next project today.
+              Explore our collection of premium Designs and start building your next project today.
             </p>
             <Button size="lg" className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black font-medium">
-              <Link to="/templates">Browse Templates</Link>
+              <Link to="/templates">Browse Designs</Link>
             </Button>
           </section>
 
@@ -202,7 +202,7 @@ const GetStartedPage = () => {
                 </div>
                 <h3 className="font-medium mb-2">Documentation</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Comprehensive guides and API references for all templates.
+                  Comprehensive guides and API references for all Designs.
                 </p>
                 <Button variant="outline" className="cyber-button w-full">
                   <Link to="/docs">View Docs</Link>
@@ -214,7 +214,7 @@ const GetStartedPage = () => {
                 </div>
                 <h3 className="font-medium mb-2">Examples</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  View example projects built with our templates.
+                  View example projects built with our Designs.
                 </p>
                 <Button variant="outline" className="cyber-button w-full">
                   <Link to="/docs/examples">View Examples</Link>

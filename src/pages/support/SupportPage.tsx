@@ -113,7 +113,7 @@ const SupportPage = () => {
             <div>
               <h3 className="text-2xl font-orbitron font-medium mb-3">Join Our Community</h3>
               <p className="text-muted-foreground mb-6">
-                Connect with other developers and designers using our templates. Share tips, get inspired, and solve challenges together in our community forums and Discord server.
+                Connect with other developers and designers using our Designs. Share tips, get inspired, and solve challenges together in our community forums and Discord server.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black font-medium">
@@ -130,7 +130,7 @@ const SupportPage = () => {
         <div className="text-center max-w-2xl mx-auto">
           <h3 className="text-2xl font-orbitron font-medium mb-4">Can't find what you need?</h3>
           <p className="text-muted-foreground mb-8">
-            Our support team is just a click away. We're here to help you resolve any issues you may encounter with our templates.
+            Our support team is just a click away. We're here to help you resolve any issues you may encounter with our Designs.
           </p>
           <Button size="lg" className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white font-medium">
             <Link to="/connect/contact">Contact Our Support Team</Link>

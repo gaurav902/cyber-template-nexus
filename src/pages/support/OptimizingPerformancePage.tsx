@@ -15,12 +15,12 @@ const OptimizingPerformancePage = () => {
               ← Back to Help Center
             </Link>
             <h1 className="text-3xl font-orbitron font-bold mt-6 mb-4">
-              Optimizing Template Performance
+              Optimizing Design Performance
             </h1>
             <div className="cyber-panel p-4 mb-6 flex items-center">
               <Zap className="h-6 w-6 text-neon-green mr-3" />
               <p className="text-muted-foreground">
-                Learn how to maximize the speed and efficiency of your HTR templates
+                Learn how to maximize the speed and efficiency of your HTR Designs
               </p>
             </div>
           </div>

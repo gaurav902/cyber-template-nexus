@@ -39,7 +39,7 @@ const NotFound = () => {
               className="cyber-button"
               asChild
             >
-              <Link to="/templates">Browse Templates</Link>
+              <Link to="/templates">Browse Designs</Link>
             </Button>
           </div>
         </div>

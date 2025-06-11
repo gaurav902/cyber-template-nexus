@@ -8,7 +8,7 @@ const ResourcesPage = () => {
   const resources = [
     {
       title: 'Documentation',
-      description: 'Comprehensive guides and reference materials for all our templates',
+      description: 'Comprehensive guides and reference materials for all our Designs',
       icon: FileText,
       link: '/docs',
       color: 'bg-neon-blue/20 text-neon-blue'
@@ -22,7 +22,7 @@ const ResourcesPage = () => {
     },
     {
       title: 'Help Center',
-      description: 'Find answers to common questions about our templates and services',
+      description: 'Find answers to common questions about our Designs and services',
       icon: BookOpen,
       link: '/support/help-center',
       color: 'bg-emerald-500/20 text-emerald-400'
@@ -45,7 +45,7 @@ const ResourcesPage = () => {
             Resources
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to get the most out of our templates
+            Everything you need to get the most out of our Designs
           </p>
         </div>
 
@@ -72,7 +72,7 @@ const ResourcesPage = () => {
         <div className="cyber-panel p-8 mt-12 max-w-4xl mx-auto">
           <h2 className="text-2xl font-orbitron font-medium mb-4">Need Additional Help?</h2>
           <p className="text-muted-foreground mb-6">
-            Our team is ready to assist you with any questions or concerns you may have about our templates. 
+            Our team is ready to assist you with any questions or concerns you may have about our Designs. 
             We're here to ensure you get the most out of your purchase.
           </p>
           

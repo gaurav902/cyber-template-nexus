@@ -18,10 +18,10 @@ const AllTemplatesPage = () => {
       <div className="container mx-auto px-4 pt-24 pb-16 min-h-screen">
         <div className="max-w-5xl mx-auto mb-12 text-center">
           <h1 className="text-4xl font-orbitron font-bold mb-4 cyber-text-glow">
-            All Templates
+            All Designs
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Browse our complete collection of high-quality templates for your next project
+            Browse our complete collection of high-quality Designs for your next project
           </p>
         </div>
 
@@ -37,7 +37,7 @@ const AllTemplatesPage = () => {
           </div>
         ) : (
           <div className="text-center py-16">
-            <p className="text-muted-foreground text-lg">No templates found</p>
+            <p className="text-muted-foreground text-lg">No Designs found</p>
           </div>
         )}
       </div>

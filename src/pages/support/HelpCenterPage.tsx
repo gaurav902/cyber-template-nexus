@@ -8,17 +8,17 @@ const HelpCenterPage = () => {
   const helpCategories = [
     {
       title: 'Getting Started',
-      description: 'Learn the basics of using HTR templates',
+      description: 'Learn the basics of using HTR Designs',
       icon: BookOpen,
       links: [
         { title: 'Installation Guide', href: '/get-started' },
-        { title: 'Template Structure', href: '/docs' },
+        { title: 'Design Structure', href: '/docs' },
         { title: 'First Steps Tutorial', href: '/get-started' }
       ]
     },
     {
       title: 'Customization',
-      description: 'Make the templates your own',
+      description: 'Make the Designs your own',
       icon: Lightbulb,
       links: [
         { title: 'Styling Guide', href: '/docs' },
@@ -31,7 +31,7 @@ const HelpCenterPage = () => {
       description: 'Optimize your application',
       icon: Zap,
       links: [
-        { title: 'Optimizing Template Performance', href: '/support/help-center/optimizing-performance' },
+        { title: 'Optimizing Design Performance', href: '/support/help-center/optimizing-performance' },
         { title: 'Reducing Bundle Size', href: '/docs' },
         { title: 'Performance Monitoring', href: '/docs/analytics' }
       ]
@@ -98,7 +98,7 @@ const HelpCenterPage = () => {
           </div>
           <h1 className="text-4xl font-orbitron font-bold mb-4 cyber-text-glow">Help Center</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Find answers to your questions and learn how to get the most out of HTR templates
+            Find answers to your questions and learn how to get the most out of HTR Designs
           </p>
         </div>
 

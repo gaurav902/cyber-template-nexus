@@ -48,7 +48,7 @@ const TemplateDetailPage = () => {
     navigator.clipboard.writeText(window.location.href);
     toast({
       title: 'Link copied',
-      description: 'Template link copied to clipboard.'
+      description: 'Designs link copied to clipboard.'
     });
   };
 
@@ -58,7 +58,7 @@ const TemplateDetailPage = () => {
         <Navbar />
         <main className="pt-16 min-h-screen flex items-center justify-center">
           <div className="cyber-panel p-8 animate-pulse">
-            <p>Loading template details...</p>
+            <p>Loading Designs details...</p>
           </div>
         </main>
         <Footer />
@@ -72,12 +72,12 @@ const TemplateDetailPage = () => {
         <Navbar />
         <main className="pt-16 min-h-screen flex items-center justify-center">
           <div className="cyber-panel p-8 max-w-lg mx-auto text-center">
-            <h2 className="font-orbitron text-2xl font-bold mb-4">Template Not Found</h2>
+            <h2 className="font-orbitron text-2xl font-bold mb-4">Designs Not Found</h2>
             <p className="text-muted-foreground mb-6">
-              The template you're looking for doesn't exist or has been removed.
+              The Designs you're looking for doesn't exist or has been removed.
             </p>
             <Link to="/templates">
-              <Button className="cyber-button">Browse Templates</Button>
+              <Button className="cyber-button">Browse Designs</Button>
             </Link>
           </div>
         </main>
@@ -165,7 +165,7 @@ const TemplateDetailPage = () => {
                   <Button variant="outline" className="cyber-button w-full justify-start" asChild>
                     <a href={template.download_url} target="_blank" rel="noopener noreferrer">
                       <Download className="mr-2 h-4 w-4" />
-                      Download Template
+                      Download Designs
                     </a>
                   </Button>
                 )}
@@ -193,7 +193,7 @@ const TemplateDetailPage = () => {
                   onClick={handleCopyLink}
                 >
                   <LinkIcon className="mr-2 h-4 w-4" />
-                  Share Template
+                  Share Designs
                 </Button>
               </section>
             </aside>
@@ -232,7 +232,7 @@ const TemplateDetailPage = () => {
                           className="w-full max-w-3xl rounded-md mb-4 shadow-lg"
                         />
                         <p className="text-muted-foreground">
-                          No interactive preview available for this template.
+                          No interactive preview available for this Designs.
                         </p>
                       </div>
                     </div>

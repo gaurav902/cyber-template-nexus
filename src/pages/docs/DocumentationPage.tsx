@@ -24,7 +24,7 @@ const DocumentationPage = () => {
             Documentation
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Learn how to use our templates and resources effectively
+            Learn how to use our Designs and resources effectively
           </p>
         </div>
 
@@ -56,17 +56,17 @@ const DocumentationPage = () => {
             <section id="getting-started" className="cyber-card p-6">
               <h2 className="text-2xl font-orbitron font-medium mb-4">Getting Started</h2>
               <p className="text-muted-foreground mb-4">
-                Welcome to HTR, your source for high-quality, futuristic web templates. This guide will help you get started with using our templates in your projects.
+                Welcome to HTR, your source for high-quality, futuristic web Designs. This guide will help you get started with using our Designs in your projects.
               </p>
               <p className="mb-4">
-                All our templates are designed with modern web standards in mind and come with comprehensive documentation to help you customize them to your needs.
+                All our Designs are designed with modern web standards in mind and come with comprehensive documentation to help you customize them to your needs.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <div className="cyber-card bg-cyber-dark p-4 flex items-start space-x-3">
                   <FileText className="h-6 w-6 text-neon-purple mt-1" />
                   <div>
                     <h4 className="font-medium mb-1">Documentation</h4>
-                    <p className="text-sm text-muted-foreground">Complete guides for all templates</p>
+                    <p className="text-sm text-muted-foreground">Complete guides for all Designs</p>
                   </div>
                 </div>
                 <div className="cyber-card bg-cyber-dark p-4 flex items-start space-x-3">
@@ -82,11 +82,11 @@ const DocumentationPage = () => {
             <section id="installation" className="cyber-card p-6">
               <h2 className="text-2xl font-orbitron font-medium mb-4">Installation Guide</h2>
               <p className="text-muted-foreground mb-4">
-                Follow these steps to install and set up your template:
+                Follow these steps to install and set up your Designs:
               </p>
               <ol className="list-decimal list-inside space-y-3 mb-4">
                 <li className="p-2 bg-cyber-light/30 rounded-md">
-                  <span className="font-medium">Download</span> the template from your account dashboard
+                  <span className="font-medium">Download</span> the Designs from your account dashboard
                 </li>
                 <li className="p-2 bg-cyber-light/30 rounded-md">
                   <span className="font-medium">Extract</span> the ZIP file to your desired location
@@ -111,14 +111,14 @@ const DocumentationPage = () => {
             <section id="customization" className="cyber-card p-6">
               <h2 className="text-2xl font-orbitron font-medium mb-4">Customization</h2>
               <p className="text-muted-foreground mb-4">
-                Our templates are designed to be easily customizable to match your brand and requirements.
+                Our Designs are designed to be easily customizable to match your brand and requirements.
               </p>
 
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1" className="border-cyber-border">
                   <AccordionTrigger className="text-left">Styling with Tailwind CSS</AccordionTrigger>
                   <AccordionContent>
-                    Our templates use Tailwind CSS for styling. You can customize colors, spacing, and more by modifying the tailwind.config.js file. The cyberpunk theme uses custom colors that you can adjust to match your brand.
+                    Our Designs use Tailwind CSS for styling. You can customize colors, spacing, and more by modifying the tailwind.config.js file. The cyberpunk theme uses custom colors that you can adjust to match your brand.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2" className="border-cyber-border">
@@ -136,7 +136,7 @@ const DocumentationPage = () => {
                 <AccordionItem value="item-4" className="border-cyber-border">
                   <AccordionTrigger className="text-left">Customizing Data</AccordionTrigger>
                   <AccordionContent>
-                    Replace sample data with your own by modifying the API calls or static data files. Templates with Supabase integration allow you to connect to your own database for dynamic content.
+                    Replace sample data with your own by modifying the API calls or static data files. Designs with Supabase integration allow you to connect to your own database for dynamic content.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -145,7 +145,7 @@ const DocumentationPage = () => {
             <section id="integrations" className="cyber-card p-6">
               <h2 className="text-2xl font-orbitron font-medium mb-4">Integrations</h2>
               <p className="text-muted-foreground mb-4">
-                Our templates support various integrations to extend functionality:
+                Our Designs support various integrations to extend functionality:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <div className="cyber-card bg-cyber-dark p-4 cursor-pointer hover:border-neon-blue transition-colors" onClick={() => handleIntegrationClick('/docs/supabase')}>
@@ -183,21 +183,21 @@ const DocumentationPage = () => {
               <h2 className="text-2xl font-orbitron font-medium mb-4">Frequently Asked Questions</h2>
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="faq-1" className="border-cyber-border">
-                  <AccordionTrigger className="text-left">Can I use these templates for commercial projects?</AccordionTrigger>
+                  <AccordionTrigger className="text-left">Can I use these Designs for commercial projects?</AccordionTrigger>
                   <AccordionContent>
-                    Yes, all our templates come with a commercial license that allows you to use them in personal and commercial projects. Please refer to the license details for specific terms.
+                    Yes, all our Designs come with a commercial license that allows you to use them in personal and commercial projects. Please refer to the license details for specific terms.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="faq-2" className="border-cyber-border">
                   <AccordionTrigger className="text-left">Do I get access to future updates?</AccordionTrigger>
                   <AccordionContent>
-                    Yes, when you purchase a template, you get access to all future updates for that template. Updates will be available in your account dashboard.
+                    Yes, when you purchase a Design, you get access to all future updates for that Design. Updates will be available in your account dashboard.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="faq-3" className="border-cyber-border">
                   <AccordionTrigger className="text-left">How do I get support if I have issues?</AccordionTrigger>
                   <AccordionContent>
-                    We offer support through our support portal and community forums. Premium templates include direct email support for faster resolution.
+                    We offer support through our support portal and community forums. Premium Designs include direct email support for faster resolution.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="faq-4" className="border-cyber-border">
@@ -213,7 +213,7 @@ const DocumentationPage = () => {
               <div className="border border-cyber-border rounded-lg p-6 bg-gradient-to-br from-cyber-dark to-cyber">
                 <h3 className="font-orbitron text-xl mb-4">Need additional help?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Our support team is here to help you with any questions you may have about our templates.
+                  Our support team is here to help you with any questions you may have about our Designs.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button className="cyber-button bg-neon-blue hover:bg-neon-blue/90 text-black font-medium">

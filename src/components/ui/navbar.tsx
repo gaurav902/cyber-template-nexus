@@ -74,7 +74,7 @@ export function Navbar() {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/all-templates', label: 'All Templates' },
+    { path: '/all-templates', label: 'All Designs' },
     { path: '/categories', label: 'Categories' },
     { path: '/latest', label: 'Latest' },
     { path: '/resources', label: 'Resources' },
@@ -105,7 +105,7 @@ export function Navbar() {
           <div className="relative ml-4">
             <input 
               type="text" 
-              placeholder="Search templates..." 
+              placeholder="Search Designs..." 
               className="bg-cyber-light pl-9 pr-4 py-2 rounded-md border border-cyber-border focus:outline-none focus:border-neon-blue/70 focus:cyber-border-glow w-48 text-sm"
             />
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -151,7 +151,7 @@ export function Navbar() {
             <div className="relative mt-2">
               <input 
                 type="text" 
-                placeholder="Search templates..." 
+                placeholder="Search Designs..." 
                 className="bg-cyber-light pl-9 pr-4 py-2 rounded-md border border-cyber-border focus:outline-none focus:border-neon-blue/70 w-full text-sm"
               />
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />

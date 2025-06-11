@@ -17,14 +17,14 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground text-sm mt-2">
-              Your one-stop platform for discovering and using beautiful website templates.
+              Your one-stop platform for discovering and using beautiful website Designs.
             </p>
           </div>
           
           <div>
             <h3 className="font-orbitron text-white mb-4 text-lg">Platform</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/templates" className="text-muted-foreground hover:text-neon-blue">All Templates</Link></li>
+              <li><Link to="/templates" className="text-muted-foreground hover:text-neon-blue">All Designs</Link></li>
               <li><Link to="/categories" className="text-muted-foreground hover:text-neon-blue">Categories</Link></li>
               <li><Link to="/latest" className="text-muted-foreground hover:text-neon-blue">Latest</Link></li>
             </ul>

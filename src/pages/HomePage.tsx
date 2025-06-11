@@ -117,7 +117,7 @@ const HomePage = () => {
 
   // Stats to display
   const stats = [
-    { count: '200+', label: 'Templates', icon: LayoutDashboard },
+    { count: '200+', label: 'Compositions', icon: LayoutDashboard },
     { count: '20+', label: 'Categories', icon: Layers },
     { count: '5000+', label: 'Downloads', icon: Download },
     { count: '98%', label: 'Satisfaction', icon: Star }
@@ -174,8 +174,8 @@ const HomePage = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Searching templates",
-      description: `Found ${filteredTemplates.length} templates matching "${searchQuery}"`,
+      title: "Searching Designs",
+      description: `Found ${filteredTemplates.length} Designs matching "${searchQuery}"`,
     });
   };
 
@@ -271,14 +271,13 @@ const HomePage = () => {
                   variants={fadeInUp}
                 >
                   <span className="text-shimmer bg-gradient-to-r from-white via-neon-blue to-neon-purple bg-[length:200%_100%]">HTR</span>
-                  <span className="block md:mt-2 text-3xl md:text-4xl lg:text-5xl">Next-Gen Templates</span>
+                  <span className="block md:mt-2 text-3xl md:text-4xl lg:text-5xl">Next-Gen Designs</span>
                 </motion.h1>
                 <motion.p 
                   className="text-lg text-muted-foreground mb-8 max-w-lg"
                   variants={fadeInUp}
                 >
-                  Discover our collection of futuristic, high-performance website templates 
-                  with cutting-edge features and stunning animations.
+                  Explore a curated suite of futuristic digital experiences  where innovation meets elegance through immersive design and seamless performance.
                 </motion.p>
                 
                 {/* Search component */}
@@ -289,7 +288,7 @@ const HomePage = () => {
                 >
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
                   <Input
-                    placeholder="Search templates..."
+                    placeholder="Find your next masterpiece..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10 pr-24 py-6 bg-cyber-light/40 border-cyber-border focus:border-neon-blue"
@@ -311,7 +310,7 @@ const HomePage = () => {
                     className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white font-medium group relative overflow-hidden"
                     onClick={() => navigate('/templates')}
                   >
-                    <span className="relative z-10">Explore Templates</span>
+                    <span className="relative z-10">Discover Creations</span>
                     <span className="absolute inset-0 bg-gradient-to-r from-neon-purple via-neon-blue to-neon-green opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
                   </Button>
                   <Button 
@@ -346,7 +345,7 @@ const HomePage = () => {
                     ))}
                   </div>
                   <span className="text-sm text-muted-foreground">
-                    <span className="text-white">200+</span> Premium Templates
+                    <span className="text-white">200+</span> Elite Designs
                   </span>
                 </motion.div>
               </motion.div>
@@ -396,7 +395,7 @@ const HomePage = () => {
                 >
                   <img 
                     src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3" 
-                    alt="Dashboard Template Preview" 
+                    alt="Dashboard Design Preview" 
                     className="w-full h-full object-cover rounded-lg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg" />
@@ -534,7 +533,7 @@ const HomePage = () => {
                 Cutting-Edge <span className="text-neon-blue">Features</span>
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Our templates are built with the latest technologies and best practices for optimal performance
+                Crafted with precision and innovation, each creation blends modern tech with best-in-class performance principles
               </p>
             </motion.div>
             
@@ -549,7 +548,7 @@ const HomePage = () => {
                 { icon: Zap, title: "Lightning Fast", description: "Optimized for speed and performance", color: "purple" },
                 { icon: Shield, title: "Secure By Design", description: "Following security best practices", color: "green" },
                 { icon: Monitor, title: "Responsive Design", description: "Looks great on any device size", color: "blue" },
-                { icon: GitBranch, title: "Version Control", description: "All templates include Git repositories", color: "purple" },
+                { icon: GitBranch, title: "Version Control", description: "All Designs include Git repositories", color: "purple" },
                 { icon: Database, title: "API Integration", description: "Ready to connect with your backend", color: "green" },
                 { icon: Cpu, title: "Low Memory Footprint", description: "Optimized asset loading and code splitting", color: "blue" },
                 { icon: BarChart3, title: "Analytics Ready", description: "Built-in support for tracking user behavior", color: "purple" },
@@ -588,7 +587,7 @@ const HomePage = () => {
               <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
                 <div className="md:w-1/2">
                   <h3 className="font-orbitron text-2xl font-bold mb-4">Interactive Demo Mode</h3>
-                  <p className="text-muted-foreground mb-6">Experience templates before you download. Our interactive preview lets you test all features in real-time.</p>
+                  <p className="text-muted-foreground mb-6">Experience Designs before you download. Our interactive preview lets you test all features in real-time.</p>
                   <div className="flex space-x-4">
                     <Button 
                       variant="outline"
@@ -675,10 +674,10 @@ const HomePage = () => {
               <div className="mb-6 md:mb-0">
                 <div className="flex items-center mb-2">
                   <Flame className="text-neon-purple mr-2 h-5 w-5" />
-                  <h2 className="font-orbitron text-2xl font-bold">Trending Templates</h2>
+                  <h2 className="font-orbitron text-2xl font-bold">Spotlight Creations</h2>
                 </div>
                 <p className="text-muted-foreground">
-                  Most popular templates this month
+                  This Month’s Hottest Layouts
                 </p>
               </div>
               
@@ -701,7 +700,7 @@ const HomePage = () => {
                   <Carousel className="w-full">
                     <CarouselContent>
                       {isLoadingTrending ? (
-                        <div className="col-span-3 text-center py-12">Loading trending templates...</div>
+                        <div className="col-span-3 text-center py-12">Curating what’s trending now...</div>
                       ) : trendingTemplates.length > 0 ? (
                         trendingTemplates.map((templateData: any, index: number) => (
                           <CarouselItem key={`all-${templateData.id}`} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4">
@@ -711,7 +710,7 @@ const HomePage = () => {
                           </CarouselItem>
                         ))
                       ) : (
-                        <div className="col-span-3 text-center py-12">No trending templates found</div>
+                        <div className="col-span-3 text-center py-12">No popular designs or formats are currently available.</div>
                       )}
                     </CarouselContent>
                     <div className="flex justify-end gap-2 mt-4">
@@ -778,7 +777,7 @@ const HomePage = () => {
               className="mt-8 text-center"
             >
               <Link to="/templates" className="inline-flex items-center text-neon-blue hover:underline font-medium">
-                View All Templates
+                Show All Blueprints
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Link>
             </motion.div>
@@ -812,7 +811,7 @@ const HomePage = () => {
                   <h2 className="font-orbitron text-2xl font-bold">Explore Categories</h2>
                 </div>
                 <p className="text-muted-foreground">
-                  Find templates by category
+                  Select by design type
                 </p>
               </div>
               <Link to="/categories" className="inline-flex items-center text-neon-blue hover:underline font-medium">
@@ -845,7 +844,7 @@ const HomePage = () => {
                           {/* Category badge */}
                           <div className="absolute top-3 right-3 z-20">
                             <Badge className="bg-cyber-dark/70 border-cyber-border text-xs">
-                              {category.count} templates
+                              {category.count} Designs
                             </Badge>
                           </div>
                         </div>
@@ -854,7 +853,7 @@ const HomePage = () => {
                             {category.name}
                           </h3>
                           <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-                            {category.description || `Explore our ${category.name} templates collection`}
+                            {category.description || `Explore our ${category.name} Designs collection`}
                           </p>
                         </div>
                       </div>
@@ -889,7 +888,7 @@ const HomePage = () => {
                   
                   <Button variant="outline" className="gap-2 cyber-button">
                     <SlidersHorizontal className="w-4 h-4" />
-                    <span>Filter Templates</span>
+                    <span>Filter Designs</span>
                   </Button>
                 </div>
               </div>
@@ -906,7 +905,7 @@ const HomePage = () => {
                   </div>
                   
                   <h3 className="font-orbitron text-xl font-medium mb-2">Documentation</h3>
-                  <p className="text-muted-foreground mb-4">Comprehensive guides and documentation for all templates.</p>
+                  <p className="text-muted-foreground mb-4">Comprehensive guides and documentation for all Designs.</p>
                   
                   <Button variant="outline" className="gap-2 cyber-button">
                     <BookOpen className="w-4 h-4" />
@@ -961,7 +960,7 @@ const HomePage = () => {
                   <h2 className="font-orbitron text-2xl font-bold">Recently Added</h2>
                 </div>
                 <p className="text-muted-foreground">
-                  Fresh templates added to our collection
+                  Fresh Designs added to our collection
                 </p>
               </div>
               <Link to="/templates?sort=latest" className="inline-flex items-center text-neon-blue hover:underline font-medium">
@@ -977,7 +976,7 @@ const HomePage = () => {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {isLoadingRecent ? (
-                <div className="col-span-3 text-center py-12">Loading recent templates...</div>
+                <div className="col-span-3 text-center py-12">Loading recent Designs...</div>
               ) : recentTemplates.length > 0 ? (
                 recentTemplates.slice(0, 3).map((templateData: any, i) => {
                   const template = formatTemplate(templateData);
@@ -1037,7 +1036,7 @@ const HomePage = () => {
                   );
                 })
               ) : (
-                <div className="col-span-3 text-center py-12">No recently added templates found</div>
+                <div className="col-span-3 text-center py-12">No recently added Designs found</div>
               )}
             </motion.div>
             
@@ -1054,7 +1053,7 @@ const HomePage = () => {
                 <div className="md:w-1/2">
                   <h3 className="font-orbitron text-2xl font-bold mb-4">Can't Find What You Need?</h3>
                   <p className="text-muted-foreground mb-6">
-                    Use our advanced search to find the perfect template for your project, or request a custom template.
+                    Use our advanced search to find the perfect Designs for your project, or request a custom Designs.
                   </p>
                   <form 
                     onSubmit={handleSearch} 
@@ -1064,7 +1063,7 @@ const HomePage = () => {
                       <div className="relative">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
                         <Input
-                          placeholder="Search templates..."
+                          placeholder="Search Designs..."
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
                           className="pl-10 bg-cyber-dark/40 border-cyber-border"
@@ -1121,7 +1120,7 @@ const HomePage = () => {
                 What Our <span className="text-neon-purple">Users</span> Say
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Hear from developers who have built amazing projects with our templates
+                Hear from developers who have built amazing projects with our Designs
               </p>
             </motion.div>
             
@@ -1135,7 +1134,7 @@ const HomePage = () => {
                 {
                   name: "Alex Chen",
                   role: "Frontend Developer",
-                  quote: "These templates saved me weeks of development time. The code quality is outstanding!",
+                  quote: "These Designs saved me weeks of development time. The code quality is outstanding!",
                   avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=120&h=120&q=80",
                   rating: 5
                 },
@@ -1149,7 +1148,7 @@ const HomePage = () => {
                 {
                   name: "Michael Rodriguez",
                   role: "UI/UX Designer",
-                  quote: "As a designer, I appreciate how easy it is to customize these templates to match my vision.",
+                  quote: "As a designer, I appreciate how easy it is to customize these Designs to match my vision.",
                   avatar: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=120&h=120&q=80",
                   rating: 4
                 }
@@ -1214,7 +1213,7 @@ const HomePage = () => {
                 Built With <span className="text-neon-green">Modern Tech</span>
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Our templates leverage the latest web technologies for optimal performance
+                Our Designs leverage the latest web technologies for optimal performance
               </p>
             </motion.div>
             
@@ -1274,7 +1273,7 @@ const HomePage = () => {
                     <Zap className="h-6 w-6 text-neon-blue" />
                   </div>
                   <h3 className="font-orbitron text-xl font-medium mb-2">Performance Optimized</h3>
-                  <p className="text-muted-foreground">All templates are optimized for speed and efficiency, scoring high on Lighthouse.</p>
+                  <p className="text-muted-foreground">All Designs are optimized for speed and efficiency, scoring high on Lighthouse.</p>
                 </div>
               </div>
               
@@ -1341,7 +1340,7 @@ const HomePage = () => {
                 Ready to Build Something <span className="text-shimmer">Amazing</span>?
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Explore our collection of premium templates and start building your next project today.
+                Explore our collection of premium Designs and start building your next project today.
               </p>
               <motion.div 
                 className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -1352,7 +1351,7 @@ const HomePage = () => {
                     className="cyber-button bg-neon-purple hover:bg-neon-purple/90 text-white font-medium w-full sm:w-auto group relative overflow-hidden"
                     onClick={() => navigate('/templates')}
                   >
-                    <span className="relative z-10">Explore Templates</span>
+                    <span className="relative z-10">Explore Designs</span>
                     <span className="absolute inset-0 bg-gradient-to-r from-neon-purple via-neon-blue to-neon-purple opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
                   </Button>
                 </motion.div>
@@ -1373,7 +1372,7 @@ const HomePage = () => {
               <div className="mt-12 max-w-md mx-auto">
                 <h3 className="font-orbitron text-xl font-medium mb-4">Stay Updated</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Subscribe to our newsletter for updates on new templates and features.
+                  Subscribe to our newsletter for updates on new Designs and features.
                 </p>
                 <form className="flex flex-col sm:flex-row gap-2">
                   <Input 
@@ -1387,7 +1386,7 @@ const HomePage = () => {
                       e.preventDefault();
                       toast({
                         title: "Thanks for subscribing!",
-                        description: "You'll receive updates on new templates and features.",
+                        description: "You'll receive updates on new Designs and features.",
                       });
                     }}
                   >

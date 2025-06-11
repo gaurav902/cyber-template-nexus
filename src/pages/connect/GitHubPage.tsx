@@ -20,7 +20,7 @@ const GitHubPage = () => {
             GitHub Discussions
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-            Join our GitHub community to discuss code, report issues, and contribute to our templates
+            Join our GitHub community to discuss code, report issues, and contribute to our Designs
           </p>
           <div className="flex justify-center">
             <Button size="lg" className="cyber-button bg-white text-black hover:bg-white/90 font-medium">
@@ -41,7 +41,7 @@ const GitHubPage = () => {
               <h3 className="text-xl font-orbitron font-medium">Code Discussions</h3>
             </div>
             <p className="text-muted-foreground mb-6">
-              Discuss coding patterns, best practices, and implementation details of our templates with our community of developers.
+              Discuss coding patterns, best practices, and implementation details of our Designs with our community of developers.
             </p>
             <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
               <li>Get help with complex coding challenges</li>
@@ -58,7 +58,7 @@ const GitHubPage = () => {
               <h3 className="text-xl font-orbitron font-medium">Issue Reporting</h3>
             </div>
             <p className="text-muted-foreground mb-6">
-              Help improve our templates by reporting bugs, suggesting new features, or requesting enhancements.
+              Help improve our Designs by reporting bugs, suggesting new features, or requesting enhancements.
             </p>
             <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
               <li>Report issues with detailed reproduction steps</li>
@@ -81,7 +81,7 @@ const GitHubPage = () => {
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                 <li>Fork repositories and submit pull requests with improvements</li>
                 <li>Create detailed issues for bugs with reproduction steps</li>
-                <li>Share examples of how you've extended our templates</li>
+                <li>Share examples of how you've extended our Designs</li>
                 <li>Help other community members by answering questions</li>
               </ul>
             </div>
@@ -106,7 +106,7 @@ const GitHubPage = () => {
                 <h4 className="font-orbitron">Ideas</h4>
               </div>
               <p className="text-sm text-muted-foreground">
-                Share and discuss ideas for template improvements and new features.
+                Share and discuss ideas for Designs improvements and new features.
               </p>
             </div>
             
@@ -116,7 +116,7 @@ const GitHubPage = () => {
                 <h4 className="font-orbitron">Show & Tell</h4>
               </div>
               <p className="text-sm text-muted-foreground">
-                Showcase projects you've built with our templates and get feedback.
+                Showcase projects you've built with our Designs and get feedback.
               </p>
             </div>
           </div>
@@ -125,7 +125,7 @@ const GitHubPage = () => {
         <div className="text-center max-w-2xl mx-auto">
           <h3 className="text-2xl font-orbitron font-medium mb-4">Join Our Developer Community</h3>
           <p className="text-muted-foreground mb-8">
-            Connect with us on GitHub to stay updated on template development, report issues, and contribute to our open source projects.
+            Connect with us on GitHub to stay updated on Designs development, report issues, and contribute to our open source projects.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button className="cyber-button bg-white text-black hover:bg-white/90 font-medium">

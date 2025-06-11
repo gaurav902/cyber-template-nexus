@@ -32,7 +32,7 @@ const AnalyticsDocsPage = () => {
             <div className="cyber-panel p-6">
               <h2 className="text-xl font-orbitron font-medium mb-4">Overview</h2>
               <p className="mb-4">
-                HTR templates include support for various analytics solutions to help you understand user behavior, track performance metrics, and make data-driven decisions to improve your application.
+                HTR Designs include support for various analytics solutions to help you understand user behavior, track performance metrics, and make data-driven decisions to improve your application.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <div className="flex items-start p-3 bg-cyber-light/30 rounded-md">
@@ -88,7 +88,7 @@ const AnalyticsDocsPage = () => {
                   </p>
                 </div>
                 <p>
-                  Setting up Google Analytics with HTR templates:
+                  Setting up Google Analytics with HTR Designs:
                 </p>
                 <ol className="list-decimal pl-6 space-y-3 text-muted-foreground mb-4">
                   <li>
@@ -104,7 +104,7 @@ const AnalyticsDocsPage = () => {
                     Use the official Google Analytics package
                   </li>
                   <li>
-                    <span className="text-white font-medium">Configure your template</span>: 
+                    <span className="text-white font-medium">Configure your Designs</span>: 
                     Add your Measurement ID to your environment variables
                   </li>
                 </ol>
@@ -171,7 +171,7 @@ function App() {
               <h2 className="text-xl font-orbitron font-medium mb-4">Custom Analytics Solutions</h2>
               <div className="cyber-panel p-6 space-y-4">
                 <p className="mb-4">
-                  HTR templates support privacy-focused analytics alternatives that don't rely on cookies or track personal information:
+                  HTR Designs support privacy-focused analytics alternatives that don't rely on cookies or track personal information:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div className="p-4 bg-cyber-light/20 rounded-md">
@@ -232,7 +232,7 @@ function App() {
               <h2 className="text-xl font-orbitron font-medium mb-4">Internal Analytics with Supabase</h2>
               <div className="cyber-panel p-6">
                 <p className="mb-4">
-                  HTR templates include a built-in solution for tracking key metrics using Supabase, giving you complete control over your analytics data:
+                  HTR Designs include a built-in solution for tracking key metrics using Supabase, giving you complete control over your analytics data:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                   <div className="flex flex-col items-center p-4 bg-cyber-light/20 rounded-md">

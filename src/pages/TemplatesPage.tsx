@@ -108,9 +108,9 @@ const TemplatesPage = () => {
         <section className="bg-cyber-dark py-16 mb-8">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="font-orbitron text-3xl md:text-4xl font-bold mb-4">Browse Templates</h1>
+              <h1 className="font-orbitron text-3xl md:text-4xl font-bold mb-4">Browse Designs</h1>
               <p className="text-muted-foreground">
-                Explore our collection of premium website templates for your next project
+                Explore our collection of premium website Designs for your next project
               </p>
             </div>
           </div>
@@ -125,7 +125,7 @@ const TemplatesPage = () => {
                 <Input
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search templates..."
+                  placeholder="Search Designs..."
                   className="pl-9 bg-cyber-light border-cyber-border"
                 />
               </div>
@@ -210,7 +210,7 @@ const TemplatesPage = () => {
           
           {/* Results Count */}
           <div className="mb-6 text-muted-foreground">
-            Found {filteredTemplates.length} templates
+            Found {filteredTemplates.length} Designs
           </div>
           
           {/* Templates Grid */}
@@ -226,7 +226,7 @@ const TemplatesPage = () => {
             </div>
           ) : (
             <div className="cyber-panel py-16 text-center">
-              <h3 className="text-xl font-orbitron mb-2">No templates found</h3>
+              <h3 className="text-xl font-orbitron mb-2">No Designs found</h3>
               <p className="text-muted-foreground mb-4">Try adjusting your search or filters</p>
               <Button 
                 variant="outline" 

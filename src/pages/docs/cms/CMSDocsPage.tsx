@@ -32,7 +32,7 @@ const CMSDocsPage = () => {
             <div className="cyber-panel p-6">
               <h2 className="text-xl font-orbitron font-medium mb-4">Overview</h2>
               <p className="mb-4">
-                HTR templates support various content management system (CMS) integrations to help you manage and update content without requiring code changes. These integrations range from headless CMS platforms to custom solutions built with Supabase.
+                HTR Designs support various content management system (CMS) integrations to help you manage and update content without requiring code changes. These integrations range from headless CMS platforms to custom solutions built with Supabase.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <div className="flex items-start p-3 bg-cyber-light/30 rounded-md">
@@ -78,7 +78,7 @@ const CMSDocsPage = () => {
               <h2 className="text-xl font-orbitron font-medium mb-4">Headless CMS Integration</h2>
               <div className="cyber-panel p-6 space-y-4">
                 <p className="mb-4">
-                  Headless CMS systems provide content through APIs, allowing flexibility in how you present the content in your application. HTR templates support these popular headless CMS platforms:
+                  Headless CMS systems provide content through APIs, allowing flexibility in how you present the content in your application. HTR Designs support these popular headless CMS platforms:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                   <div className="p-4 bg-cyber-light/20 rounded-md">
@@ -199,7 +199,7 @@ function PageContent({ slug }) {
                   </p>
                 </div>
                 <p className="mb-4">
-                  HTR templates include a built-in solution for creating a custom CMS using Supabase as the backend. This approach gives you complete control over your content structure and admin interface:
+                  HTR Designs include a built-in solution for creating a custom CMS using Supabase as the backend. This approach gives you complete control over your content structure and admin interface:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div className="p-4 bg-cyber-light/20 rounded-md">
@@ -309,7 +309,7 @@ export async function createPage(page: any) {
                   <h3 className="font-medium">WYSIWYG Editors</h3>
                 </div>
                 <p className="mb-4 text-muted-foreground">
-                  HTR templates include support for these popular rich text editors:
+                  HTR Designs include support for these popular rich text editors:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                   <div className="p-4 bg-cyber-light/20 rounded-md">
@@ -345,7 +345,7 @@ export async function createPage(page: any) {
                   <h3 className="font-medium">Custom Components</h3>
                 </div>
                 <p className="text-muted-foreground mb-4">
-                  HTR templates include reusable components for building your own CMS interface, including:
+                  HTR Designs include reusable components for building your own CMS interface, including:
                 </p>
                 <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
                   <li>Image upload and gallery components</li>

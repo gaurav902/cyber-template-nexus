@@ -27,10 +27,10 @@ const LatestPage = () => {
             <Clock className="h-12 w-12 text-neon-blue" />
           </div>
           <h1 className="text-4xl font-orbitron font-bold mb-4 cyber-text-glow">
-            Latest Templates
+            Latest Designs
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Our most recently added templates for you to explore
+            Our most recently added Designs for you to explore
           </p>
         </div>
 
@@ -46,7 +46,7 @@ const LatestPage = () => {
           </div>
         ) : (
           <div className="text-center py-16">
-            <p className="text-muted-foreground text-lg">No templates found</p>
+            <p className="text-muted-foreground text-lg">No Designs found</p>
           </div>
         )}
       </div>

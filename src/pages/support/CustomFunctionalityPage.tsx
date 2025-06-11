@@ -19,7 +19,7 @@ const CustomFunctionalityPage = () => {
             <div className="cyber-panel p-4 mb-6 flex items-center">
               <CodepenIcon className="h-6 w-6 text-neon-purple mr-3" />
               <p className="text-muted-foreground">
-                Learn how to extend and customize HTR templates with your own functionality
+                Learn how to extend and customize HTR Designs with your own functionality
               </p>
             </div>
           </div>
@@ -32,7 +32,7 @@ const CustomFunctionalityPage = () => {
               </h2>
               <div className="cyber-panel p-6 space-y-4">
                 <p>
-                  HTR templates are built with a modular component architecture that makes them easy to customize:
+                  HTR Designs are built with a modular component architecture that makes them easy to customize:
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                   <li>All components are organized in a logical folder structure</li>
@@ -70,7 +70,7 @@ const CustomButton = ({
               </h2>
               <div className="cyber-panel p-6 space-y-4">
                 <p>
-                  Extend the template with your own pages to add new sections to your application:
+                  Extend the Designs with your own pages to add new sections to your application:
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                   <li>Create new page components in the src/pages directory</li>
@@ -105,10 +105,10 @@ const CustomButton = ({
               </h2>
               <div className="cyber-panel p-6 space-y-4">
                 <p>
-                  Connect your template to backend services and APIs:
+                  Connect your Designs to backend services and APIs:
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>Templates are pre-configured for Supabase integration</li>
+                  <li>Designs are pre-configured for Supabase integration</li>
                   <li>Create API service files for different endpoints</li>
                   <li>Use React Query for efficient data fetching and caching</li>
                   <li>Implement proper error handling and loading states</li>
@@ -177,7 +177,7 @@ const { data, isLoading, error } = useQuery({
                   <li>Document your custom components and hooks</li>
                 </ul>
                 <p className="mt-4">
-                  Whenever possible, extend existing components rather than rewriting them from scratch. This makes it easier to maintain compatibility with future template updates.
+                  Whenever possible, extend existing components rather than rewriting them from scratch. This makes it easier to maintain compatibility with future Designs updates.
                 </p>
               </div>
             </section>

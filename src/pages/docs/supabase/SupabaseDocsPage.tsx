@@ -32,7 +32,7 @@ const SupabaseDocsPage = () => {
             <div className="cyber-panel p-6">
               <h2 className="text-xl font-orbitron font-medium mb-4">Overview</h2>
               <p className="mb-4">
-                All HTR templates come with built-in Supabase integration, providing you with a powerful backend infrastructure for your web applications. Supabase is an open-source Firebase alternative that provides all the backend features you need.
+                All HTR Designs come with built-in Supabase integration, providing you with a powerful backend infrastructure for your web applications. Supabase is an open-source Firebase alternative that provides all the backend features you need.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <div className="flex items-start p-3 bg-cyber-light/30 rounded-md">
@@ -78,7 +78,7 @@ const SupabaseDocsPage = () => {
               <h2 className="text-xl font-orbitron font-medium mb-4">Getting Started</h2>
               <div className="cyber-panel p-6 space-y-4">
                 <p>
-                  To use Supabase with HTR templates, follow these steps:
+                  To use Supabase with HTR Designs, follow these steps:
                 </p>
                 <ol className="list-decimal pl-6 space-y-3 text-muted-foreground mb-4">
                   <li>
@@ -94,8 +94,8 @@ const SupabaseDocsPage = () => {
                     Find your project URL and anon key in the API settings
                   </li>
                   <li>
-                    <span className="text-white font-medium">Configure your template</span>: 
-                    Add your Supabase URL and anon key to your HTR template's environment variables
+                    <span className="text-white font-medium">Configure your Designs</span>: 
+                    Add your Supabase URL and anon key to your HTR Design's environment variables
                   </li>
                 </ol>
                 <div className="bg-cyber-dark p-4 rounded-md border border-cyber-border">
@@ -114,7 +114,7 @@ const SupabaseDocsPage = () => {
               <h2 className="text-xl font-orbitron font-medium mb-4">Database Integration</h2>
               <div className="cyber-panel p-6 space-y-4">
                 <p className="mb-2">
-                  HTR templates use the Supabase JavaScript client to interact with your database. Here's a basic example:
+                  HTR Designs use the Supabase JavaScript client to interact with your database. Here's a basic example:
                 </p>
                 <div className="bg-cyber-dark p-4 rounded-md border border-cyber-border mb-4">
                   <pre className="font-mono text-xs text-emerald-400 overflow-x-auto">
@@ -161,7 +161,7 @@ async function addItem(item) {
               <h2 className="text-xl font-orbitron font-medium mb-4">Authentication</h2>
               <div className="cyber-panel p-6 space-y-4">
                 <p>
-                  HTR templates include pre-configured authentication hooks to work with Supabase Auth. Here are the key features:
+                  HTR Designs include pre-configured authentication hooks to work with Supabase Auth. Here are the key features:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
                   <div className="flex items-start p-3 bg-cyber-light/30 rounded-md">
@@ -228,7 +228,7 @@ async function signOut() {
           <div className="mt-12 p-6 cyber-panel bg-gradient-to-br from-cyber-dark to-cyber">
             <h3 className="text-xl font-orbitron font-medium mb-4">Advanced Supabase Features</h3>
             <p className="mb-6 text-muted-foreground">
-              Our templates support advanced Supabase features that can help you build complex applications:
+              Our Designs support advanced Supabase features that can help you build complex applications:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <div className="p-4 bg-cyber-light/20 rounded-md">

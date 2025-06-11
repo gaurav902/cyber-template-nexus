@@ -32,7 +32,7 @@ const PaymentsDocsPage = () => {
             <div className="cyber-panel p-6">
               <h2 className="text-xl font-orbitron font-medium mb-4">Overview</h2>
               <p className="mb-4">
-                HTR templates include built-in support for popular payment gateways, allowing you to easily add payment processing to your applications. Our integrations focus on security, ease of use, and comprehensive feature sets.
+                HTR Designs include built-in support for popular payment gateways, allowing you to easily add payment processing to your applications. Our integrations focus on security, ease of use, and comprehensive feature sets.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <div className="flex items-start p-3 bg-cyber-light/30 rounded-md">
@@ -88,7 +88,7 @@ const PaymentsDocsPage = () => {
                   </p>
                 </div>
                 <p>
-                  Setting up Stripe with HTR templates is straightforward:
+                  Setting up Stripe with HTR Designs is straightforward:
                 </p>
                 <ol className="list-decimal pl-6 space-y-3 text-muted-foreground mb-4">
                   <li>
@@ -104,7 +104,7 @@ const PaymentsDocsPage = () => {
                     Add the necessary libraries to your project
                   </li>
                   <li>
-                    <span className="text-white font-medium">Configure your template</span>: 
+                    <span className="text-white font-medium">Configure your Designs</span>: 
                     Add your Stripe keys to your environment variables
                   </li>
                 </ol>
@@ -169,7 +169,7 @@ function CheckoutForm({ paymentAmount }: { paymentAmount: number }) {
                   </p>
                 </div>
                 <p className="mb-4">
-                  HTR templates support PayPal integration for customers who prefer this payment method:
+                  HTR Designs support PayPal integration for customers who prefer this payment method:
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
                   <li>PayPal Standard Checkout buttons</li>
@@ -226,7 +226,7 @@ function PayPalCheckout({ amount }: { amount: number }) {
                   <h3 className="font-medium">Securing Payment Processing</h3>
                 </div>
                 <p className="mb-4 text-muted-foreground">
-                  For secure payment processing, sensitive operations should always be handled on the server side. HTR templates include Supabase edge functions for secure payment processing:
+                  For secure payment processing, sensitive operations should always be handled on the server side. HTR Designs include Supabase edge functions for secure payment processing:
                 </p>
                 <div className="bg-cyber-dark p-4 rounded-md border border-cyber-border mb-4">
                   <p className="text-sm text-muted-foreground mb-2">Example Stripe server-side processing:</p>
@@ -277,7 +277,7 @@ serve(async (req) => {
                   <h3 className="font-medium">Webhooks for Event Handling</h3>
                 </div>
                 <p className="text-muted-foreground">
-                  Implement webhooks to handle payment events like successful payments, failed charges, and subscription updates. HTR templates include examples for setting up webhooks with both Stripe and PayPal.
+                  Implement webhooks to handle payment events like successful payments, failed charges, and subscription updates. HTR Designs include examples for setting up webhooks with both Stripe and PayPal.
                 </p>
               </div>
             </div>
