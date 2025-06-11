@@ -2,15 +2,15 @@
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Eye, Star, ArrowRight } from 'lucide-react';
-import { Creation } from '@/types/templates';
+import { Template } from '@/types/templates';
 
-interface CreationCardProps {
-  template: Creation;
+interface TemplateCardProps {
+  template: Template;
 }
 
-export function TemplateCard({ template }: CreationCardProps) {
+export function TemplateCard({ template }: TemplateCardProps) {
   return (
-    <Link to={`/designs/${template.id}`}>
+    <Link to={`/templates/${template.id}`}>
       <div className="cyber-card group h-full flex flex-col">
         <div className="relative">
           <div className="aspect-video rounded-t-lg overflow-hidden">

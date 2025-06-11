@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,12 +8,12 @@ import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchDashboardStats, fetchTrendingTemplates, fetchLatestTemplates } from '@/services/dashboard';
-import { Creation } from '@/types/templates';
+import { Template } from '@/types/templates';
 
 const DashboardPage = () => {
   const { toast } = useToast();
-  const [trendingTemplates, setTrendingTemplates] = useState<Creation[]>([]);
-  const [recentTemplates, setRecentTemplates] = useState<Creation[]>([]);
+  const [trendingTemplates, setTrendingTemplates] = useState<Template[]>([]);
+  const [recentTemplates, setRecentTemplates] = useState<Template[]>([]);
 
   // Fetch dashboard stats
   const { data: stats, isLoading } = useQuery({
@@ -35,7 +36,7 @@ const DashboardPage = () => {
     queryKey: ['trendingTemplates'],
     queryFn: fetchTrendingTemplates,
     meta: {
-      onSuccess: (data: Creation[]) => {
+      onSuccess: (data: Template[]) => {
         setTrendingTemplates(data);
       },
       onError: (error: Error) => {
@@ -54,7 +55,7 @@ const DashboardPage = () => {
     queryKey: ['recentTemplates'],
     queryFn: fetchLatestTemplates,
     meta: {
-      onSuccess: (data: Creation[]) => {
+      onSuccess: (data: Template[]) => {
         setRecentTemplates(data);
       },
       onError: (error: Error) => {

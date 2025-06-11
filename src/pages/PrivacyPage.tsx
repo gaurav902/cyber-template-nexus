@@ -31,11 +31,11 @@ export default function PrivacyPage() {
               </div>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  At HACK THE ROOT, we collect minimal information necessary to provide our design creation platform services:
+                  At HACK THE ROOT, we collect minimal information necessary to provide our template platform services:
                 </p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
                   <li>Account information (email address, username)</li>
-                  <li>Usage analytics (pages visited, designs downloaded)</li>
+                  <li>Usage analytics (pages visited, templates downloaded)</li>
                   <li>Device and browser information for optimization</li>
                   <li>Cookies for authentication and preferences</li>
                 </ul>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
               <div className="space-y-4 text-muted-foreground">
                 <p>Your information is used to:</p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li>Provide access to our design library</li>
+                  <li>Provide access to our template library</li>
                   <li>Improve user experience and platform performance</li>
                   <li>Send important service updates and notifications</li>
                   <li>Prevent fraud and ensure platform security</li>

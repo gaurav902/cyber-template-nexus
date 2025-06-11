@@ -46,13 +46,13 @@ export default function TermsPage() {
               </div>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Permission is granted to temporarily download and use the designs from HACK THE ROOT for personal and commercial use, provided that:
+                  Permission is granted to temporarily download and use the templates from HACK THE ROOT for personal and commercial use, provided that:
                 </p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li>You do not redistribute designs as standalone products</li>
-                  <li>You may modify designs for your specific needs</li>
+                  <li>You do not redistribute templates as standalone products</li>
+                  <li>You may modify templates for your specific needs</li>
                   <li>Attribution to HACK THE ROOT is appreciated but not required</li>
-                  <li>You do not claim original authorship of unmodified designs</li>
+                  <li>You do not claim original authorship of unmodified templates</li>
                 </ul>
               </div>
             </section>
@@ -64,13 +64,13 @@ export default function TermsPage() {
               </div>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  The designs and materials on HACK THE ROOT are provided on an 'as is' basis. To the fullest extent permitted by law, this Company:
+                  The templates and materials on HACK THE ROOT are provided on an 'as is' basis. To the fullest extent permitted by law, this Company:
                 </p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
                   <li>Excludes all representations and warranties relating to this website and its contents</li>
                   <li>Excludes all liability for damages arising out of or in connection with your use of this website</li>
                   <li>Does not guarantee compatibility with all systems or browsers</li>
-                  <li>Does not warrant that designs are error-free or secure</li>
+                  <li>Does not warrant that templates are error-free or secure</li>
                 </ul>
               </div>
             </section>
